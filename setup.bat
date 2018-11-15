@@ -4,8 +4,8 @@ SETLOCAL ENABLEEXTENSIONS
 ECHO Checking to see if Chocolatey is installed...
 where choco >nul 2>nul
 IF %ERRORLEVEL% NEQ 0 ECHO Chocolatey isn't installed, attempting to install. 
-IF %ERRORLEVEL% NEQ 0 call @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
-IF %ERRORLEVEL% NEQ 0 call refreshenv
+IF %ERRORLEVEL% NEQ 0 call "%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+IF %ERRORLEVEL% NEQ 0 refreshenv
 
 ECHO Checking to see if choco can be run...
 where choco >nul 2>nul
@@ -14,13 +14,13 @@ IF %ERRORLEVEL% NEQ 0 PAUSE
 IF %ERRORLEVEL% NEQ 0 EXIT
 IF %ERRORLEVEL% EQU 0 ECHO Chocolatey is good, running commands...
 IF %ERRORLEVEL% EQU 0 call choco install notepadplusplus vscode bitnami-xampp firefox googlechrome vivaldi git nodejs filezilla -y
-IF %ERRORLEVEL% EQU 0 call refreshenv
+IF %ERRORLEVEL% EQU 0 refreshenv
 
 ECHO Checking to see if npm is installed...
 where npm >nul 2>nul
 IF %ERRORLEVEL% NEQ 0 ECHO npm wasn't found, installing NodeJS...
 IF %ERRORLEVEL% NEQ 0 call choco install nodejs -y
-IF %ERRORLEVEL% NEQ 0 call refreshenv
+IF %ERRORLEVEL% NEQ 0 refreshenv
 
 ECHO Checking to see if npm can be run...
 where npm >nul 2>nul
