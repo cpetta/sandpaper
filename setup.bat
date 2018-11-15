@@ -10,6 +10,7 @@ IF %ERRORLEVEL% NEQ 0 call refreshenv
 ECHO Checking to see if choco can be run...
 where choco >nul 2>nul
 IF %ERRORLEVEL% NEQ 0 Chocolatey still isn't installed correctly, terminating...
+IF %ERRORLEVEL% NEQ 0 PAUSE
 IF %ERRORLEVEL% NEQ 0 EXIT
 IF %ERRORLEVEL% EQU 0 ECHO Chocolatey is good, running commands...
 IF %ERRORLEVEL% EQU 0 call choco install notepadplusplus vscode bitnami-xampp firefox googlechrome vivaldi git nodejs filezilla -y
@@ -21,17 +22,17 @@ IF %ERRORLEVEL% NEQ 0 ECHO npm wasn't found, installing NodeJS...
 IF %ERRORLEVEL% NEQ 0 call choco install nodejs -y
 IF %ERRORLEVEL% NEQ 0 call refreshenv
 
-
-
 ECHO Checking to see if npm can be run...
 where npm >nul 2>nul
 IF %ERRORLEVEL% NEQ 0 npm still isn't installed correctly, terminating...
+IF %ERRORLEVEL% NEQ 0 PAUSE
 IF %ERRORLEVEL% NEQ 0 EXIT
 
 IF %ERRORLEVEL% EQU 0 ECHO npm is good, running commands...
-cd C:\xampp\htdocs
-mkdir gulpdev
 
+mkdir C:\xampp\htdocs\gulpdev
+move * C:\xampp\htdocs\gulpdev
+cd C:\xampp\htdocs\gulpdev
 
 IF %ERRORLEVEL% EQU 0 call npm --silent install  npm@latest -g
 
