@@ -1,0 +1,7 @@
+dev/*
+documentation/*
+maps/*
+node_modules/*
+rel/*
+package.json
+package-lock.json
