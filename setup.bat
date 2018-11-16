@@ -12,7 +12,8 @@ IF %ERRORLEVEL% NEQ 0 Chocolatey still isn't installed correctly, terminating...
 IF %ERRORLEVEL% NEQ 0 PAUSE
 IF %ERRORLEVEL% NEQ 0 EXIT
 IF %ERRORLEVEL% EQU 0 ECHO Chocolatey is good, running commands...
-IF %ERRORLEVEL% EQU 0 call choco install notepadplusplus vscode bitnami-xampp firefox googlechrome vivaldi git nodejs filezilla -y
+IF %ERRORLEVEL% EQU 0 call choco install notepadplusplus bitnami-xampp firefox googlechrome git nodejs filezilla -y
+::IF %ERRORLEVEL% EQU 0 call choco install vivaldi vscode -y
 
 ECHO Checking to see if npm is installed...
 where npm >nul 2>nul
@@ -27,15 +28,6 @@ IF %ERRORLEVEL% NEQ 0 EXIT
 
 IF %ERRORLEVEL% EQU 0 ECHO npm is good, running commands...
 
-IF %ERRORLEVEL% EQU 0 mkdir C:\xampp\htdocs\gulpdev
-IF %ERRORLEVEL% EQU 0 mkdir C:\xamp\htdocs\gulpdev\dev
-IF %ERRORLEVEL% EQU 0 move gulpfile.js C:\xampp\htdocs\gulpdev
-IF %ERRORLEVEL% EQU 0 move LICENSE C:\xampp\htdocs\gulpdev
-IF %ERRORLEVEL% EQU 0 move local.gitignore C:\xampp\htdocs\gulpdev
-IF %ERRORLEVEL% EQU 0 move README.md C:\xampp\htdocs\gulpdev
-IF %ERRORLEVEL% EQU 0 move README.txt C:\xampp\htdocs\gulpdev
-IF %ERRORLEVEL% EQU 0 move stylelint.config.js C:\xampp\htdocs\gulpdev
-IF %ERRORLEVEL% EQU 0 move tslint.json C:\xampp\htdocs\gulpdev
 IF %ERRORLEVEL% EQU 0 cd C:\xampp\htdocs\gulpdev
 
 IF %ERRORLEVEL% EQU 0 call npm --silent install  npm@latest -g
@@ -99,7 +91,14 @@ IF %ERRORLEVEL% EQU 0 call npm --silent install --save-dev imagemin-pngout
 IF %ERRORLEVEL% EQU 0 call npm tslint --init
 IF %ERRORLEVEL% EQU 0 call npm --silent audit fix
 
+where git >nul 2>nul
+IF %ERRORLEVEL% NEQ 0 ECHO git wasn't found in path, adding.
+IF %ERRORLEVEL% NEQ 0 SET "PATH=%PATH%;C:\Program Files\Git\cmd"
+
+IF %ERRORLEVEL% EQU 0 call git init
+IF %ERRORLEVEL% EQU 0 call git remote add gulpdev https://github.com/cpetta/GulpDev.git
+IF %ERRORLEVEL% EQU 0 call git pull gulpdev master
+
 IF %ERRORLEVEL% EQU 0 start C:\xampp\htdocs\gulpdev\dev\index.html
-IF %ERRORLEVEL% EQU 0 move setup.bat C:\xampp\htdocs\gulpdev
 
 pause
