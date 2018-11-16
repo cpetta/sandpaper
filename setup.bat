@@ -91,9 +91,16 @@ IF %ERRORLEVEL% EQU 0 call npm --silent install --save-dev imagemin-pngout
 IF %ERRORLEVEL% EQU 0 call npm tslint --init
 IF %ERRORLEVEL% EQU 0 call npm --silent audit fix
 
+ECHO Checking to see if git is in path...
 where git >nul 2>nul
 IF %ERRORLEVEL% NEQ 0 ECHO git wasn't found in path, adding.
 IF %ERRORLEVEL% NEQ 0 SET "PATH=%PATH%;C:\Program Files\Git\cmd"
+
+ECHO Checking to see if git can be run...
+where git >nul 2>nul
+IF %ERRORLEVEL% NEQ 0 git can't be run, terminating...
+IF %ERRORLEVEL% NEQ 0 PAUSE
+IF %ERRORLEVEL% NEQ 0 EXIT
 
 IF %ERRORLEVEL% EQU 0 call git init
 IF %ERRORLEVEL% EQU 0 call git remote add gulpdev https://github.com/cpetta/GulpDev.git
