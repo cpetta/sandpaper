@@ -96,8 +96,11 @@ IF %ERRORLEVEL% NEQ 0 ECHO git wasn't found in path, adding.
 IF %ERRORLEVEL% NEQ 0 SET "PATH=%PATH%;C:\Program Files\Git\cmd"
 
 IF %ERRORLEVEL% EQU 0 call git init
-IF %ERRORLEVEL% EQU 0 call git remote add gulpdev https://github.com/cpetta/GulpDev.git
+IF %ERRORLEVEL% EQU 0 call git remote add gulpdev git@github.com:cpetta/GulpDev.git
+IF %ERRORLEVEL% EQU 0 call git branch --set-upstream-to=gulpdev/master
 IF %ERRORLEVEL% EQU 0 call git pull gulpdev master
+IF %ERRORLEVEL% EQU 0 call git fetch
+
 
 IF %ERRORLEVEL% EQU 0 start C:\xampp\htdocs\gulpdev\dev\index.html
 
