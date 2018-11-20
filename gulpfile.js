@@ -31,13 +31,12 @@ https://css-tricks.com/bem-101/
 	
 */
 
-
 const mkDir = require('make-dir');						// npm install make-dir
 const del = require('del');								// npm install del
 const gulp = require('gulp');							// npm install gulp@next
 //const include = require('gulp-include');				// npm install gulp-include
-const gulpif = require('gulp-if')						// npm install gulp-if -g 							// https://www.npmjs.com/package/gulp-if
-const pump = require('pump')							// npm install pump
+const gulpif = require('gulp-if');						// npm install gulp-if -g 							// https://www.npmjs.com/package/gulp-if
+const pump = require('pump');							// npm install pump
 const changed = require('gulp-changed'); 				// npm install --save-dev gulp-changed
 const cache = require('gulp-cache');					// npm install --save-dev gulp-cache
 const sourcemaps = require('gulp-sourcemaps');			// npm install --save-dev gulp-sourcemaps
@@ -66,6 +65,9 @@ const postcssReporter = require("postcss-reporter");	// npm install --save-dev p
 //														// npm install --save-dev stylelint-config-standard	// https://github.com/stylelint/stylelint-config-standard
 //														// npm install --save-dev stylelint-order  			// https://github.com/hudochenkov/stylelint-order
 const postCSSinHTML = require('gulp-html-postcss');		// npm install --save-dev gulp-html-postcss
+
+const zip = require('gulp-zip');
+
 /* 
 	https://github.com/postcss/gulp-postcss
 	https://www.postcss.parts/
@@ -74,12 +76,13 @@ const postCSSinHTML = require('gulp-html-postcss');		// npm install --save-dev g
 	https://stylelint.io/user-guide/example-config/
 	https://github.com/lahmatiy/postcss-csso
 */
-
+const ProjectName = "gulp-default-project-name";
+const currentTime = Date.now;
 var includeSourceMap = false;
 var staging = true;
 const targetBrowsers = 'last 2 versions';
 const landingPage = "index.html";
-
+const ZipName = ProjectName + " - " + currentTime;
 var pluginsPostCSS = [
 		mqpacker(),
         presetEnv({stage: 2, /* stage 0 - 4*/ browsers: targetBrowsers}),
@@ -120,9 +123,9 @@ const paths = {		// this will likely need to be updated for your project.
 	report: {
 		css: 'report/css',
 	},
-	index: 'index.html', // the .html file to open when running gulp sync.
+	index: landingPage, // the .html file to open when running gulp sync.
 	basedir: './stage',	//the folder that gulp sync loads from.
-}
+};
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -225,7 +228,7 @@ function uglifyjs() {
 		gulpif(includeSourceMap, sourcemaps.write('../maps')),
 		gulp.dest(gulpif(staging, paths.stage.js, paths.rel.js)),
 		browserSync.stream(),
-		function(err){if(err)console.log(err)})
+		function(err){if(err)console.log(err)});
 }
 
 function optamizeImages() {
@@ -281,9 +284,8 @@ function optamizeImages() {
 function linthtml() {
 	return gulp.src(paths.dev.html)
 		.pipe(htmlhint())
-		.pipe(htmlhint.reporter())
+		.pipe(htmlhint.reporter());
 }
-
 function lintcss() {
 	var pluginsPostCSSlint = [
 		stylelint({ /* your options */ }),
@@ -294,7 +296,6 @@ function lintcss() {
 		//.pipe(include()).on('error', console.log)
 		.pipe(postcss(pluginsPostCSSlint));
 }
-
 function lintjs() {
 	return gulp.src(paths.dev.js)
 		//.pipe(include()).on('error', console.log)
@@ -304,7 +305,12 @@ function lintjs() {
 function lintts() {
 	return gulp.src(paths.dev.ts)
 		.pipe(tslint({formatter: "stylish"}))
-		.pipe(tslint.report({emitError: false}))
+		.pipe(tslint.report({emitError: false}));
+}
+function zipDev() {
+	return gulp.src(paths.dev.all)
+	.pipe(zip(ZipName))
+	.pipe(gulp.dest(paths.rel.all));
 }
 exports.clean = clean;
 exports.stage = stage;
@@ -319,11 +325,12 @@ exports.lintcss = lintcss;
 exports.lintjs = lintjs;
 exports.lintts = lintts;
 exports.optamizeImages = optamizeImages;
+exports.zipDev = zipDev;
 
 var stage = gulp.series(
 	gulp.parallel(
 		//clean,
-		includeSourceMaps,
+		includeSourceMaps
 	),
 	gulp.parallel(
 		compileCSS,
@@ -331,20 +338,20 @@ var stage = gulp.series(
 		uglifyjs,
 		compileTS,
 		optamizeImages,
-		copyAssets,
+		copyAssets
 	),
 	gulp.series(
 		linthtml,
 		lintcss,
 		lintjs,
-		lintts,
-	),
+		lintts
+	)
 );
 
 var release = gulp.series(
 	gulp.parallel(
 		clean,
-		releaseMode,
+		releaseMode
 	),
 	gulp.parallel(
 		compileCSS,
@@ -353,13 +360,14 @@ var release = gulp.series(
 		compileTS,
 		optamizeImages,
 		copyAssets,
+		zipDev
 	),
 	gulp.series(
 		linthtml,
 		lintcss,
 		lintjs,
-		lintts,
-	),
+		lintts
+	)
 );
 
 var lint = gulp.series(linthtml, lintcss, lintjs, lintts);

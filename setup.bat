@@ -88,7 +88,9 @@ IF %ERRORLEVEL% EQU 0 call npm --silent install --save-dev stylelint-config-stan
 IF %ERRORLEVEL% EQU 0 call npm --silent install --save-dev stylelint-order
 IF %ERRORLEVEL% EQU 0 call npm --silent install --save-dev gulp-html-postcss
 IF %ERRORLEVEL% EQU 0 call npm --silent install --save-dev imagemin-pngout
+IF %ERRORLEVEL% EQU 0 call npm --silent install --save-dev gulp-zip
 ::IF %ERRORLEVEL% EQU 0 call npm --silent install --save-dev gulp-pug
+
 IF %ERRORLEVEL% EQU 0 call npm tslint --init
 IF %ERRORLEVEL% EQU 0 call npm --silent audit fix
 
