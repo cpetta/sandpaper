@@ -1,7 +1,16 @@
 # Cpetta's GulpDev
-The purpose of this project is to automate the setup and updating of gulp, npm, and other tools, which are helpful in the development process
 
-For your own safety and security it is **highly recommended** that you review any scripts before running them.
+## Primary Project Goals
+* Improve the experience of writting vanilla HTML, CSS, and JavaScript.
+* Improve maintainability of code produced by developers.
+* Improve performance of webpages.
+* Automate the development enviroment setup process.
+* Automate common development tasks.
+
+## Secondary Project Purposes
+* Enable the use of additional languages such as typescript, scss, sass, etc.
+
+For your own safety and security, it is **highly recommended** that you review any scripts before running them.
 When setup.bat is run it will install chocolaty.
 Chocolaty will install a whole bunch of software
 * NotepadPlusPlus
@@ -12,8 +21,8 @@ Chocolaty will install a whole bunch of software
 * NodeJS
 * FileZilla
 
-In my experience, reinstalling applications has not caused me to lose my settings and customizations, but that is no guarantee that you will not if you do the same.
-Feedback on things that do not work correctly or suggestions are welcome.
+In my experience, reinstalling applications through chocolaty has not caused any settings or customization loss, but there's no guarantee that you will have the same results.
+Feedback and suggestions for improvments are welcome.
 
 # Installation
 1. Run setup.bat (double click, or from command line)
@@ -27,13 +36,13 @@ Feedback on things that do not work correctly or suggestions are welcome.
 # Workflow for Development.
 1. Create and edit all your .html, .css, and .js files in the dev folder
   a. They can be in any number of sub-folders and it can be organized in any way.
-2. When you begin editing code, run the [gulp sync]
+2. When you begin editing code, run the "gulp sync"
 3. On each save [gulp] should run and update your page in the browser.
 
 # Workflow for Release.
 1. Create and edit all your .html, .css, and .js files in the dev folder
   a. They can be in any number of sub-folders and it can be organized in any way.
-2. When your done editing your code, run [gulp rel]
+2. When your done editing your code, run "gulp rel"
 3. Upload the files from the rel folder to your webserver.
 	
 # Using this gulpfile with other projects.

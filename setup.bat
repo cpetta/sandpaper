@@ -13,6 +13,7 @@ IF %ERRORLEVEL% NEQ 0 PAUSE
 IF %ERRORLEVEL% NEQ 0 EXIT
 IF %ERRORLEVEL% EQU 0 ECHO Chocolatey is good, running commands...
 IF %ERRORLEVEL% EQU 0 call choco install notepadplusplus bitnami-xampp firefox googlechrome git nodejs filezilla -y
+IF %ERRORLEVEL% EQU 0 call choco update notepadplusplus bitnami-xampp firefox googlechrome git nodejs filezilla -y
 ::IF %ERRORLEVEL% EQU 0 call choco install vivaldi vscode -y
 
 ECHO Checking to see if npm is installed...
@@ -28,8 +29,8 @@ IF %ERRORLEVEL% NEQ 0 EXIT
 
 IF %ERRORLEVEL% EQU 0 ECHO npm is good, running commands...
 
-IF %ERRORLEVEL% EQU 0 mkdir C:\xampp\htdocs\gulpdev
-IF %ERRORLEVEL% EQU 0 cd C:\xampp\htdocs\gulpdev
+::IF %ERRORLEVEL% EQU 0 mkdir C:\xampp\htdocs\gulpdev
+::IF %ERRORLEVEL% EQU 0 cd C:\xampp\htdocs\gulpdev
 
 IF %ERRORLEVEL% EQU 0 call npm --silent install  npm@latest -g
 
