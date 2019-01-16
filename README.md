@@ -35,22 +35,22 @@ Feedback and suggestions for improvments are welcome.
 
 # Workflow for Development
 1. Create and edit all your .html, .css, and .js files in the dev folder.
-  a. Files can be in any number of sub-folders and can be organized in any way.
+  * Files can be in any number of sub-folders and can be organized in any way.
 2. When you begin editing code, run "gulp sync"
 3. On each save [gulp] should run and update your page in the browser.
 
 # Workflow for Release
 1. Create and edit all your .html, .css, and .js files in the dev folder
-  a. Files can be in any number of sub-folders and can be organized in any way.
+  * Files can be in any number of sub-folders and can be organized in any way.
 2. When your done editing code, run "gulp rel"
 3. Upload the files from the rel folder to your webserver.
 	
 # Using this gulpfile with other projects
 1. Copy the following files into your new project.
-  a. gulpfile.js
-  b. setup.bat
-  c. stylelint.config.js
-  d. tslint.json
+  * gulpfile.js
+  * setup.bat
+  * stylelint.config.js
+  * tslint.json
 2. Create a dev folder
 3. Run setup.bat
 
