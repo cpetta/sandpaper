@@ -360,7 +360,7 @@ var release = gulp.series(
 		compileTS,
 		optamizeImages,
 		copyAssets,
-		zipDev
+		//zipDev
 	),
 	gulp.series(
 		linthtml,
@@ -379,6 +379,7 @@ gulp.task('rel', release);
 gulp.task('lint', lint);
 gulp.task('clean', clean);
 gulp.task('test', test);
+gulp.task('zip', zipDev);
 
 gulp.task('watch', function() {
 	gulp.watch(paths.dev.html, compileHTML);
