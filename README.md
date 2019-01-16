@@ -27,25 +27,25 @@ Feedback and suggestions for improvments are welcome.
 # Installation
 1. Run setup.bat (double click, or from command line)
 
-# Basic Workflow.
+# Basic Workflow
 1. Develop a website.
 2. Copy the website and all files/folders into the dev folder
 3. Open command prompt in this location using the steps outlined above.
 4. Run one of the tasks outlined below by typing "gulp [taskname]" replacing [taskname] with the task you want to run.
 
-# Workflow for Development.
-1. Create and edit all your .html, .css, and .js files in the dev folder
-  a. They can be in any number of sub-folders and it can be organized in any way.
-2. When you begin editing code, run the "gulp sync"
+# Workflow for Development
+1. Create and edit all your .html, .css, and .js files in the dev folder.
+  a. Files can be in any number of sub-folders and can be organized in any way.
+2. When you begin editing code, run "gulp sync"
 3. On each save [gulp] should run and update your page in the browser.
 
-# Workflow for Release.
+# Workflow for Release
 1. Create and edit all your .html, .css, and .js files in the dev folder
-  a. They can be in any number of sub-folders and it can be organized in any way.
-2. When your done editing your code, run "gulp rel"
+  a. Files can be in any number of sub-folders and can be organized in any way.
+2. When your done editing code, run "gulp rel"
 3. Upload the files from the rel folder to your webserver.
 	
-# Using this gulpfile with other projects.
+# Using this gulpfile with other projects
 1. Copy the following files into your new project.
   a. gulpfile.js
   b. setup.bat
@@ -54,7 +54,7 @@ Feedback and suggestions for improvments are welcome.
 2. Create a dev folder
 3. Run setup.bat
 
-## This gulpfile has the following tasks available.
+## This gulpfile has the following tasks available
 1. default
 2. rel
 3. lint
