@@ -25,7 +25,8 @@ In my experience, reinstalling applications through chocolaty has not caused any
 Feedback and suggestions for improvments are welcome.
 
 # Installation
-1. Run setup.bat (double click, or from command line)
+1. Review the code in setup.ps1
+2. Run setup.ps1 as an Administrator.
 
 # Basic Workflow
 1. Develop a website.
