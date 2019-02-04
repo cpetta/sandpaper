@@ -94,7 +94,7 @@ if (Get-Command npm -errorAction SilentlyContinue) {
 	npm --silent install -save-dev $npmSaveDevPackages
 
 #	PostOP
-	npm tslint --init
+	tslint --init
 	npm --silent audit fix
 	remove-item package.json
 }
