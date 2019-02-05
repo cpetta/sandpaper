@@ -62,7 +62,7 @@ $npmSaveDevPackages = @(
 $NPMPath = "C:\Program Files\nodejs"
 $GITPath = "C:\Program Files\Git\cmd"
 $scriptname = $MyInvocation.MyCommand.Name
-$SettingUp
+
 # Determine if updating or setting up for the first time.
 	if($scriptname -eq "setup.ps1") { $SettingUp = "true" }
 	if($scriptname -eq "update.ps1") { $Updating = "true" }
@@ -135,6 +135,7 @@ function runNpm{
 		npm --silent install -save-dev $npmSaveDevPackages
 
 	#	PostOP
+		RefreshEnv
 		npm --silent audit fix	
 		
 		if($SettingUp -eq "true")
