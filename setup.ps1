@@ -27,12 +27,17 @@ $npmGlobalPackages = @(
 $npmSaveDevPackages = @(
 	"gulp"
 	"del"
+	"gulp-if"
+	"gulp-changed"
+	"gulp-sourcemaps"
 	"gulp-csslint"
 	"gulp-stylelint"
 	"stylelint"
 	"gulp-jshint"
+	"gulp-uglify"
 	"jshint"
 	"gulp-htmlhint"
+	"gulp-htmlmin"
 	"gulp-imagemin"
 	"gulp-cache"
 	"gulp-inline-source"
@@ -168,6 +173,8 @@ function finalizeSetup{
 	}
 	
 	Remove-Item "$path\setup.ps1"
+
+	Write-Output "Finished with installation, you will need to close and reload the console before running any gulp tasks."
 }
 
 runChocolatey
