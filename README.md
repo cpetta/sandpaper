@@ -11,7 +11,7 @@
 * Enable the use of additional languages such as typescript, scss, sass, etc.
 
 For your own safety and security, it is **highly recommended** that you review any scripts before running them.
-When setup.bat is run it will install chocolaty.
+When setup.ps1 is run it will install chocolaty.
 Chocolaty will install a whole bunch of software
 * NotepadPlusPlus
 * bitnami-xampp
@@ -25,8 +25,11 @@ In my experience, reinstalling applications through chocolaty has not caused any
 Feedback and suggestions for improvments are welcome.
 
 # Installation
-1. Review the code in setup.ps1
-2. Run setup.ps1 as an Administrator.
+1. Download setup.ps1
+2. Review the code in setup.ps1
+3. Place setup.ps1 in the directory that you would like to install GulpDev
+2. Launch Powershell as an administrator in the same folder as setup.ps1
+4. run the following command `Set-ExecutionPolicy Bypass -Scope Process -Force; .\setup.ps1`
 
 # Basic Workflow
 1. Develop a website.
