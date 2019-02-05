@@ -66,6 +66,7 @@ Write-Output "$scriptname"
 # Determine if updating or setting up for the first time.
 	if($scriptname -eq "setup.ps1") { $SettingUp = "true" }
 	if($scriptname -eq "update.ps1") { $Updating = "true" }
+	if($scriptname -eq "") { $SettingUp = "true" }
 	if(($SettingUp -ne "true") -and ($Updating -ne "true"))
 	{
 		Write-Output "$scriptname" 
