@@ -99,6 +99,7 @@ function runChocolatey {
 
 # Download most uptodate files from github and initialize git.
 function runGit {
+	$path = Get-Location
 	if(-not ((Get-Command git -errorAction SilentlyContinue))) {
 		$Env:Path = "$Env:Path;$GITPath"
 	}
@@ -108,16 +109,11 @@ function runGit {
 		{
 			git init
 			git remote add gulpdev https://github.com/cpetta/GulpDev.git
-			git fetch -f
-			Remove-Item "$path\setup.ps1"
-			git pull gulpdev master
 		}
-		if($Updating -eq "true")
-		{
-			git fetch -f
-			Remove-Item "$path\setup.ps1"
-			git pull gulpdev master
-		}
+
+		git fetch -f
+		Remove-Item "$path\setup.ps1"
+		git pull gulpdev master
 	}
 	else {
 		Write-Output "GIT command wasn't found, there may have been a problem during installation, try running this script again."
