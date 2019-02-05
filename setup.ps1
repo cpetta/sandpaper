@@ -108,10 +108,14 @@ function runGit {
 		{
 			git init
 			git remote add gulpdev https://github.com/cpetta/GulpDev.git
+			git fetch -f
+			Remove-Item "$path\setup.ps1"
+			git pull gulpdev master
 		}
 		if($Updating -eq "true")
 		{
 			git fetch -f
+			Remove-Item "$path\setup.ps1"
 			git pull gulpdev master
 		}
 	}
