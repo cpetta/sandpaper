@@ -99,10 +99,16 @@ function runGit {
 	}
 
 	if (Get-Command git -errorAction SilentlyContinue) {
-		git init
-		git remote add gulpdev https://github.com/cpetta/GulpDev.git
-		git fetch
-		git pull gulpdev master
+		if($SettingUp -eq "true")
+		{
+			git init
+			git remote add gulpdev https://github.com/cpetta/GulpDev.git
+		}
+		if($Updating -eq "true")
+		{
+			git fetch -f
+			git pull gulpdev master
+		}
 	}
 	else {
 		Write-Output "GIT command wasn't found, there may have been a problem during installation, try running this script again."
@@ -134,12 +140,14 @@ function runNpm{
 		npm --silent install -save-dev $npmSaveDevPackages
 
 	#	PostOP
-		RefreshEnv
 		npm --silent audit fix	
 		
 		if($SettingUp -eq "true")
 		{
-			tslint --init
+			RefreshEnv
+			$path = Get-Location
+			node "$path\node_modules\tslint\lib\tslintCli.js" --init
+			
 		}
 	}
 	else {
@@ -150,13 +158,16 @@ function runNpm{
 
 # Finalization
 function finalizeSetup{
+
+	$path = Get-Location
+
 	if($SettingUp -eq "true")
 	{
-		$path = Get-Location
 		copy-item "$path\setup.ps1" -Destination "$path\update.ps1"
-		Set-Location dev
-		Start-Process index.html
+		Start-Process "dev\index.html"
 	}
+	
+	Remove-Item "$path\setup.ps1"
 }
 
 runChocolatey
