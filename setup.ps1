@@ -112,7 +112,7 @@ function runGit {
 		}
 
 		git fetch -f
-		Remove-Item "$path\setup.ps1"
+		Remove-Item "$path\setup.ps1" -errorAction SilentlyContinue
 		git pull gulpdev master
 	}
 	else {
@@ -172,7 +172,7 @@ function finalizeSetup{
 		Start-Process "dev\index.html"
 	}
 	
-	Remove-Item "$path\setup.ps1"
+	Remove-Item "$path\setup.ps1" -errorAction SilentlyContinue
 
 	Write-Output "Finished with installation, you will need to close and reload the console before running any gulp tasks."
 }
