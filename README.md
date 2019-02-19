@@ -13,12 +13,14 @@
 For your own safety and security, it is **highly recommended** that you review any scripts before running them.
 When setup.ps1 is run it will install chocolaty.
 Chocolaty will install a whole bunch of software
+* Git
+* NodeJS
+
+Chocolaty can also install the following packages if they are uncommented:
 * NotepadPlusPlus
 * bitnami-xampp
 * Firefox
 * Google Chrome
-* Git
-* NodeJS
 * FileZilla
 
 In my experience, reinstalling applications through chocolaty has not caused any settings or customization loss, but there's no guarantee that you will have the same results.
