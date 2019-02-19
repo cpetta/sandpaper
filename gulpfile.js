@@ -1,74 +1,24 @@
-/* commands to run before starting
-// npm init
-// npm rm --global gulp
-// npm install gulp-cli -g
-// npm install gulp -D
+/*
+Tutorials
+	https://www.smashingmagazine.com/2014/06/building-with-gulp/
+	https://github.com/osscafe/gulp-cheatsheet
+	https://www.youtube.com/watch?v=dwSLFai8ovQ
+	https://css-tricks.com/bem-101/
 
-// npm update fsevents --depth 4
+Useful information
+	https://www.npmjs.com/package/glob	// handling files and folders
+	https://semver.org/					// versioning spec
+	https://caniuse.com/#compare=firefox+60,chrome+66
 
-// npm install stylelint-config-standard --save-dev
-
-// useful information
-https://www.npmjs.com/package/glob	// handling files and folders
-https://semver.org/					// versioning spec
-https://caniuse.com/#compare=firefox+60,chrome+66
-// Tutorials
-
-https://www.smashingmagazine.com/2014/06/building-with-gulp/
-https://github.com/osscafe/gulp-cheatsheet
-https://www.youtube.com/watch?v=dwSLFai8ovQ
-https://css-tricks.com/bem-101/
-
-// Things to check out
-	coffeescript
-	lesscss
+Things to check out
 	scss
 	ruby on rails
 	babel
 	webpack
 	https://github.com/postcss/postcss
 	https://www.npmjs.com/package/gulp-bump
-	
-*/
 
-const mkDir = require('make-dir');					// npm install make-dir
-const del = require('del');						// npm install del
-const gulp = require('gulp');						// npm install gulp@next
-//const include = require('gulp-include');				// npm install gulp-include
-const gulpif = require('gulp-if');					// npm install gulp-if -g 				// https://www.npmjs.com/package/gulp-if
-const pump = require('pump');						// npm install pump
-const changed = require('gulp-changed'); 				// npm install --save-dev gulp-changed
-const cache = require('gulp-cache');					// npm install --save-dev gulp-cache
-const sourcemaps = require('gulp-sourcemaps');				// npm install --save-dev gulp-sourcemaps
-//const concat = require('gulp-concat');				// npm install --save-dev gulp-concat
-//const csso = require('gulp-csso');					// npm install --save-dev gulp-csso 			// https://www.npmjs.com/package/csso
-const htmlmin = require('gulp-htmlmin'); 				// npm install --save-dev gulp-htmlmin
-const uglify = require('gulp-uglify'); 					// npm install --save-dev gulp-uglify
-//const babel = require('gulp-babel'); 					// npm install --save-dev gulp-babel babel-core babel-preset-env
-const typescript = require('gulp-typescript'); 				// npm install --save-dev gulp-typescript
-const tslint = require('gulp-tslint'); 					// npm install --save-dev gulp-tslint tslint
-const jshint = require('gulp-jshint');					// npm install --save-dev gulp-jshint jshint   		// https://github.com/jshint/jshint
-const htmlhint = require('gulp-htmlhint');				// npm install --save-dev gulp-htmllint 
-const imagemin = require('gulp-imagemin');				// npm install --save-dev gulp-imagemin
-const imageminPngout = require('imagemin-pngout');			// npm install --save-dev imagemin-pngout
-const inlinesource = require('gulp-inline-source');			// npm install --save-dev gulp-inline-source 		// https://www.npmjs.com/package/gulp-inline-source
-const browserSync = require('browser-sync').create();			// npm install -g browser-sync
-
-const postcss = require('gulp-postcss'); 				// npm install --save-dev gulp-postcss 			// https://www.npmjs.com/package/gulp-postcss
-const mqpacker = require("css-mqpacker");				// npm install --save-dev css-mqpacker
-const presetEnv = require('postcss-preset-env');			// npm install --save-dev postcss-preset-env 		// https://github.com/csstools/postcss-preset-env
-const unprefix = require("postcss-unprefix");				// npm install --save-dev postcss-unprefix		// https://github.com/gucong3000/postcss-unprefix
-const autoprefixer = require('autoprefixer');				// npm install --save-dev autoprefixer			// https://github.com/postcss/autoprefixer
-const cssnano = require('cssnano');					// npm install --save-dev cssnano			// https://www.npmjs.com/package/cssnano
-const stylelint = require("stylelint");					// npm install --save-dev stylelint			// https://stylelint.io/
-const postcssReporter = require("postcss-reporter");			// npm install --save-dev postcss-reporter
-//									// npm install --save-dev stylelint-config-standard	// https://github.com/stylelint/stylelint-config-standard
-//									// npm install --save-dev stylelint-order  		// https://github.com/hudochenkov/stylelint-order
-const postCSSinHTML = require('gulp-html-postcss');			// npm install --save-dev gulp-html-postcss
-
-const zip = require('gulp-zip');
-
-/* 
+Post CSS information 
 	https://github.com/postcss/gulp-postcss
 	https://www.postcss.parts/
 	https://github.com/postcss/postcss#plugins
@@ -76,6 +26,44 @@ const zip = require('gulp-zip');
 	https://stylelint.io/user-guide/example-config/
 	https://github.com/lahmatiy/postcss-csso
 */
+
+const mkDir = require('make-dir');
+const del = require('del');
+const gulp = require('gulp');
+//const include = require('gulp-include');
+const gulpif = require('gulp-if');	// https://www.npmjs.com/package/gulp-if
+const pump = require('pump');
+const changed = require('gulp-changed');
+const cache = require('gulp-cache');
+const sourcemaps = require('gulp-sourcemaps');
+//const concat = require('gulp-concat');
+//const csso = require('gulp-csso');	// https://www.npmjs.com/package/csso
+const htmlmin = require('gulp-htmlmin');
+const uglify = require('gulp-uglify');
+//const babel = require('gulp-babel');
+const typescript = require('gulp-typescript');
+const tslint = require('gulp-tslint');
+const jshint = require('gulp-jshint');	// https://github.com/jshint/jshint
+const htmlhint = require('gulp-htmlhint');
+const imagemin = require('gulp-imagemin');
+const imageminPngout = require('imagemin-pngout');
+const inlinesource = require('gulp-inline-source');	// https://www.npmjs.com/package/gulp-inline-source
+const browserSync = require('browser-sync').create();
+
+const postcss = require('gulp-postcss');	// https://www.npmjs.com/package/gulp-postcss
+const mqpacker = require("css-mqpacker");
+const presetEnv = require('postcss-preset-env');	// https://github.com/csstools/postcss-preset-env
+const unprefix = require("postcss-unprefix");	// https://github.com/gucong3000/postcss-unprefix
+const autoprefixer = require('autoprefixer');	// https://github.com/postcss/autoprefixer
+const cssnano = require('cssnano');	// https://www.npmjs.com/package/cssnano
+const stylelint = require("stylelint");	// https://stylelint.io/
+const postcssReporter = require("postcss-reporter");
+// npm install --save-dev stylelint-config-standard	// https://github.com/stylelint/stylelint-config-standard
+// npm install --save-dev stylelint-order  		// https://github.com/hudochenkov/stylelint-order
+const postCSSinHTML = require('gulp-html-postcss');
+
+const zip = require('gulp-zip');
+
 const ProjectName = "gulp-default-project-name";
 const currentTime = Date.now;
 var includeSourceMap = false;
