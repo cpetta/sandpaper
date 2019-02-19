@@ -39,7 +39,8 @@ const sourcemaps = require('gulp-sourcemaps');
 //const concat = require('gulp-concat');
 //const csso = require('gulp-csso');	// https://www.npmjs.com/package/csso
 const htmlmin = require('gulp-htmlmin');
-const uglify = require('gulp-uglify');
+const uglify = require('uglify-js');
+const composer = require('gulp-uglify/composer');
 //const babel = require('gulp-babel');
 const typescript = require('gulp-typescript');
 const tslint = require('gulp-tslint');
@@ -64,6 +65,8 @@ const postCSSinHTML = require('gulp-html-postcss');
 
 const zip = require('gulp-zip');
 
+const composerUglify = composer(uglify, console);
+
 const ProjectName = "gulp-default-project-name";
 const currentTime = Date.now;
 var includeSourceMap = false;
@@ -73,11 +76,13 @@ const landingPage = "index.html";
 const ZipName = ProjectName + " - " + currentTime;
 var pluginsPostCSS = [
 		mqpacker(),
-        presetEnv({stage: 2, /* stage 0 - 4*/ browsers: targetBrowsers}),
+		presetEnv({stage: 2, /* stage 0 - 4*/ browsers: targetBrowsers}),
 		unprefix(),
 		autoprefixer({browsers: targetBrowsers}),
-        cssnano(),
+		cssnano(),
 	];
+
+var uglifyjsOptions = {};
 
 const paths = {		// this will likely need to be updated for your project.
 	dev: {
@@ -205,18 +210,24 @@ function compileTS() {
 		function(err){if(err)console.log(err)})
 }
 */
-function uglifyjs() {
+
+function uglifyjs(cb) {
 	return pump(
-		gulp.src(paths.dev.js),
-		changed(gulpif(staging, paths.stage.js, paths.rel.js)),
-		gulpif(includeSourceMap, sourcemaps.init()),
-		//include().on('error', console.log),
-		//babel({presets: ['env']}),
-		uglify(),
-		gulpif(includeSourceMap, sourcemaps.write('../maps')),
-		gulp.dest(gulpif(staging, paths.stage.js, paths.rel.js)),
+		[
+			gulp.src(paths.dev.js),
+			changed(gulpif(staging, paths.stage.js, paths.rel.js)),
+			gulpif(includeSourceMap, sourcemaps.init()),
+			//include().on('error', console.log),
+			//babel({presets: ['env']}),
+			composerUglify(uglifyjsOptions),
+			gulpif(includeSourceMap, sourcemaps.write('../maps')),
+			gulp.dest(gulpif(staging, paths.stage.js, paths.rel.js)),
+		], 
 		browserSync.stream(),
-		function(err){if(err)console.log(err)});
+		function(err){if(err)console.log(err)},
+		cb
+	);
+	
 }
 
 function optamizeImages() {
