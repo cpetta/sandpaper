@@ -165,7 +165,7 @@ function finalizeSetup{
 	if($SettingUp -eq "true")
 	{
 		copy-item "$path\setup.ps1" -Destination "$path\update.ps1"
-		Start-Process "dev\index.html"
+		New-Item -ItemType Directory -Force -Path "$path\dev"
 	}
 	
 	Remove-Item "$path\setup.ps1" -errorAction SilentlyContinue
