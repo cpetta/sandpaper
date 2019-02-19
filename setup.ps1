@@ -35,6 +35,7 @@ $npmSaveDevPackages = @(
 	"stylelint"
 	"gulp-jshint"
 	"gulp-uglify"
+	"uglify-js"
 	"jshint"
 	"gulp-htmlhint"
 	"gulp-htmlmin"
