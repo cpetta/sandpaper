@@ -385,17 +385,22 @@ gulp.task('watchlint', function() {
 	gulp.watch(paths.dev.ts, lintts);
 });
 
-gulp.task('sync', function() {
-	browserSync.init({ 
-		server: {
-			baseDir: paths.basedir,
-			index: paths.index,
+gulp.task('sync', 
+	gulp.series(
+		stage, 
+		function() {
+			browserSync.init({ 
+				server: {
+					baseDir: paths.basedir,
+					index: paths.index,
+				}
+			});	
+			gulp.watch(paths.dev.html, compileHTML).on('change', browserSync.reload);
+			gulp.watch(paths.dev.css, compileCSS).on('change', browserSync.reload);
+			gulp.watch(paths.dev.js, uglifyjs).on('change', browserSync.reload);
+			gulp.watch(paths.dev.ts, compileTS).on('change', browserSync.reload);
+			gulp.watch(paths.dev.images, optamizeImages).on('change', browserSync.reload);
+			gulp.watch(paths.dev.leftovers, copyAssets).on('change', browserSync.reload);
 		}
-	});	
-	gulp.watch(paths.dev.html, compileHTML).on('change', browserSync.reload);
-	gulp.watch(paths.dev.css, compileCSS).on('change', browserSync.reload);
-	gulp.watch(paths.dev.js, uglifyjs).on('change', browserSync.reload);
-	gulp.watch(paths.dev.ts, compileTS).on('change', browserSync.reload);
-	gulp.watch(paths.dev.images, optamizeImages).on('change', browserSync.reload);
-	gulp.watch(paths.dev.leftovers, copyAssets).on('change', browserSync.reload);
-});
+	)
+);
