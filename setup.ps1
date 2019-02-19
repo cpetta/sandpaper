@@ -1,12 +1,12 @@
 # reference https://chocolatey.org/packages for all available packages
 $Applications = @(
-	"notepadplusplus"
+#	"notepadplusplus"
 #	"bitnami-xampp"
-	"firefox"
-	"googlechrome"
+#	"firefox"
+#	"googlechrome"
 	"git"
 	"nodejs"
-	"filezilla"
+#	"filezilla"
 #	"vivaldi"
 #	"vscode"
 )
@@ -14,10 +14,7 @@ $Applications = @(
 # https://www.npmjs.com/
 $npmGlobalPackages = @(
 	"gulp-cli"
-#	"gulp"
 	"make-dir"
-#	"del"
-#	"gulp@next"
 	"gulp-include"
 	"pump"
 	"tslint"
@@ -48,7 +45,6 @@ $npmSaveDevPackages = @(
 	"typescript"
 	"tslint"
 	"gulp-tslint"
-#	"postcss-syntax@0.10.0"
 	"postcss-syntax"
 	"postcss-preset-env"
 	"postcss-unprefix"
@@ -62,7 +58,6 @@ $npmSaveDevPackages = @(
 	"gulp-html-postcss"
 	"imagemin-pngout"
 	"gulp-zip"
-#	"gulp-pug"
 )
 
 $NPMPath = "C:\Program Files\nodejs"
