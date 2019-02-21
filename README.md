@@ -1,4 +1,5 @@
-# Cpetta's GulpDev
+# Cpetta's GulpDev 
+![alt text](https://david-dm.org/cpetta/gulpdev.svg "dependencies")
 
 ## Primary Project Goals
 * Improve the experience of writting vanilla HTML, CSS, and JavaScript.
