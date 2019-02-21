@@ -1,5 +1,5 @@
 # Cpetta's GulpDev 
-![alt text](https://david-dm.org/cpetta/gulpdev.svg "dependencies")
+[![david-svg]][david-url] [![david-dev-svg]][david-dev-url]
 
 ## Primary Project Goals
 * Improve the experience of writting vanilla HTML, CSS, and JavaScript.
@@ -125,3 +125,8 @@ Want to help with the development of gulpdev or, like living on the edge, using 
 3. Place setup.ps1 in the directory that you would like to install GulpDev
 2. Launch Powershell as an administrator in the same folder as setup.ps1
 4. run the following command `Set-ExecutionPolicy Bypass -Scope Process -Force; .\setup.ps1`
+
+[david-svg]: https://david-dm.org/cpetta/gulpdev.svg
+[david-url]: https://david-dm.org/cpetta/gulpdev
+[david-dev-svg]: https://david-dm.org/cpetta/gulpdev/dev-status.svg
+[david-dev-url]: https://david-dm.org/cpetta/gulpdev?type=dev
