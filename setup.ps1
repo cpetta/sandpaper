@@ -19,7 +19,6 @@ $npmGlobalPackages = @(
 $npmSaveDevPackages = @(
 	"autoprefixer"
 	"browser-sync"
-	"browser-sync"
 	"css-mqpacker"
 	"cssnano"
 	"del"
@@ -53,8 +52,6 @@ $npmSaveDevPackages = @(
 	"stylelint-config-standard"
 	"stylelint-order"
 	"stylelint"
-	"stylelint"
-	"tslint"
 	"tslint"
 	"typescript"
 	"uglify-js"
