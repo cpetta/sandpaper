@@ -14,14 +14,14 @@ $Applications = @(
 # https://www.npmjs.com/
 $npmGlobalPackages = @(
 	"gulp-cli"
+	"typescript"
+)
+$npmSaveDevPackages = @(
 	"make-dir"
 	"gulp-include"
 	"pump"
 	"tslint"
-	"typescript"
 	"browser-sync"
-)
-$npmSaveDevPackages = @(
 	"gulp"
 	"del"
 	"gulp-if"
