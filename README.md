@@ -27,11 +27,7 @@ In my experience, reinstalling applications through chocolaty has not caused any
 Feedback and suggestions for improvments are welcome.
 
 # Installation
-1. Download setup.ps1
-2. Review the code in setup.ps1
-3. Place setup.ps1 in the directory that you would like to install GulpDev
-2. Launch Powershell as an administrator in the same folder as setup.ps1
-4. run the following command `Set-ExecutionPolicy Bypass -Scope Process -Force; .\setup.ps1`
+Head on over to https://github.com/cpetta/gulpdev/releases and follow the installation instructions there.
 
 # Basic Workflow
 1. Develop a website.
@@ -120,9 +116,11 @@ This task will watch for files changing just like 'gulp watch', but instead of p
 This task is the same as gulp watch, but in addition, it runs a webserver on port 3000.
 You can open up your website in the browser, if a file in the 'dev' folder changes, it will be processed, and the browser will reload or update with the change.
 Additionally, if multiple browsers/devices load your webpage, scrolling, clicking, and typing are all duplicated across instances.
-		
-		
-# Note for windows users
-To run a gulp task, run cmd or PowerShell, and navigate to the folder that this file is located in. (using cd [folder name])
-Alternatively, on windows, you can hold shift, and right click in the blank space of the folder that contains this file.
-The context menu should have the option [open command window here]
+
+# Development Enviroment Setup
+Want to help with the development of gulpdev or, like living on the edge, using the latest dependency versions?
+1. Download setup.ps1
+2. Review the code in setup.ps1
+3. Place setup.ps1 in the directory that you would like to install GulpDev
+2. Launch Powershell as an administrator in the same folder as setup.ps1
+4. run the following command `Set-ExecutionPolicy Bypass -Scope Process -Force; .\setup.ps1`
