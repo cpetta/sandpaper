@@ -4,3 +4,5 @@ documentation/
 maps/
 node_modules/
 rel/
+.nyc_output/
+coverage/

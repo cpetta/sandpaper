@@ -9,7 +9,8 @@
   },
   "scripts": {
     "gulp": "gulp",
-    "test": "mocha"
+    "test": "nyc --reporter=html --reporter=text mocha",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "keywords": [
     "gulp,",
@@ -23,7 +24,7 @@
   "dependencies": {
     "autoprefixer": "^9.4.8",
     "browser-sync": "^2.26.3",
-    "coveralls": "^3.0.2",
+    "coveralls": "^3.0.3",
     "css-mqpacker": "^7.0.0",
     "cssnano": "^4.1.10",
     "del": "^3.0.0",
@@ -50,6 +51,7 @@
     "jshint": "^2.10.1",
     "make-dir": "^2.0.0",
     "mocha": "^6.0.1",
+    "nyc": "^13.3.0",
     "postcss-preset-env": "^6.5.0",
     "postcss-syntax": "^0.36.2",
     "postcss-unprefix": "^2.1.4",
