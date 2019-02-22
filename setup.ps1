@@ -20,6 +20,7 @@ $npmGlobalPackages = @(
 $npmSaveDevPackages = @(
 	"autoprefixer"
 	"browser-sync"
+	"coveralls"
 	"css-mqpacker"
 	"cssnano"
 	"del"

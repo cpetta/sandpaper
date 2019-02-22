@@ -10,12 +10,19 @@
   "scripts": {
     "test": "gulp"
   },
-  "keywords": ["gulp,", "gulpfile", "toolchain", "linting", "website-optimization"],
+  "keywords": [
+    "gulp,",
+    "gulpfile",
+    "toolchain",
+    "linting",
+    "website-optimization"
+  ],
   "author": "Christopher Petta",
   "license": "MIT",
   "dependencies": {
     "autoprefixer": "^9.4.8",
     "browser-sync": "^2.26.3",
+    "coveralls": "^3.0.2",
     "css-mqpacker": "^7.0.0",
     "cssnano": "^4.1.10",
     "del": "^3.0.0",
