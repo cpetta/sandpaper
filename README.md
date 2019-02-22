@@ -1,5 +1,5 @@
 # Cpetta's GulpDev 
-[![Dependencies][david-svg]][david-url] [![Build Status][travis-ci-svg]][travis-ci-url]
+[![Dependencies][david-svg]][david-url] [![Build Status][travis-ci-svg]][travis-ci-url] [![Coverage Status][coveralls-svg]][coveralls-url]
 
 ## Primary Project Goals
 * Improve the experience of writting vanilla HTML, CSS, and JavaScript.
@@ -130,3 +130,5 @@ Want to help with the development of gulpdev or, like living on the edge, using 
 [david-url]: https://david-dm.org/cpetta/gulpdev
 [travis-ci-svg]: https://travis-ci.org/cpetta/GulpDev.svg?branch=master
 [travis-ci-url]: https://travis-ci.org/cpetta/GulpDev
+[coveralls-svg]: https://coveralls.io/repos/github/cpetta/GulpDev/badge.svg?branch=master
+[coveralls-url]: https://coveralls.io/github/cpetta/GulpDev?branch=master
