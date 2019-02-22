@@ -125,21 +125,21 @@ function runNpm{
 		Write-Output "Installing NPM packages..."
 
 	#	PreOP
-		npm --silent install  npm@latest -g
-		npm --silent install node@latest -g --scripts-prepend-node-path
+		npm install  npm@latest -g
+		npm install node@latest -g --scripts-prepend-node-path
 		if ($SettingUp -eq "true")
 		{
-			npm --silent init -f
-			npm --silent rm --global gulp
-			npm --silent cache clean -f
+			#npm --silent init -f
+			npm rm --global gulp
+			npm cache clean -f
 		}
 
 	#	install/update packages
-		npm --silent install -g $npmGlobalPackages
-		yarn --silent install -save-dev $npmSaveDevPackages
+		npm install -g $npmGlobalPackages
+		yarn add $npmSaveDevPackages --save-dev
 
 	#	PostOP
-		npm --silent audit fix	
+		npm audit fix	
 		
 		if($SettingUp -eq "true")
 		{
