@@ -6,6 +6,7 @@ $Applications = @(
 #	"googlechrome"
 	"git"
 	"nodejs"
+	"yarn"
 #	"filezilla"
 #	"vivaldi"
 #	"vscode"
@@ -135,7 +136,7 @@ function runNpm{
 
 	#	install/update packages
 		npm --silent install -g $npmGlobalPackages
-		npm --silent install -save-dev $npmSaveDevPackages
+		yarn --silent install -save-dev $npmSaveDevPackages
 
 	#	PostOP
 		npm --silent audit fix	
