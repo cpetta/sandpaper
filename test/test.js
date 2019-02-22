@@ -1,8 +1,80 @@
 var assert = require('assert');
-describe('Array', function() {
-  describe('#indexOf()', function() {
-    it('should return -1 when the value is not present', function() {
-      assert.equal([1, 2, 3].indexOf(4), -1);
-    });
-  });
+var gulpfile = require('../gulpfile.js');
+
+describe('#clean', function() {
+  it('should exit without error', function() {
+    return gulpfile.clean();
+  })
+});
+
+describe('#includeSourceMaps', function() {
+  it('should exit without error', function() {
+    return gulpfile.includeSourceMaps();
+  })
+});
+
+describe('#copyAssets', function() {
+  it('should exit without error', function() {
+    return gulpfile.copyAssets();
+  })
+});
+
+describe('#compileCSS', function() {
+  it('should exit without error', function() {
+    return gulpfile.compileCSS();
+  })
+});
+
+describe('#compileHTML', function() {
+  it('should exit without error', function() {
+    return gulpfile.compileHTML();
+  })
+});
+
+describe('#compileTS', function() {
+  it('should exit without error', function() {
+    return gulpfile.compileTS();
+  })
+});
+
+describe('#uglifyjs', function() {
+  it('should exit without error', function() {
+    return gulpfile.uglifyjs();
+  })
+});
+
+describe('#linthtml', function() {
+  it('should exit without error', function() {
+    return gulpfile.linthtml();
+  })
+});
+
+describe('#lintcss', function() {
+  it('should exit without error', function() {
+    return gulpfile.lintcss();
+  })
+});
+
+describe('#lintjs', function() {
+  it('should exit without error', function() {
+    return gulpfile.lintjs();
+  })
+});
+
+describe('#lintts', function() {
+  it('should exit without error', function() {
+    return gulpfile.lintts();
+  })
+});
+
+describe('#optamizeImages', function() {
+  it('should exit without error', function() {
+    return gulpfile.optamizeImages(false);
+  })
+});
+
+describe('#zipDev', function() {
+  it('should exit without error', function() {
+    return gulpfile.zipDev();
+  })
 });

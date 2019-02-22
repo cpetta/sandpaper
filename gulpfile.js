@@ -230,7 +230,7 @@ function uglifyjs(cb) {
 	
 }
 
-function optamizeImages() {
+function optamizeImages(verboseOutput = true) {
 	return gulp.src(paths.dev.images)
 		.pipe(changed(gulpif(staging, paths.stage.html, paths.rel.html)))
 		.pipe(cache(imagemin([
@@ -276,7 +276,7 @@ function optamizeImages() {
 				]
 			}),
 			//imageminPngout()
-		], {verbose: true})))
+		], {verbose: verboseOutput})))
 		.pipe(gulp.dest(gulpif(staging, paths.stage.images, paths.rel.images)));
 }
 
@@ -312,7 +312,6 @@ function zipDev() {
 	.pipe(gulp.dest(paths.rel.all));
 }
 exports.clean = clean;
-exports.stage = stage;
 exports.includeSourceMaps = includeSourceMaps;
 exports.copyAssets = copyAssets;
 exports.compileCSS = compileCSS;
