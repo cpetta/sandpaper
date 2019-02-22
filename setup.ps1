@@ -17,7 +17,7 @@ $npmGlobalPackages = @(
 	"gulp-cli"
 	"typescript"
 )
-$npmSaveDevPackages = @(
+$yarnPackages = @(
 	"autoprefixer"
 	"browser-sync"
 	"coveralls"
@@ -46,6 +46,7 @@ $npmSaveDevPackages = @(
 	"imagemin-pngout"
 	"jshint"
 	"make-dir"
+	"mocha"
 	"postcss-preset-env"
 	"postcss-syntax"
 	"postcss-unprefix"

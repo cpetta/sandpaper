@@ -49,6 +49,7 @@
     "imagemin-pngout": "^4.0.0",
     "jshint": "^2.10.1",
     "make-dir": "^2.0.0",
+    "mocha": "^6.0.1",
     "postcss-preset-env": "^6.5.0",
     "postcss-syntax": "^0.36.2",
     "postcss-unprefix": "^2.1.4",
