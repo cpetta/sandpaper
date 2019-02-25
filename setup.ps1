@@ -137,7 +137,7 @@ function runNpm{
 	#	install/update packages
 		npm install -g $npmGlobalPackages
 		yarn add $yarnPackages
-		yarn add $yarnDevPackages
+		yarn add $yarnDevPackages --dev
 
 	#	PostOP
 		npm audit fix	
