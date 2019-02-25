@@ -151,9 +151,6 @@ function compileCSS() {
 		return gulp.src(paths.dev.css)
 		.pipe(changed(gulpif(staging, paths.stage.css, paths.rel.css)))
 		.pipe(gulpif(includeSourceMap, sourcemaps.init()))
-		//.pipe(include()).on('error', console.log)
-		//.pipe(concat('sandbox.css'))
-		//.pipe(csso())
 		.pipe(postcss(pluginsPostCSS))
 		.pipe(gulpif(includeSourceMap, sourcemaps.write('../maps')))
 		.pipe(gulp.dest(gulpif(staging, paths.stage.css, paths.rel.css)))
@@ -163,7 +160,6 @@ function compileCSS() {
 function compileHTML() {
 	return gulp.src(paths.dev.html)
 		.pipe(changed(gulpif(staging, paths.stage.html, paths.rel.html)))
-		//.pipe(include()).on('error', console.log)
 		.pipe(postCSSinHTML(pluginsPostCSS))
 		.pipe(htmlmin({
 			collapseInlineTagWhitespace: true,
@@ -192,25 +188,6 @@ function compileTS() {
 		.pipe(gulp.dest(gulpif(staging, paths.stage.js, paths.rel.js)))
 		.pipe(browserSync.stream());
 }
-/*	supposed to be faster, but it has funky error messages that are hard to read.
-
-function compileTS() {
-	return pump(
-		gulp.src(paths.dev.ts),
-		gulpif(includeSourceMap, sourcemaps.init()),
-		typescript(
-		{
-			//isolatedModules: true,
-			//experimentalAsyncFunctions: true,
-			//target: 'ES6', //'ES3' (default), 'ES5' or 'ES6'.
-		}),
-		//.pipe(uglify())
-		gulpif(includeSourceMap, sourcemaps.write('../maps')),
-		gulp.dest(gulpif(staging, paths.stage.js, paths.rel.js)),
-		browserSync.stream(),
-		function(err){if(err)console.log(err)})
-}
-*/
 
 function uglifyjs(cb) {
 	return pump(
@@ -218,8 +195,6 @@ function uglifyjs(cb) {
 			gulp.src(paths.dev.js),
 			changed(gulpif(staging, paths.stage.js, paths.rel.js)),
 			gulpif(includeSourceMap, sourcemaps.init()),
-			//include().on('error', console.log),
-			//babel({presets: ['env']}),
 			composerUglify(uglifyjsOptions),
 			gulpif(includeSourceMap, sourcemaps.write('../maps')),
 			gulp.dest(gulpif(staging, paths.stage.js, paths.rel.js)),
@@ -294,13 +269,11 @@ function lintcss() {
 	];
 
 	return gulp.src(paths.dev.css)
-		//.pipe(include()).on('error', console.log)
 		.pipe(postcss(pluginsPostCSSlint));
 }
 
 function lintjs() {
 	return gulp.src(paths.dev.js)
-		//.pipe(include()).on('error', console.log)
 		.pipe(jshint())
 		.pipe(jshint.reporter('default'));
 }
@@ -335,7 +308,7 @@ function watchlint() {
 
 function sync() {
 	stage,
-	browserSync.init({ 
+	browserSync.init({
 		server: {
 			baseDir: paths.basedir,
 			index: paths.index,
@@ -368,10 +341,7 @@ exports.watchlint = watchlint;
 exports.sync = sync;
 
 const stage = gulp.series(
-	gulp.parallel(
-		//clean,
-		includeSourceMaps
-	),
+	includeSourceMaps,
 	gulp.parallel(
 		compileCSS,
 		compileHTML,
@@ -389,10 +359,7 @@ const stage = gulp.series(
 );
 
 const release = gulp.series(
-	gulp.parallel(
-		clean,
-		releaseMode
-	),
+	releaseMode,
 	gulp.parallel(
 		compileCSS,
 		compileHTML,
@@ -400,7 +367,6 @@ const release = gulp.series(
 		compileTS,
 		optamizeImages,
 		copyAssets,
-		//zipDev
 	),
 	gulp.series(
 		linthtml,
@@ -411,9 +377,9 @@ const release = gulp.series(
 );
 
 const lint = gulp.series(
-	linthtml, 
-	lintcss, 
-	lintjs, 
+	linthtml,
+	lintcss,
+	lintjs,
 	lintts
 );
 
