@@ -74,7 +74,7 @@ var staging = true;
 const targetBrowsers = 'last 2 versions';
 const landingPage = "index.html";
 const ZipName = ProjectName + " - " + currentTime;
-var pluginsPostCSS = [
+const pluginsPostCSS = [
 		mqpacker(),
 		presetEnv({stage: 2, /* stage 0 - 4*/ browsers: targetBrowsers}),
 		unprefix(),
@@ -82,7 +82,7 @@ var pluginsPostCSS = [
 		cssnano(),
 	];
 
-var uglifyjsOptions = {};
+const uglifyjsOptions = {};
 
 const paths = {		// this will likely need to be updated for your project.
 	dev: {
@@ -224,7 +224,7 @@ function uglifyjs(cb) {
 			gulp.dest(gulpif(staging, paths.stage.js, paths.rel.js)),
 		], 
 		browserSync.stream(),
-		function(err){if(err)console.log(err)},
+		//function(err){if(err)console.log(err)}, // potentially unneeded, don't want to delete yet.
 		cb
 	);
 	
@@ -285,6 +285,7 @@ function linthtml() {
 		.pipe(htmlhint())
 		.pipe(htmlhint.reporter());
 }
+
 function lintcss() {
 	var pluginsPostCSSlint = [
 		stylelint({ /* your options */ }),
@@ -295,24 +296,61 @@ function lintcss() {
 		//.pipe(include()).on('error', console.log)
 		.pipe(postcss(pluginsPostCSSlint));
 }
+
 function lintjs() {
 	return gulp.src(paths.dev.js)
 		//.pipe(include()).on('error', console.log)
 		.pipe(jshint())
 		.pipe(jshint.reporter('default'));
 }
+
 function lintts() {
 	return gulp.src(paths.dev.ts)
 		.pipe(tslint({formatter: "stylish"}))
 		.pipe(tslint.report({emitError: false}));
 }
+
 function zipDev() {
 	return gulp.src(paths.dev.all)
 	.pipe(zip(ZipName))
 	.pipe(gulp.dest(paths.rel.all));
 }
+
+function watch() {
+	gulp.watch(paths.dev.html, compileHTML);
+	gulp.watch(paths.dev.css, compileCSS);
+	gulp.watch(paths.dev.js, uglifyjs);
+	gulp.watch(paths.dev.ts, compileTS);
+	gulp.watch(paths.dev.images, optamizeImages);
+	gulp.watch(paths.dev.leftovers, copyAssets);
+}
+
+function watchlint() {
+	gulp.watch(paths.dev.html, linthtml);
+	gulp.watch(paths.dev.css, lintcss);
+	gulp.watch(paths.dev.js, lintjs);
+	gulp.watch(paths.dev.ts, lintts);
+}
+
+function sync() {
+	stage,
+	browserSync.init({ 
+		server: {
+			baseDir: paths.basedir,
+			index: paths.index,
+		}
+	});	
+	gulp.watch(paths.dev.html, compileHTML).on('change', browserSync.reload);
+	gulp.watch(paths.dev.css, compileCSS).on('change', browserSync.reload);
+	gulp.watch(paths.dev.js, uglifyjs).on('change', browserSync.reload);
+	gulp.watch(paths.dev.ts, compileTS).on('change', browserSync.reload);
+	gulp.watch(paths.dev.images, optamizeImages).on('change', browserSync.reload);
+	gulp.watch(paths.dev.leftovers, copyAssets).on('change', browserSync.reload);
+}
+
 exports.clean = clean;
 exports.includeSourceMaps = includeSourceMaps;
+exports.releaseMode = releaseMode;
 exports.copyAssets = copyAssets;
 exports.compileCSS = compileCSS;
 exports.compileHTML = compileHTML;
@@ -324,8 +362,11 @@ exports.lintjs = lintjs;
 exports.lintts = lintts;
 exports.optamizeImages = optamizeImages;
 exports.zipDev = zipDev;
+exports.watch = watch;
+exports.watchlint = watchlint;
+exports.sync = sync;
 
-var stage = gulp.series(
+const stage = gulp.series(
 	gulp.parallel(
 		//clean,
 		includeSourceMaps
@@ -346,7 +387,7 @@ var stage = gulp.series(
 	)
 );
 
-var release = gulp.series(
+const release = gulp.series(
 	gulp.parallel(
 		clean,
 		releaseMode
@@ -368,49 +409,14 @@ var release = gulp.series(
 	)
 );
 
-var lint = gulp.series(linthtml, lintcss, lintjs, lintts);
-var clean = gulp.series(clean);
-var test = gulp.series(includeSourceMaps, uglifyjs);
+const lint = gulp.series(
+	linthtml, 
+	lintcss, 
+	lintjs, 
+	lintts
+);
 
 gulp.task('default', stage);
 gulp.task('rel', release);
 gulp.task('lint', lint);
-gulp.task('clean', clean);
-gulp.task('test', test);
 gulp.task('zip', zipDev);
-
-gulp.task('watch', function() {
-	gulp.watch(paths.dev.html, compileHTML);
-	gulp.watch(paths.dev.css, compileCSS);
-	gulp.watch(paths.dev.js, uglifyjs);
-	gulp.watch(paths.dev.ts, compileTS);
-	gulp.watch(paths.dev.images, optamizeImages);
-	gulp.watch(paths.dev.leftovers, copyAssets);
-});
-
-gulp.task('watchlint', function() {
-	gulp.watch(paths.dev.html, linthtml);
-	gulp.watch(paths.dev.css, lintcss);
-	gulp.watch(paths.dev.js, lintjs);
-	gulp.watch(paths.dev.ts, lintts);
-});
-
-gulp.task('sync', 
-	gulp.series(
-		stage, 
-		function() {
-			browserSync.init({ 
-				server: {
-					baseDir: paths.basedir,
-					index: paths.index,
-				}
-			});	
-			gulp.watch(paths.dev.html, compileHTML).on('change', browserSync.reload);
-			gulp.watch(paths.dev.css, compileCSS).on('change', browserSync.reload);
-			gulp.watch(paths.dev.js, uglifyjs).on('change', browserSync.reload);
-			gulp.watch(paths.dev.ts, compileTS).on('change', browserSync.reload);
-			gulp.watch(paths.dev.images, optamizeImages).on('change', browserSync.reload);
-			gulp.watch(paths.dev.leftovers, copyAssets).on('change', browserSync.reload);
-		}
-	)
-);

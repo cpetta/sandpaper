@@ -7,6 +7,12 @@ describe('#clean', function() {
   })
 });
 
+describe('#ReleaseMode', function() {
+  it('should exit without error', function() {
+    return gulpfile.releaseMode();
+  })
+});
+
 describe('#includeSourceMaps', function() {
   it('should exit without error', function() {
     return gulpfile.includeSourceMaps();
@@ -76,5 +82,21 @@ describe('#optamizeImages', function() {
 describe('#zipDev', function() {
   it('should exit without error', function() {
     return gulpfile.zipDev();
+  })
+});
+
+describe('#watch', function() {
+  it('Should start without error', function() {
+    return gulpfile.watch();
+  })
+});
+describe('#watchlint', function() {
+  it('Should start without error', function() {
+    return gulpfile.watchlint();
+  })
+});
+describe('#sync', function() {
+  it('Should start without error', function() {
+    return gulpfile.sync();
   })
 });
