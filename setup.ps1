@@ -59,6 +59,7 @@ $yarnDevPackages = @(
 )
 
 $NPMPath = "C:\Program Files\nodejs"
+$YarnPath = "C:\Program Files (x86)\Yarn\bin"
 $GITPath = "C:\Program Files\Git\cmd"
 $scriptname = $MyInvocation.MyCommand.Name
 # Determine if updating or setting up for the first time.
@@ -119,6 +120,10 @@ function runGit {
 function runNpm{
 	if(-not ((Get-Command npm -errorAction SilentlyContinue))) {
 		$Env:Path = "$Env:Path;$NPMPath"
+	}
+
+	if (-not ((Get-Command yarn -errorAction SilentlyContinue))) {
+		$Env:Path = "$Env:Path;$YarnPath"
 	}
 
 	if (Get-Command npm -errorAction SilentlyContinue) {
