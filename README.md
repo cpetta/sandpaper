@@ -16,6 +16,7 @@ When setup.ps1 is run it will install chocolaty.
 Chocolaty will install a whole bunch of software
 * Git
 * NodeJS
+* Yarn
 
 Chocolaty can also install the following packages if they are uncommented:
 * NotepadPlusPlus
