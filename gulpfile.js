@@ -8,7 +8,7 @@ Tutorials
 Useful information
 	https://www.npmjs.com/package/glob	// handling files and folders
 	https://semver.org/					// versioning spec
-	https://caniuse.com/#compare=firefox+60,chrome+66
+	https://caniuse.com/#compare
 	https://www.npmjs.com/package/gulp-if
 	https://github.com/jshint/jshint
 	https://www.npmjs.com/package/cssnano
@@ -22,6 +22,7 @@ Things to check out
 	babel
 	gulp-concat
 	webpack
+	imagemin-pngout
 	https://github.com/postcss/postcss
 	https://www.npmjs.com/package/gulp-bump
 	https://www.npmjs.com/package/csso
@@ -39,31 +40,31 @@ Post CSS information
 	https://github.com/postcss/autoprefixer
 */
 
+const autoprefixer = require('autoprefixer');
+const browserSync = require('browser-sync').create();
+const cache = require('gulp-cache');
+const changed = require('gulp-changed');
+const composer = require('gulp-uglify/composer');
+const cssnano = require('cssnano');
 const del = require('del');
 const gulp = require('gulp');
 const gulpif = require('gulp-if');
-const pump = require('pump');
-const changed = require('gulp-changed');
-const cache = require('gulp-cache');
-const sourcemaps = require('gulp-sourcemaps');
-const htmlmin = require('gulp-htmlmin');
-const uglify = require('uglify-js');
-const composer = require('gulp-uglify/composer');
-const typescript = require('gulp-typescript');
-const tslint = require('gulp-tslint');
-const jshint = require('gulp-jshint');
 const htmlhint = require('gulp-htmlhint');
+const htmlmin = require('gulp-htmlmin');
 const imagemin = require('gulp-imagemin');
-const browserSync = require('browser-sync').create();
-const postcss = require('gulp-postcss');
+const jshint = require('gulp-jshint');
 const mqpacker = require("css-mqpacker");
-const presetEnv = require('postcss-preset-env');
-const unprefix = require("postcss-unprefix");
-const autoprefixer = require('autoprefixer');
-const cssnano = require('cssnano');
-const stylelint = require("stylelint");
-const postcssReporter = require("postcss-reporter");
+const postcss = require('gulp-postcss');
 const postCSSinHTML = require('gulp-html-postcss');
+const postcssReporter = require("postcss-reporter");
+const presetEnv = require('postcss-preset-env');
+const pump = require('pump');
+const sourcemaps = require('gulp-sourcemaps');
+const stylelint = require("stylelint");
+const tslint = require('gulp-tslint');
+const typescript = require('gulp-typescript');
+const uglify = require('uglify-js');
+const unprefix = require("postcss-unprefix");
 const zip = require('gulp-zip');
 
 const composerUglify = composer(uglify, console);

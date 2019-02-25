@@ -1,15 +1,15 @@
 # reference https://chocolatey.org/packages for all available packages
 $Applications = @(
-#	"notepadplusplus"
 #	"bitnami-xampp"
-#	"firefox"
-#	"googlechrome"
-	"git"
-	"nodejs"
-	"yarn"
 #	"filezilla"
+#	"firefox"
+	"git"
+#	"googlechrome"
+	"nodejs"
+#	"notepadplusplus"
 #	"vivaldi"
 #	"vscode"
+	"yarn"
 )
 
 # https://www.npmjs.com/
@@ -17,23 +17,20 @@ $npmGlobalPackages = @(
 	"gulp-cli"
 	"typescript"
 )
+
 $yarnPackages = @(
 	"autoprefixer"
 	"browser-sync"
-	"coveralls"
 	"css-mqpacker"
 	"cssnano"
 	"del"
 	"gulp-cache"
 	"gulp-changed"
-	"gulp-csslint"
 	"gulp-html-postcss"
 	"gulp-htmlhint"
 	"gulp-htmlmin"
 	"gulp-if"
 	"gulp-imagemin"
-	"gulp-include"
-	"gulp-inline-source"
 	"gulp-jshint"
 	"gulp-postcss"
 	"gulp-sourcemaps"
@@ -43,12 +40,8 @@ $yarnPackages = @(
 	"gulp-uglify"
 	"gulp-zip"
 	"gulp"
-	"imagemin-pngout"
 	"jshint"
-	"make-dir"
-	"mocha"
 	"postcss-preset-env"
-	"postcss-syntax"
 	"postcss-unprefix"
 	"pump"
 	"stylelint-config-recommended"
@@ -58,6 +51,11 @@ $yarnPackages = @(
 	"tslint"
 	"typescript"
 	"uglify-js"
+)
+
+$yarnDevPackages = @(
+	"coveralls"
+	"mocha"
 )
 
 $NPMPath = "C:\Program Files\nodejs"
@@ -138,7 +136,8 @@ function runNpm{
 
 	#	install/update packages
 		npm install -g $npmGlobalPackages
-		yarn add $npmSaveDevPackages
+		yarn add $yarnPackages
+		yarn add $yarnDevPackages
 
 	#	PostOP
 		npm audit fix	
