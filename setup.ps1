@@ -145,8 +145,6 @@ function runNpm{
 		yarn add $yarnDevPackages --dev
 
 	#	PostOP
-		npm audit fix	
-		
 		if($SettingUp -eq "true")
 		{
 			RefreshEnv
