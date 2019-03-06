@@ -390,23 +390,24 @@ function sync() {
 }
 
 exports.clean = clean;
-exports.includeSourceMaps = includeSourceMaps;
-exports.releaseMode = releaseMode;
-exports.copyAssets = copyAssets;
 exports.compileCSS = compileCSS;
 exports.compileHTML = compileHTML;
 exports.compileTS = compileTS;
-exports.uglifyjs = uglifyjs;
-exports.linthtml = linthtml;
+exports.copyAssets = copyAssets;
+exports.htmlReporter = htmlReporter;
+exports.includeSourceMaps = includeSourceMaps;
 exports.lintcss = lintcss;
+exports.linthtml = linthtml;
 exports.lintjs = lintjs;
 exports.lintts = lintts;
 exports.optamizeImages = optamizeImages;
-exports.zipDev = zipDev;
+exports.releaseMode = releaseMode;
+exports.strictLint = strictLint;
+exports.sync = sync;
+exports.uglifyjs = uglifyjs;
 exports.watch = watch;
 exports.watchlint = watchlint;
-exports.sync = sync;
-exports.strictLint = strictLint;
+exports.zipDev = zipDev;
 
 const stage = gulp.series(
 	includeSourceMaps,
