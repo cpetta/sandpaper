@@ -48,15 +48,6 @@ Head on over to https://github.com/cpetta/gulpdev/releases and follow the instal
 	* Files can be in any number of sub-folders and can be organized in any way.
 2. When your done editing code, run "gulp rel"
 3. Upload the files from the rel folder to your webserver.
-	
-# Using this gulpfile with other projects
-1. Copy the following files into your new project. 
-	* gulpfile.js
-	* setup.bat
-	* stylelint.config.js
-	* tslint.json
-2. Create a dev folder
-3. Run setup.bat
 
 ## This gulpfile has the following tasks available
 1. default
