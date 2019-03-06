@@ -10,7 +10,8 @@
   "scripts": {
     "gulp": "gulp",
     "test": "nyc --reporter=html --reporter=text mocha --check-leaks --exit",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "xo": "xo --env=node"
   },
   "keywords": [
     "gulp,",
@@ -27,10 +28,12 @@
     "css-mqpacker": "^7.0.0",
     "cssnano": "^4.1.10",
     "del": "^3.0.0",
+    "eslint-config-xo": "^0.26.0",
     "gulp": "^4.0.0",
     "gulp-cache": "^1.1.1",
     "gulp-changed": "^3.2.0",
     "gulp-csslint": "^1.0.1",
+    "gulp-eslint": "^5.0.0",
     "gulp-html-postcss": "^7.1.4",
     "gulp-htmlhint": "^2.2.1",
     "gulp-htmlmin": "^5.0.1",
@@ -48,9 +51,12 @@
     "gulp-zip": "^4.2.0",
     "imagemin-pngout": "^4.0.0",
     "jshint": "^2.10.1",
+    "jshint-more-stylish": "^1.0.1",
+    "jshint-stylish": "^2.2.1",
     "make-dir": "^2.0.0",
     "nyc": "^13.3.0",
     "postcss-preset-env": "^6.5.0",
+    "postcss-reporter": "^6.0.1",
     "postcss-syntax": "^0.36.2",
     "postcss-unprefix": "^2.1.4",
     "pump": "^3.0.0",
@@ -64,6 +70,7 @@
   },
   "devDependencies": {
     "coveralls": "^3.0.3",
-    "mocha": "^6.0.1"
+    "mocha": "^6.0.1",
+    "xo": "^0.24.0"
   }
 }

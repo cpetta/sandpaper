@@ -24,8 +24,10 @@ $yarnPackages = @(
 	"css-mqpacker"
 	"cssnano"
 	"del"
+	"eslint-config-xo"
 	"gulp-cache"
 	"gulp-changed"
+	"gulp-eslint"
 	"gulp-html-postcss"
 	"gulp-htmlhint"
 	"gulp-htmlmin"
@@ -40,8 +42,11 @@ $yarnPackages = @(
 	"gulp-uglify"
 	"gulp-zip"
 	"gulp"
+	"htmlhint-stylish"
+	"jshint-more-stylish"
 	"jshint"
 	"postcss-preset-env"
+	"postcss-reporter"
 	"postcss-unprefix"
 	"pump"
 	"stylelint-config-recommended"
@@ -56,6 +61,7 @@ $yarnPackages = @(
 $yarnDevPackages = @(
 	"coveralls"
 	"mocha"
+	"xo"
 )
 
 $NPMPath = "C:\Program Files\nodejs"
@@ -73,7 +79,7 @@ $scriptname = $MyInvocation.MyCommand.Name
 	}
 
 # Install/Update Chocolatey
-function runChocolatey { 
+function runChocolatey {
 	Write-Output "Checking to see if Chocolatey is installed..."
 
 	if (Get-Command choco -errorAction SilentlyContinue) {

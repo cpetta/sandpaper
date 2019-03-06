@@ -1,102 +1,123 @@
-var assert = require('assert');
-var gulpfile = require('../gulpfile.js');
+const mocha = require('mocha');
+const gulpfile = require('../gulpfile.js');
 
-describe('#clean', function() {
-  it('should exit without error', function() {
-    return gulpfile.clean();
-  })
-});
+const {describe} = mocha;
+const {it} = mocha;
 
-describe('#ReleaseMode', function() {
-  it('should exit without error', function() {
-    return gulpfile.releaseMode();
-  })
+describe('#clean', () => {
+	it('should exit without error', () => {
+		return gulpfile.clean();
+	});
 });
 
-describe('#includeSourceMaps', function() {
-  it('should exit without error', function() {
-    return gulpfile.includeSourceMaps();
-  })
+describe('#ReleaseMode', () => {
+	it('should exit without error', () => {
+		return gulpfile.releaseMode();
+	});
 });
 
-describe('#copyAssets', function() {
-  it('should exit without error', function() {
-    return gulpfile.copyAssets();
-  })
+describe('#includeSourceMaps', () => {
+	it('should exit without error', () => {
+		return gulpfile.includeSourceMaps();
+	});
 });
 
-describe('#compileCSS', function() {
-  it('should exit without error', function() {
-    return gulpfile.compileCSS();
-  })
+describe('#copyAssets', () => {
+	it('should exit without error', () => {
+		return gulpfile.copyAssets();
+	});
 });
 
-describe('#compileHTML', function() {
-  it('should exit without error', function() {
-    return gulpfile.compileHTML();
-  })
+describe('#compileCSS', () => {
+	it('should exit without error', () => {
+		return gulpfile.compileCSS();
+	});
 });
 
-describe('#compileTS', function() {
-  it('should exit without error', function() {
-    return gulpfile.compileTS();
-  })
+describe('#compileHTML', () => {
+	it('should exit without error', () => {
+		return gulpfile.compileHTML();
+	});
 });
 
-describe('#uglifyjs', function() {
-  it('should exit without error', function() {
-    return gulpfile.uglifyjs();
-  })
+describe('#compileTS', () => {
+	it('should exit without error', () => {
+		return gulpfile.compileTS();
+	});
 });
 
-describe('#linthtml', function() {
-  it('should exit without error', function() {
-    return gulpfile.linthtml();
-  })
+describe('#uglifyjs', () => {
+	it('should exit without error', () => {
+		return gulpfile.uglifyjs();
+	});
 });
 
-describe('#lintcss', function() {
-  it('should exit without error', function() {
-    return gulpfile.lintcss();
-  })
+describe('#linthtml', () => {
+	it('should exit without error', () => {
+		return gulpfile.linthtml();
+	});
 });
 
-describe('#lintjs', function() {
-  it('should exit without error', function() {
-    return gulpfile.lintjs();
-  })
+describe('#lintcss', () => {
+	it('should exit without error', () => {
+		return gulpfile.lintcss();
+	});
 });
 
-describe('#lintts', function() {
-  it('should exit without error', function() {
-    return gulpfile.lintts();
-  })
+describe('#lintjs', () => {
+	it('should exit without error', () => {
+		return gulpfile.lintjs();
+	});
 });
 
-describe('#optamizeImages', function() {
-  it('should exit without error', function() {
-    return gulpfile.optamizeImages(false);
-  })
+describe('#lintts', () => {
+	it('should exit without error', () => {
+		return gulpfile.lintts();
+	});
 });
 
-describe('#zipDev', function() {
-  it('should exit without error', function() {
-    return gulpfile.zipDev();
-  })
+describe('#linthtml-strict', () => {
+	it('should exit without error', () => {
+		return gulpfile.strictLint().then(gulpfile.linthtml());
+	});
 });
 
-describe('#watch', function() {
-  it('Should start without error', function() {
-    return gulpfile.watch();
-  })
+describe('#lintjs-strict', () => {
+	it('should exit without error', () => {
+		return gulpfile.strictLint().then(gulpfile.lintjs());
+	});
 });
-describe('#watchlint', function() {
-  it('Should start without error', function() {
-    return gulpfile.watchlint();
-  })
+
+describe('#lintcss-strict', () => {
+	it('should exit without error', () => {
+		return gulpfile.strictLint().then(gulpfile.lintcss());
+	});
 });
-describe('#sync', function() {
-  it('Should start without error', function() {
-    return gulpfile.sync();
-  })
+
+describe('#optamizeImages', () => {
+	it('should exit without error', () => {
+		return gulpfile.optamizeImages();
+	});
+});
+
+describe('#zipDev', () => {
+	it('should exit without error', () => {
+		return gulpfile.zipDev();
+	});
+});
+
+describe('#watch', () => {
+	it('Should start without error', () => {
+		return gulpfile.watch();
+	});
+});
+describe('#watchlint', () => {
+	it('Should start without error', () => {
+		return gulpfile.watchlint();
+	});
+});
+describe('#sync', () => {
+	it('Should start without error', () => {
+		return gulpfile.sync();
+	});
 });
