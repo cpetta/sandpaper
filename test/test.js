@@ -116,8 +116,8 @@ describe('#watchlint', () => {
 		return gulpfile.watchlint();
 	});
 });
-describe('#sync', () => {
+describe('#syncBrowsers', () => {
 	it('Should start without error', () => {
-		return gulpfile.sync();
+		return gulpfile.syncBrowsers();
 	});
 });

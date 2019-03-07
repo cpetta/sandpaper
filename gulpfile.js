@@ -71,7 +71,7 @@ const zip = require('gulp-zip');
 
 const composerUglify = composer(uglify, console);
 const currentTime = Date.now;
-const landingPage = 'index.htm';
+const landingPage = 'index.html';
 const ProjectName = 'gulp-default-project-name';
 const targetBrowsers = 'last 2 versions';
 const ZipName = ProjectName + ' - ' + currentTime;
@@ -374,7 +374,7 @@ function watchlint() {
 	gulp.watch(paths.dev.ts, lintts);
 }
 
-function sync() {
+function syncBrowsers() {
 	browserSync.init({
 		server: {
 			baseDir: paths.basedir,
@@ -403,7 +403,7 @@ exports.lintts = lintts;
 exports.optamizeImages = optamizeImages;
 exports.releaseMode = releaseMode;
 exports.strictLint = strictLint;
-exports.sync = sync;
+exports.syncBrowsers = syncBrowsers;
 exports.uglifyjs = uglifyjs;
 exports.watch = watch;
 exports.watchlint = watchlint;
@@ -457,7 +457,7 @@ gulp.task('rel', release);
 gulp.task('lint', lint);
 gulp.task('strictlint', gulp.series(strictLint, lint));
 gulp.task('zip', zipDev);
-gulp.task('sync', gulp.series(includeSourceMaps, stage, sync));
-gulp.task('syncrel', gulp.series(releaseMode, release, sync));
+gulp.task('sync', gulp.series(includeSourceMaps, stage, syncBrowsers));
+gulp.task('syncrel', gulp.series(releaseMode, release, syncBrowsers));
 gulp.task('watchlint', gulp.series(lint, watchlint));
 gulp.task('watchlintstrict', gulp.series(strictLint, lint, watchlint));
