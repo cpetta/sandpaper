@@ -107,8 +107,8 @@ This task will watch for files changing just like 'gulp watch', but instead of p
 		
 ## 7. gulp sync
 This task is the same as gulp watch, but in addition, it runs a webserver on port 3000.
-You can open up your website in the browser, if a file in the 'dev' folder changes, it will be processed, and the browser will reload or update with the change.
-Additionally, if multiple browsers/devices load your webpage, scrolling, clicking, and typing are all duplicated across instances.
+dev/index.html will open in the browser, and if any file in the 'dev' folder changes, it will be processed. After which, the browser will automatically reload to reflect the change.
+Additionally, when multiple browsers or devices connect to the web server, then scrolling, clicking, and typing are all duplicated across instances.
 
 # Development Enviroment Setup
 Want to help with the development of gulpdev or, like living on the edge, using the latest dependency versions?
