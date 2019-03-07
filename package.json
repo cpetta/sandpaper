@@ -54,7 +54,6 @@
     "jshint-more-stylish": "^1.0.1",
     "jshint-stylish": "^2.2.1",
     "make-dir": "^2.0.0",
-    "nyc": "^13.3.0",
     "postcss-preset-env": "^6.5.0",
     "postcss-reporter": "^6.0.1",
     "postcss-syntax": "^0.36.2",
@@ -71,6 +70,7 @@
   "devDependencies": {
     "coveralls": "^3.0.3",
     "mocha": "^6.0.1",
+    "nyc": "^13.3.0",
     "xo": "^0.24.0"
   }
 }
