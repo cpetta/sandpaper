@@ -111,11 +111,13 @@ describe('#watch', () => {
 		return gulpfile.watch();
 	});
 });
+
 describe('#watchlint', () => {
 	it('Should start without error', () => {
 		return gulpfile.watchlint();
 	});
 });
+
 describe('#syncBrowsers', () => {
 	it('Should start without error', () => {
 		return gulpfile.syncBrowsers();
