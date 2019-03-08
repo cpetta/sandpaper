@@ -21,6 +21,7 @@ Things to check out
 	ruby on rails
 	babel
 	gulp-concat
+	gulp-alex / Alex
 	webpack
 	imagemin-pngout
 	https://github.com/postcss/postcss
@@ -159,17 +160,15 @@ function copyAssets() {
 
 // From https://github.com/doshprompt/htmlhint-stylish/issues/1#issuecomment-251012229
 function htmlReporter(file) {
-	return stylish.reporter(file.htmlhint.messages.map(errMsg => {
-		return {
-			file: require('path').relative(file.cwd, errMsg.file),
-			error: {
-				character: errMsg.error.col,
-				code: errMsg.error.rule.id,
-				line: errMsg.error.line,
-				reason: errMsg.error.message
-			}
-		};
-	}));
+	return stylish.reporter(file.htmlhint.messages.map(errMsg => ({
+		file: require('path').relative(file.cwd, errMsg.file),
+		error: {
+			character: errMsg.error.col,
+			code: errMsg.error.rule.id,
+			line: errMsg.error.line,
+			reason: errMsg.error.message
+		}
+	})));
 }
 
 function compileCSS() {
