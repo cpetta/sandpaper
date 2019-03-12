@@ -1,6 +1,7 @@
 const mocha = require('mocha');
 const gulpfile = require('../gulpfile.js');
 
+// These two consts make xo linter happy, comment them out if you want tests to run in VSCode.
 const {describe} = mocha;
 const {it} = mocha;
 
@@ -121,5 +122,17 @@ describe('#watchlint', () => {
 describe('#syncBrowsers', () => {
 	it('Should start without error', () => {
 		return gulpfile.syncBrowsers();
+	});
+});
+
+describe('#lintHtmlContent', () => {
+	it('Should exit without error', () => {
+		return gulpfile.lintHtmlContent();
+	});
+});
+
+describe('#lintmd', () => {
+	it('Should exit without error', () => {
+		return gulpfile.lintmd();
 	});
 });

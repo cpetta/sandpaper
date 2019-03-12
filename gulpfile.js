@@ -64,11 +64,13 @@ const pump = require('pump');
 const sourcemaps = require('gulp-sourcemaps');
 const stylelint = require('stylelint');
 const stylish = require('jshint-more-stylish');
+const through2 = require('through2');
 const tslint = require('gulp-tslint');
 const typescript = require('gulp-typescript');
 const uglify = require('uglify-js');
 const unprefix = require('postcss-unprefix');
 const zip = require('gulp-zip');
+const markdownlint = require('markdownlint');
 
 const composerUglify = composer(uglify, console);
 const currentTime = Date.now;
@@ -76,6 +78,32 @@ const landingPage = 'index.html';
 const ProjectName = 'gulp-default-project-name';
 const targetBrowsers = 'last 2 versions';
 const ZipName = ProjectName + ' - ' + currentTime;
+
+// Unified Engine
+const vfile = require('to-vfile');
+const unified = require('unified');
+const parse = require('rehype-parse');
+const stringify = require('rehype-stringify');
+const rehype2retext = require('rehype-retext');
+const engine = require('unified-engine-gulp');
+
+// Retext Modules
+const english = require('retext-english');
+const dictionary = require('dictionary-en-us');
+const contractions = require('retext-contractions');
+const dontAssume = require('retext-assuming');
+const equality = require('retext-equality');
+const indefinite = require('retext-indefinite-article');
+const intensify = require('retext-intensify');
+const passive = require('retext-passive');
+const profanities = require('retext-profanities');
+const quotes = require('retext-quotes');
+const readability = require('retext-readability');
+const repeated = require('retext-repeated-words');
+const spell = require('retext-spell');
+const spacing = require('retext-sentence-spacing');
+const overuse = require('retext-overuse');
+const redundantAcronyms = require('retext-redundant-acronyms');
 
 let includeSourceMap = false;
 let onlyLintErrors = true;
@@ -91,15 +119,17 @@ const pluginsPostCSS = [
 
 const uglifyjsOptions = {};
 
+const devFolder = 'dev';
 const paths = {		// This will likely need to be updated for your project.
 	dev: {
-		all: 'dev/**/*',
-		html: 'dev/**/*.htm*',
-		css: 'dev/**/*.css',
-		js: 'dev/**/*.js',
-		ts: 'dev/**/*.ts',
-		php: 'dev/**/*.php',
-		images: 'dev/**/*.+(png|jpg|gif|svg)',
+		all: devFolder + '/**/*',
+		html: devFolder + '/**/*.htm*',
+		css: devFolder + '/**/*.css',
+		js: devFolder + '/**/*.js',
+		ts: devFolder + '/**/*.ts',
+		php: devFolder + '/**/*.php',
+		md: devFolder + '/**/*.md',
+		images: devFolder + '/**/*.+(png|jpg|gif|svg)',
 		leftovers: '!dev/**/*.+(htm*|css|js|ts|png|jpg|gif|svg)' // All files that aren't of the mime type listed above.
 	},
 	stage: {
@@ -109,6 +139,7 @@ const paths = {		// This will likely need to be updated for your project.
 		js: 'stage',
 		ts: 'stage',
 		php: 'stage',
+		md: 'stage',
 		images: 'stage'
 	},
 	rel: {
@@ -118,6 +149,7 @@ const paths = {		// This will likely need to be updated for your project.
 		js: 'rel',
 		ts: 'rel',
 		php: 'rel',
+		md: 'rel',
 		images: 'rel'
 	},
 	report: {
@@ -351,6 +383,52 @@ function lintts() {
 		.pipe(tslint.report({emitError: false}));
 }
 
+function lintmd() {
+	return gulp.src(paths.dev.md, { "read": false })
+    .pipe(through2.obj(function obj(file, enc, next) {
+		console.log(file);
+		markdownlint(
+        { "files": [ devFolder + '\\' + file.relative ] },
+        function callback(err, result) {
+          const resultString = (result || "").toString();
+          if (resultString) {
+            console.log(resultString);
+          }
+          next(err, file);
+        });
+    }));
+}
+
+function lintHtmlContent() {
+	return gulp.src(paths.dev.html)
+		.pipe(
+			engine({name: 'gulp-unified', processor: require('unified')})()
+				.use(parse)
+				.use(
+					rehype2retext,
+					unified()
+						.use([
+							english,
+							contractions,
+							dontAssume,
+							equality,
+							indefinite,
+							// Intensify,
+							// Overuse,
+							passive,
+							// Profanities,
+							// Readability,
+							redundantAcronyms,
+							repeated,
+							spacing
+						])
+						.use(quotes, {preferred: 'straight'})
+						.use(spell, {dictionary, personal: vfile.readSync('personal.dic')})
+				)
+				.use(stringify)
+		);
+}
+
 function zipDev() {
 	return gulp.src(paths.dev.all)
 		.pipe(zip(ZipName))
@@ -399,6 +477,8 @@ exports.lintcss = lintcss;
 exports.linthtml = linthtml;
 exports.lintjs = lintjs;
 exports.lintts = lintts;
+exports.lintmd = lintmd;
+exports.lintHtmlContent = lintHtmlContent;
 exports.optamizeImages = optamizeImages;
 exports.releaseMode = releaseMode;
 exports.strictLint = strictLint;
@@ -408,8 +488,7 @@ exports.watch = watch;
 exports.watchlint = watchlint;
 exports.zipDev = zipDev;
 
-const stage = gulp.series(
-	includeSourceMaps,
+const batchEverthing = gulp.series(
 	gulp.parallel(
 		compileCSS,
 		compileHTML,
@@ -418,45 +497,27 @@ const stage = gulp.series(
 		optamizeImages,
 		copyAssets
 	),
-	gulp.series(
-		linthtml,
-		lintcss,
-		lintjs,
-		lintts
-	)
-);
-
-const release = gulp.series(
-	releaseMode,
-	gulp.parallel(
-		compileCSS,
-		compileHTML,
-		uglifyjs,
-		compileTS,
-		optamizeImages,
-		copyAssets,
-	),
-	gulp.series(
-		linthtml,
-		lintcss,
-		lintjs,
-		lintts
-	)
+	linthtml,
+	lintcss,
+	lintjs,
+	lintts,
+	lintmd
 );
 
 const lint = gulp.series(
 	linthtml,
 	lintcss,
 	lintjs,
-	lintts
+	lintts,
+	lintmd
 );
 
-gulp.task('default', stage);
-gulp.task('rel', release);
+gulp.task('default', gulp.series(includeSourceMaps, batchEverthing));
+gulp.task('rel', gulp.series(releaseMode, batchEverthing));
 gulp.task('lint', lint);
-gulp.task('strictlint', gulp.series(strictLint, lint));
+gulp.task('lintstrict', gulp.series(strictLint, lint, lintHtmlContent));
 gulp.task('zip', zipDev);
-gulp.task('sync', gulp.series(includeSourceMaps, stage, syncBrowsers));
-gulp.task('syncrel', gulp.series(releaseMode, release, syncBrowsers));
+gulp.task('sync', gulp.series(includeSourceMaps, batchEverthing, syncBrowsers));
+gulp.task('syncrel', gulp.series(releaseMode, batchEverthing, syncBrowsers));
 gulp.task('watchlint', gulp.series(lint, watchlint));
 gulp.task('watchlintstrict', gulp.series(strictLint, lint, watchlint));
