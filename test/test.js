@@ -133,6 +133,20 @@ describe('#lintHtmlContent', () => {
 
 describe('#lintmd', () => {
 	it('Should exit without error', () => {
-		return gulpfile.lintmd();
+		return gulpfile.lintmd() + gulpfile.lintmd(true);
+	});
+});
+
+describe('#lintmarkdownContent', () => {
+	it('Should exit without error', () => {
+		return gulpfile.lintmarkdownContent();
+	});
+});
+
+describe('#htmlReporter', () => {
+	it('Should exit without error', () => {
+		return require('gulp').src('test/invalid.html')
+			.pipe(require('gulp-htmlhint')())
+			.pipe(require('gulp-htmlhint').reporter(gulpfile.htmlReporter));
 	});
 });
