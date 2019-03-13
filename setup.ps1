@@ -198,6 +198,6 @@ function finalizeSetup{
 }
 
 runChocolatey
-#runGit
+runGit
 runNpm
 finalizeSetup
