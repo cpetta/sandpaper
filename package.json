@@ -88,8 +88,7 @@
 		"typescript": "^3.3.3",
 		"uglify-js": "^3.4.9",
 		"unified": "^7.1.0",
-		"unified-engine-gulp": "^6.1.0",
-		"vfile-reporter": "^5.1.1"
+		"unified-engine-gulp": "^6.1.0"
 	},
 	"devDependencies": {
 		"coveralls": "^3.0.3",
