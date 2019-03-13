@@ -80,29 +80,24 @@ const targetBrowsers = 'last 2 versions';
 const ZipName = ProjectName + ' - ' + currentTime;
 
 // Unified Engine
-const vfile = require('to-vfile');
 const unified = require('unified');
 const parse = require('rehype-parse');
 const stringify = require('rehype-stringify');
 const rehype2retext = require('rehype-retext');
+const remark2retext = require('remark-retext');
 const engine = require('unified-engine-gulp');
 
 // Retext Modules
 const english = require('retext-english');
-const dictionary = require('dictionary-en-us');
 const contractions = require('retext-contractions');
 const dontAssume = require('retext-assuming');
 const equality = require('retext-equality');
 const indefinite = require('retext-indefinite-article');
-const intensify = require('retext-intensify');
 const passive = require('retext-passive');
 const profanities = require('retext-profanities');
 const quotes = require('retext-quotes');
-const readability = require('retext-readability');
 const repeated = require('retext-repeated-words');
-const spell = require('retext-spell');
 const spacing = require('retext-sentence-spacing');
-const overuse = require('retext-overuse');
 const redundantAcronyms = require('retext-redundant-acronyms');
 
 let includeSourceMap = false;
@@ -192,6 +187,7 @@ function copyAssets() {
 
 // From https://github.com/doshprompt/htmlhint-stylish/issues/1#issuecomment-251012229
 function htmlReporter(file) {
+	console.log(file);
 	return stylish.reporter(file.htmlhint.messages.map(errMsg => ({
 		file: require('path').relative(file.cwd, errMsg.file),
 		error: {
@@ -278,7 +274,7 @@ function optamizeImages() {
 					{removeTitle: true},
 					{removeDesc: true},
 					{removeUselessDefs: true},
-					// {removeXMLNS: true}, // Breaks the image
+					{removeXMLNS: false}, // Setting this to true will break the image
 					{removeEditorsNSData: true},
 					{removeEmptyAttrs: true},
 					{removeHiddenElems: true},
@@ -383,20 +379,46 @@ function lintts() {
 		.pipe(tslint.report({emitError: false}));
 }
 
-function lintmd() {
-	return gulp.src(paths.dev.md, { "read": false })
-    .pipe(through2.obj(function obj(file, enc, next) {
-		console.log(file);
-		markdownlint(
-        { "files": [ devFolder + '\\' + file.relative ] },
-        function callback(err, result) {
-          const resultString = (result || "").toString();
-          if (resultString) {
-            console.log(resultString);
-          }
-          next(err, file);
-        });
-    }));
+function lintmd(testoverride) {
+	return gulp.src(paths.dev.md, {read: false})
+		.pipe(through2.obj((file, enc, next) => {
+			markdownlint(
+				{files: [devFolder + '\\' + file.relative]},
+				(err, result) => {
+					const resultString = (result).toString();
+					if (resultString ||  testoverride) {
+						console.log(resultString);
+					}
+
+					next(err, file);
+				});
+		}));
+}
+
+function lintmarkdownContent() {
+	return gulp.src(paths.dev.md)
+		.pipe(
+			engine({name: 'gulp-unified', processor: require('unified')})()
+				.use(parse)
+				.use(
+					remark2retext,
+					unified()
+						.use([
+							english,
+							contractions,
+							dontAssume,
+							equality,
+							indefinite,
+							passive,
+							profanities,
+							redundantAcronyms,
+							repeated,
+							spacing
+						])
+						.use(quotes, {preferred: 'straight'})
+				)
+				.use(stringify)
+		);
 }
 
 function lintHtmlContent() {
@@ -413,17 +435,12 @@ function lintHtmlContent() {
 							dontAssume,
 							equality,
 							indefinite,
-							// Intensify,
-							// Overuse,
 							passive,
-							// Profanities,
-							// Readability,
 							redundantAcronyms,
 							repeated,
 							spacing
 						])
 						.use(quotes, {preferred: 'straight'})
-						.use(spell, {dictionary, personal: vfile.readSync('personal.dic')})
 				)
 				.use(stringify)
 		);
@@ -478,6 +495,7 @@ exports.linthtml = linthtml;
 exports.lintjs = lintjs;
 exports.lintts = lintts;
 exports.lintmd = lintmd;
+exports.lintmarkdownContent = lintmarkdownContent;
 exports.lintHtmlContent = lintHtmlContent;
 exports.optamizeImages = optamizeImages;
 exports.releaseMode = releaseMode;
@@ -488,6 +506,15 @@ exports.watch = watch;
 exports.watchlint = watchlint;
 exports.zipDev = zipDev;
 
+const lint = gulp.series(
+	linthtml,
+	lintcss,
+	lintjs,
+	lintts,
+	lintmd,
+	lintmarkdownContent
+);
+
 const batchEverthing = gulp.series(
 	gulp.parallel(
 		compileCSS,
@@ -497,19 +524,19 @@ const batchEverthing = gulp.series(
 		optamizeImages,
 		copyAssets
 	),
-	linthtml,
-	lintcss,
-	lintjs,
-	lintts,
-	lintmd
+	lint
 );
 
-const lint = gulp.series(
-	linthtml,
-	lintcss,
-	lintjs,
-	lintts,
-	lintmd
+const test = gulp.series(
+	includeSourceMaps,
+	batchEverthing,
+	releaseMode,
+	batchEverthing,
+	lint,
+	strictLint,
+	lint,
+	lintHtmlContent,
+	zipDev
 );
 
 gulp.task('default', gulp.series(includeSourceMaps, batchEverthing));
@@ -521,3 +548,4 @@ gulp.task('sync', gulp.series(includeSourceMaps, batchEverthing, syncBrowsers));
 gulp.task('syncrel', gulp.series(releaseMode, batchEverthing, syncBrowsers));
 gulp.task('watchlint', gulp.series(lint, watchlint));
 gulp.task('watchlintstrict', gulp.series(strictLint, lint, watchlint));
+gulp.task('test', test);
