@@ -72,13 +72,6 @@ const unprefix = require('postcss-unprefix');
 const zip = require('gulp-zip');
 const markdownlint = require('markdownlint');
 
-const composerUglify = composer(uglify, console);
-const currentTime = Date.now;
-const landingPage = 'index.html';
-const ProjectName = 'gulp-default-project-name';
-const targetBrowsers = 'last 2 versions';
-const ZipName = ProjectName + ' - ' + currentTime;
-
 // Unified Engine
 const unified = require('unified');
 const parse = require('rehype-parse');
@@ -103,6 +96,13 @@ const redundantAcronyms = require('retext-redundant-acronyms');
 let includeSourceMap = false;
 let onlyLintErrors = true;
 let staging = true;
+
+const composerUglify = composer(uglify, console);
+const currentTime = Date.now;
+const landingPage = 'index.html';
+const ProjectName = 'gulp-default-project-name';
+const targetBrowsers = 'last 2 versions';
+const ZipName = ProjectName + ' - ' + currentTime;
 
 const pluginsPostCSS = [
 	mqpacker(),
