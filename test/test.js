@@ -145,7 +145,7 @@ describe('#lintmarkdownContent', () => {
 
 describe('#htmlReporter', () => {
 	it('Should exit without error', () => {
-		return require('gulp').src('test/invalid.html')
+		return require('gulp').src('dev/invalid.html')
 			.pipe(require('gulp-htmlhint')())
 			.pipe(require('gulp-htmlhint').reporter(gulpfile.htmlReporter));
 	});
