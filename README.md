@@ -4,7 +4,7 @@
 
 ## Primary Project Goals
 
-* Improve the experience of writting vanilla HTML, CSS, and JavaScript.
+* Provide tools to help developers avoid common errors in HTML, CSS, and JavaScript.
 * Improve maintainability of code produced by developers.
 * Improve performance of webpages.
 * Automate the development enviroment setup process.
@@ -14,15 +14,15 @@
 
 * Enable the use of additional languages such as typescript, scss, sass, etc.
 
-For your own safety and security, it is **highly recommended** that you review any scripts before running them.
-When setup.ps1 is run it will install chocolaty.
-Chocolaty will install a whole bunch of software
+For your safety and security, please **review scripts before running them**.
+setup.ps1 starts by installing chocolaty.
+After Chocolaty is installed, it is used to install the following software by default:
 
 * Git
 * NodeJS
 * Yarn
 
-Chocolaty can also install the following packages if they are uncommented:
+The Chocolaty function in setup.ps1 can be configured to install the following packages if they are uncommented:
 
 * NotepadPlusPlus
 * bitnami-xampp
@@ -30,12 +30,9 @@ Chocolaty can also install the following packages if they are uncommented:
 * Google Chrome
 * FileZilla
 
-In my experience, reinstalling applications through chocolaty has not caused any settings or customization loss, but there's no guarantee that you will have the same results.
-Feedback and suggestions for improvments are welcome.
-
 ## Installation
 
-Head on over to https://github.com/cpetta/gulpdev/releases and follow the installation instructions there.
+Head on over to [releases] and follow the installation instructions there.
 
 ## Basic Workflow
 
@@ -78,7 +75,7 @@ This task
 * Processes JavaScript
 * Processes Typescript
 * Optimizes Images (.svg, .png, .jpg, .gif)
-* Copies any remaining files to the 'stage' folder
+* Copies any remaining files to the "stage" folder
 * Lints HTML
 * Lints CSS
 * Lints JavaScript
@@ -95,7 +92,7 @@ This task
 * Processes JavaScript
 * Processes Typescript
 * Optimizes Images (.svg, .png, .jpg, .gif)
-* Copies any remaining files to the 'rel' folder
+* Copies any remaining files to the "rel" folder
 * Lints HTML
 * Lints CSS
 * Lints JavaScript
@@ -112,22 +109,22 @@ This task
 
 ### 4. gulp clean
 
-This task deletes the 'stage' folder.
+This task deletes the "stage" folder.
 
 ### 5. gulp watch
 
 This task will run indefinitely until the command prompt is ether closed or the user presses ctrl + c.
-When a file is changed between the 'dev' folder and the 'stage' folder, it will process it.
-for instance if I make a change to a css file, and hit save, that change will be carried over to the 'stage' folder.
+When a file is changed between the "dev" folder and the "stage" folder, it will process it.
+for instance if I make a change to a css file, and hit save, that change will be carried over to the "stage" folder.
 
 ### 6. gulp watchlint
 
-This task will watch for files changing just like 'gulp watch', but instead of processing them, it will output a lint report.
+This task will watch for files changing similar to "gulp watch", but instead of processing them, it will output a lint report.
 
 ### 7. gulp sync
 
 This task is the same as gulp watch, but in addition, it runs a webserver on port 3000.
-dev/index.html will open in the browser, and if any file in the 'dev' folder changes, it will be processed. After which, the browser will automatically reload to reflect the change.
+dev/index.html will open in the browser, and if any file in the "dev" folder changes, it will be processed. After which, the browser will automatically reload to reflect the change.
 Additionally, when multiple browsers or devices connect to the web server, then scrolling, clicking, and typing are all duplicated across instances.
 
 ## Development Enviroment Setup
@@ -140,6 +137,9 @@ Want to help with the development of gulpdev or, like living on the edge, using 
 4. Launch Powershell as an administrator in the same folder as setup.ps1
 5. run the following command `Set-ExecutionPolicy Bypass -Scope Process -Force; .\setup.ps1`
 
+Feedback and suggestions for improvments are welcome.
+
+[releases]: https://github.com/cpetta/gulpdev/releases
 [david-svg]: https://david-dm.org/cpetta/gulpdev.svg
 [david-url]: https://david-dm.org/cpetta/gulpdev
 [travis-ci-svg]: https://travis-ci.org/cpetta/GulpDev.svg?branch=master
