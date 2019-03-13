@@ -382,7 +382,7 @@ function lintmd(testoverride) {
 	return gulp.src(paths.dev.md, {read: false})
 		.pipe(through2.obj((file, enc, next) => {
 			markdownlint(
-				{files: [devFolder + '\\' + file.relative]},
+				{files: [devFolder + '\/' + file.relative]},
 				(err, result) => {
 					const resultString = (result || '').toString();
 					if (resultString ||  testoverride) {
