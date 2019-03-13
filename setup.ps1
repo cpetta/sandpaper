@@ -62,8 +62,13 @@ $yarnPackages = @(
 	"retext-redundant-acronyms"
 	"retext-repeated-words"
 	"retext-sentence-spacing"
+	"stylelint-config-recommended"
+	"stylelint-config-standard"
+	"stylelint-order"
 	"stylelint"
 	"through2"
+	"tslint"
+	"typescript"
 	"uglify-js"
 	"unified-engine-gulp"
 	"unified"
@@ -193,6 +198,6 @@ function finalizeSetup{
 }
 
 runChocolatey
-runGit
+#runGit
 runNpm
 finalizeSetup
