@@ -187,7 +187,6 @@ function copyAssets() {
 
 // From https://github.com/doshprompt/htmlhint-stylish/issues/1#issuecomment-251012229
 function htmlReporter(file) {
-	console.log(file);
 	return stylish.reporter(file.htmlhint.messages.map(errMsg => ({
 		file: require('path').relative(file.cwd, errMsg.file),
 		error: {
