@@ -61,7 +61,6 @@ const postCSSinHTML = require('gulp-html-postcss');
 const postcssReporter = require('postcss-reporter');
 const presetEnv = require('postcss-preset-env');
 const pump = require('pump');
-const sourcemaps = require('gulp-sourcemaps');
 const stylelint = require('stylelint');
 const stylish = require('jshint-more-stylish');
 const through2 = require('through2');
@@ -93,7 +92,7 @@ const repeated = require('retext-repeated-words');
 const spacing = require('retext-sentence-spacing');
 const redundantAcronyms = require('retext-redundant-acronyms');
 
-let includeSourceMap = false;
+let SourceMaps = false;
 let onlyLintErrors = true;
 let staging = true;
 
@@ -151,7 +150,8 @@ const paths = {		// This will likely need to be updated for your project.
 		css: 'report/css'
 	},
 	index: landingPage, // The .html file to open when running gulp sync.
-	basedir: './stage'	// The folder that gulp sync loads from.
+	basedir: './stage',	// The folder that gulp sync loads from.
+	sourcemaps: './sourcemaps'
 };
 
 function sleep(ms) {
@@ -169,7 +169,7 @@ function strictLint() {
 }
 
 function includeSourceMaps() {
-	includeSourceMap = true;
+	SourceMaps = true;
 	return Promise.resolve('SourceMaps');
 }
 
@@ -199,17 +199,15 @@ function htmlReporter(file) {
 }
 
 function compileCSS() {
-	return gulp.src(paths.dev.css)
+	return gulp.src(paths.dev.css, {sourcemaps: SourceMaps})
 		.pipe(changed(gulpif(staging, paths.stage.css, paths.rel.css)))
-		.pipe(gulpif(includeSourceMap, sourcemaps.init()))
 		.pipe(postcss(pluginsPostCSS))
-		.pipe(gulpif(includeSourceMap, sourcemaps.write('../maps')))
-		.pipe(gulp.dest(gulpif(staging, paths.stage.css, paths.rel.css)))
+		.pipe(gulp.dest(gulpif(staging, paths.stage.css, paths.rel.css), {sourcemaps: paths.sourcemaps}))
 		.pipe(browserSync.stream());
 }
 
 function compileHTML() {
-	return gulp.src(paths.dev.html)
+	return gulp.src(paths.dev.html, {sourcemaps: SourceMaps})
 		.pipe(changed(gulpif(staging, paths.stage.html, paths.rel.html)))
 		.pipe(postCSSinHTML(pluginsPostCSS))
 		.pipe(htmlmin({
@@ -222,13 +220,12 @@ function compileHTML() {
 			html5: true,
 			useShortDoctype: true
 		}))
-		.pipe(gulp.dest(gulpif(staging, paths.stage.html, paths.rel.html)))
+		.pipe(gulp.dest(gulpif(staging, paths.stage.html, paths.rel.html), {sourcemaps: paths.sourcemaps}))
 		.pipe(browserSync.stream());
 }
 
 function compileTS() {
-	return gulp.src(paths.dev.ts)
-		.pipe(gulpif(includeSourceMap, sourcemaps.init()))
+	return gulp.src(paths.dev.ts, {sourcemaps: SourceMaps})
 		.pipe(typescript(
 			{
 				/* Options that are currently unused
@@ -236,23 +233,19 @@ function compileTS() {
 				target: 'ES6' // 'ES3' (default), 'ES5' or 'ES6'.
 				*/
 			}))
-		.pipe(gulpif(includeSourceMap, sourcemaps.write('../maps')))
-		.pipe(gulp.dest(gulpif(staging, paths.stage.js, paths.rel.js)))
+		.pipe(gulp.dest(gulpif(staging, paths.stage.js, paths.rel.js), {sourcemaps: paths.sourcemaps}))
 		.pipe(browserSync.stream());
 }
 
 function uglifyjs(cb) {
-	return pump(
-		[
-			gulp.src(paths.dev.js),
-			changed(gulpif(staging, paths.stage.js, paths.rel.js)),
-			gulpif(includeSourceMap, sourcemaps.init()),
-			composerUglify(uglifyjsOptions),
-			gulpif(includeSourceMap, sourcemaps.write('../maps')),
-			gulp.dest(gulpif(staging, paths.stage.js, paths.rel.js))
-		],
-		browserSync.stream(),
-		cb
+	return pump([
+		gulp.src(paths.dev.js, {sourcemaps: SourceMaps}),
+		changed(gulpif(staging, paths.stage.js, paths.rel.js)),
+		composerUglify(uglifyjsOptions),
+		gulp.dest(gulpif(staging, paths.stage.js, paths.rel.js), {sourcemaps: paths.sourcemaps})
+	],
+	browserSync.stream(),
+	cb
 	);
 }
 
@@ -382,10 +375,10 @@ function lintmd(testoverride) {
 	return gulp.src(paths.dev.md, {read: false})
 		.pipe(through2.obj((file, enc, next) => {
 			markdownlint(
-				{files: [devFolder + '\/' + file.relative]},
+				{files: [devFolder + '/' + file.relative]},
 				(err, result) => {
 					const resultString = result.toString();
-					if (resultString ||  testoverride) {
+					if (resultString || testoverride) {
 						console.log(resultString);
 					}
 

@@ -35,7 +35,6 @@ $yarnPackages = @(
 	"gulp-imagemin"
 	"gulp-jshint"
 	"gulp-postcss"
-	"gulp-sourcemaps"
 	"gulp-tslint"
 	"gulp-typescript"
 	"gulp-uglify"
