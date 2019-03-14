@@ -384,7 +384,7 @@ function lintmd(testoverride) {
 			markdownlint(
 				{files: [devFolder + '\/' + file.relative]},
 				(err, result) => {
-					const resultString = (result || '').toString();
+					const resultString = result.toString();
 					if (resultString ||  testoverride) {
 						console.log(resultString);
 					}
