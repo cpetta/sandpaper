@@ -77,6 +77,7 @@ $yarnPackages = @(
 $yarnDevPackages = @(
 	"coveralls"
 	"mocha"
+	"nyc"
 	"xo"
 )
 
