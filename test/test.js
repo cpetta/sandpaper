@@ -1,152 +1,166 @@
 const mocha = require('mocha');
 const gulpfile = require('../gulpfile.js');
-
+const fs = require('fs');
 // These two consts make xo linter happy, comment them out if you want tests to run in VSCode.
 const {describe} = mocha;
 const {it} = mocha;
 
-describe('#clean', () => {
-	it('should exit without error', () => {
-		return gulpfile.clean();
+describe('Testing with data from test/', () => {
+	before( () => {
+		fs.rename('test/test-data/testvaliddata.md','dev/testvaliddata.md', (err) => {if (err) throw err;});
+		fs.rename('test/test-data/testinvaliddata.html','dev/testinvaliddata.html', (err) => {if (err) throw err;});
+		fs.rename('test/test-data/testinvaliddata.md','dev/testinvaliddata.md', (err) => {if (err) throw err;});
 	});
-});
 
-describe('#ReleaseMode', () => {
-	it('should exit without error', () => {
-		return gulpfile.releaseMode();
+	describe('#clean', () => {
+		it('should exit without error', () => {
+			return gulpfile.clean();
+		});
 	});
-});
 
-describe('#includeSourceMaps', () => {
-	it('should exit without error', () => {
-		return gulpfile.includeSourceMaps();
+	describe('#ReleaseMode', () => {
+		it('should exit without error', () => {
+			return gulpfile.releaseMode();
+		});
 	});
-});
 
-describe('#copyAssets', () => {
-	it('should exit without error', () => {
-		return gulpfile.copyAssets();
+	describe('#includeSourceMaps', () => {
+		it('should exit without error', () => {
+			return gulpfile.includeSourceMaps();
+		});
 	});
-});
 
-describe('#compileCSS', () => {
-	it('should exit without error', () => {
-		return gulpfile.compileCSS();
+	describe('#copyAssets', () => {
+		it('should exit without error', () => {
+			return gulpfile.copyAssets();
+		});
 	});
-});
 
-describe('#compileHTML', () => {
-	it('should exit without error', () => {
-		return gulpfile.compileHTML();
+	describe('#compileCSS', () => {
+		it('should exit without error', () => {
+			return gulpfile.compileCSS();
+		});
 	});
-});
 
-describe('#compileTS', () => {
-	it('should exit without error', () => {
-		return gulpfile.compileTS();
+	describe('#compileHTML', () => {
+		it('should exit without error', () => {
+			return gulpfile.compileHTML();
+		});
 	});
-});
 
-describe('#uglifyjs', () => {
-	it('should exit without error', () => {
-		return gulpfile.uglifyjs();
+	describe('#compileTS', () => {
+		it('should exit without error', () => {
+			return gulpfile.compileTS();
+		});
 	});
-});
 
-describe('#linthtml', () => {
-	it('should exit without error', () => {
-		return gulpfile.linthtml();
+	describe('#uglifyjs', () => {
+		it('should exit without error', () => {
+			return gulpfile.uglifyjs();
+		});
 	});
-});
 
-describe('#lintcss', () => {
-	it('should exit without error', () => {
-		return gulpfile.lintcss();
+	describe('#linthtml', () => {
+		it('should exit without error', () => {
+			return gulpfile.linthtml();
+		});
 	});
-});
 
-describe('#lintjs', () => {
-	it('should exit without error', () => {
-		return gulpfile.lintjs();
+	describe('#lintcss', () => {
+		it('should exit without error', () => {
+			return gulpfile.lintcss();
+		});
 	});
-});
 
-describe('#lintts', () => {
-	it('should exit without error', () => {
-		return gulpfile.lintts();
+	describe('#lintjs', () => {
+		it('should exit without error', () => {
+			return gulpfile.lintjs();
+		});
 	});
-});
 
-describe('#linthtml-strict', () => {
-	it('should exit without error', () => {
-		return gulpfile.strictLint().then(gulpfile.linthtml());
+	describe('#lintts', () => {
+		it('should exit without error', () => {
+			return gulpfile.lintts();
+		});
 	});
-});
 
-describe('#lintjs-strict', () => {
-	it('should exit without error', () => {
-		return gulpfile.strictLint().then(gulpfile.lintjs());
+	describe('#linthtml-strict', () => {
+		it('should exit without error', () => {
+			return gulpfile.strictLint().then(gulpfile.linthtml());
+		});
 	});
-});
 
-describe('#lintcss-strict', () => {
-	it('should exit without error', () => {
-		return gulpfile.strictLint().then(gulpfile.lintcss());
+	describe('#lintjs-strict', () => {
+		it('should exit without error', () => {
+			return gulpfile.strictLint().then(gulpfile.lintjs());
+		});
 	});
-});
 
-describe('#optamizeImages', () => {
-	it('should exit without error', () => {
-		return gulpfile.optamizeImages();
+	describe('#lintcss-strict', () => {
+		it('should exit without error', () => {
+			return gulpfile.strictLint().then(gulpfile.lintcss());
+		});
 	});
-});
 
-describe('#zipDev', () => {
-	it('should exit without error', () => {
-		return gulpfile.zipDev();
+	describe('#optamizeImages', () => {
+		it('should exit without error', () => {
+			return gulpfile.optamizeImages();
+		});
 	});
-});
 
-describe('#watch', () => {
-	it('Should start without error', () => {
-		return gulpfile.watch();
+	describe('#zipDev', () => {
+		it('should exit without error', () => {
+			return gulpfile.zipDev();
+		});
 	});
-});
 
-describe('#watchlint', () => {
-	it('Should start without error', () => {
-		return gulpfile.watchlint();
+	describe('#watch', () => {
+		it('Should start without error', () => {
+			return gulpfile.watch();
+		});
 	});
-});
 
-describe('#syncBrowsers', () => {
-	it('Should start without error', () => {
-		return gulpfile.syncBrowsers();
+	describe('#watchlint', () => {
+		it('Should start without error', () => {
+			return gulpfile.watchlint();
+		});
 	});
-});
 
-describe('#lintHtmlContent', () => {
-	it('Should exit without error', () => {
-		return gulpfile.lintHtmlContent();
+	describe('#syncBrowsers', () => {
+		it('Should start without error', () => {
+			return gulpfile.syncBrowsers();
+		});
 	});
-});
 
-describe('#lintmd', () => {
-	it('Should exit without error', () => {
-		return gulpfile.lintmd() + gulpfile.lintmd(true);
+	describe('#lintHtmlContent', () => {
+		it('Should exit without error', () => {
+			return gulpfile.lintHtmlContent();
+		});
 	});
-});
 
-describe('#lintmarkdownContent', () => {
-	it('Should exit without error', () => {
-		return gulpfile.lintmarkdownContent();
+	describe('#lintmd', () => {
+		it('Should exit without error', () => {
+			return gulpfile.lintmd() + gulpfile.lintmd(true);
+		});
 	});
-});
 
-describe('#htmlReporter', () => {
-	it('Should exit without error', () => {
-		return require('gulp').src('dev/invalid.html')
-			.pipe(require('gulp-htmlhint')())
-			.pipe(require('gulp-htmlhint').reporter(gulpfile.htmlReporter));
+	describe('#lintmarkdownContent', () => {
+		it('Should exit without error', () => {
+			return gulpfile.lintmarkdownContent();
+		});
+	});
+
+	describe('#htmlReporter', () => {
+		it('Should exit without error', () => {
+			return require('gulp').src('dev/testinvaliddata.html')
+				.pipe(require('gulp-htmlhint')())
+				.pipe(require('gulp-htmlhint').reporter(gulpfile.htmlReporter));
+		});
+	});
+
+	after(() => {
+		fs.rename('dev/testinvaliddata.html', 'test/test-data/testinvaliddata.html', (err) => {if (err) throw err;});
+		fs.rename('dev/testinvaliddata.md', 'test/test-data/testinvaliddata.md', (err) => {if (err) throw err;});
+		fs.rename('dev/testvaliddata.md', 'test/test-data/testvaliddata.md', (err) => {if (err) throw err;});
 	});
 });
