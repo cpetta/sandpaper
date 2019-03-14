@@ -114,7 +114,7 @@ const pluginsPostCSS = [
 const uglifyjsOptions = {};
 
 const devFolder = 'dev';
-const paths = {		// This will likely need to be updated for your project.
+const paths = {	// This will likely need to be updated for your project.
 	dev: {
 		all: devFolder + '/**/*',
 		html: devFolder + '/**/*.htm*',
