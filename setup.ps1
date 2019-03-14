@@ -41,6 +41,7 @@ $yarnPackages = @(
 	"gulp-uglify"
 	"gulp-zip"
 	"gulp"
+	"jpegtran-bin"
 	"jshint-more-stylish"
 	"markdownlint"
 	"postcss-preset-env"

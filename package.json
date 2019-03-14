@@ -46,6 +46,7 @@
 		"gulp-typescript": "^5.0.1",
 		"gulp-uglify": "^3.0.2",
 		"gulp-zip": "^4.2.0",
+		"jpegtran-bin": "^4.0.0",
 		"jshint-more-stylish": "^1.0.1",
 		"markdownlint": "^0.12.0",
 		"postcss": "^7.0.14",
