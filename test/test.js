@@ -1,15 +1,30 @@
+const fs = require('fs');
 const mocha = require('mocha');
 const gulpfile = require('../gulpfile.js');
-const fs = require('fs');
-// These two consts make xo linter happy, comment them out if you want tests to run in VSCode.
+
+// The following consts make xo linter happy, comment them out if you want tests to run in VSCode.
+const {before} = mocha;
+const {after} = mocha;
 const {describe} = mocha;
 const {it} = mocha;
 
 describe('Testing with data from test/', () => {
-	before( () => {
-		fs.rename('test/test-data/testvaliddata.md','dev/testvaliddata.md', (err) => {if (err) throw err;});
-		fs.rename('test/test-data/testinvaliddata.html','dev/testinvaliddata.html', (err) => {if (err) throw err;});
-		fs.rename('test/test-data/testinvaliddata.md','dev/testinvaliddata.md', (err) => {if (err) throw err;});
+	before(() => {
+		fs.rename('test/test-data/testvaliddata.md', 'dev/testvaliddata.md', err => {
+			if (err) {
+				throw err;
+			}
+		});
+		fs.rename('test/test-data/testinvaliddata.html', 'dev/testinvaliddata.html', err => {
+			if (err) {
+				throw err;
+			}
+		});
+		fs.rename('test/test-data/testinvaliddata.md', 'dev/testinvaliddata.md', err => {
+			if (err) {
+				throw err;
+			}
+		});
 	});
 
 	describe('#clean', () => {
@@ -159,8 +174,20 @@ describe('Testing with data from test/', () => {
 	});
 
 	after(() => {
-		fs.rename('dev/testinvaliddata.html', 'test/test-data/testinvaliddata.html', (err) => {if (err) throw err;});
-		fs.rename('dev/testinvaliddata.md', 'test/test-data/testinvaliddata.md', (err) => {if (err) throw err;});
-		fs.rename('dev/testvaliddata.md', 'test/test-data/testvaliddata.md', (err) => {if (err) throw err;});
+		fs.rename('dev/testinvaliddata.html', 'test/test-data/testinvaliddata.html', err => {
+			if (err) {
+				throw err;
+			}
+		});
+		fs.rename('dev/testinvaliddata.md', 'test/test-data/testinvaliddata.md', err => {
+			if (err) {
+				throw err;
+			}
+		});
+		fs.rename('dev/testvaliddata.md', 'test/test-data/testvaliddata.md', err => {
+			if (err) {
+				throw err;
+			}
+		});
 	});
 });
