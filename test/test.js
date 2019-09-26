@@ -155,7 +155,7 @@ describe('Testing with data from test/', () => {
 
 	describe('#lintmd', () => {
 		it('Should exit without error', () => {
-			return gulpfile.lintmd() + gulpfile.lintmd(true);
+			return gulpfile.lintmd();
 		});
 	});
 

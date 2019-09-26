@@ -370,17 +370,13 @@ function lintts() {
 		.pipe(tslint.report({emitError: false}));
 }
 
-function lintmd(testoverride) {
+function lintmd() {
 	return gulp.src(paths.dev.md, {read: false})
 		.pipe(through2.obj((file, enc, next) => {
 			markdownlint(
 				{files: [devFolder + '/' + file.relative]},
 				(err, result) => {
-					const resultString = result.toString();
-					if (resultString || testoverride) {
-						console.log(resultString);
-					}
-
+					console.log(result.toString());
 					next(err, file);
 				});
 		}));
