@@ -107,7 +107,7 @@ const pluginsPostCSS = [
 	mqpacker(),
 	presetEnv({stage: 2, /* Stage 0 - 4 */ browsers: targetBrowsers}),
 	unprefix(),
-	autoprefixer({browsers: targetBrowsers}),
+	autoprefixer(),
 	cssnano()
 ];
 
