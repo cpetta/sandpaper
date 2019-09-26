@@ -1,5 +1,7 @@
 {
 	"name": "gulpdev",
+	"author": "Christopher Petta",
+	"license": "MIT",
 	"version": "1.1.0",
 	"description": "Provide tools to help developers avoid common errors in HTML, CSS, and JavaScript.",
 	"main": "gulpfile.js",
@@ -20,8 +22,6 @@
 		"linting",
 		"website-optimization"
 	],
-	"author": "Christopher Petta",
-	"license": "MIT",
 	"browserslist": [
 		"last 2 versions"
 	],
