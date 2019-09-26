@@ -1,4 +1,4 @@
-# Cpetta's GulpDev
+# Cpetta's Sandpaper
 
 [![Dependencies][david-svg]][david-url] [![Build Status][travis-ci-svg]][travis-ci-url] [![Coverage Status][coveralls-svg]][coveralls-url]
 
@@ -129,20 +129,20 @@ Additionally, when multiple browsers or devices connect to the web server, then 
 
 ## Development Enviroment Setup
 
-Want to help with the development of gulpdev or, like living on the edge, using the latest dependency versions?
+Want to help with the development of Sandpaper or, like living on the edge, using the latest dependency versions?
 
 1. Download setup.ps1
 2. Review the code in setup.ps1
-3. Place setup.ps1 in the directory that you would like to install GulpDev
+3. Place setup.ps1 in the directory that you would like to install Sandpaper
 4. Launch Powershell as an administrator in the same folder as setup.ps1
 5. run the following command `Set-ExecutionPolicy Bypass -Scope Process -Force; .\setup.ps1`
 
 Feedback and suggestions for improvments are welcome.
 
-[releases]: https://github.com/cpetta/gulpdev/releases
-[david-svg]: https://david-dm.org/cpetta/gulpdev.svg
-[david-url]: https://david-dm.org/cpetta/gulpdev
-[travis-ci-svg]: https://travis-ci.org/cpetta/GulpDev.svg?branch=master
-[travis-ci-url]: https://travis-ci.org/cpetta/GulpDev
-[coveralls-svg]: https://coveralls.io/repos/github/cpetta/GulpDev/badge.svg?branch=master
-[coveralls-url]: https://coveralls.io/github/cpetta/GulpDev?branch=master
+[releases]: https://github.com/cpetta/sandpaper/releases
+[david-svg]: https://david-dm.org/cpetta/sandpaper.svg
+[david-url]: https://david-dm.org/cpetta/sandpaper
+[travis-ci-svg]: https://travis-ci.org/cpetta/sandpaper.svg?branch=master
+[travis-ci-url]: https://travis-ci.org/cpetta/sandpaper
+[coveralls-svg]: https://coveralls.io/repos/github/cpetta/sandpaper/badge.svg?branch=master
+[coveralls-url]: https://coveralls.io/github/cpetta/sandpaper?branch=master

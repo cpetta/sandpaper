@@ -1,5 +1,5 @@
 {
-	"name": "gulpdev",
+	"name": "sandpaper",
 	"author": "Christopher Petta",
 	"license": "MIT",
 	"version": "1.1.0",
@@ -7,7 +7,7 @@
 	"main": "gulpfile.js",
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/cpetta/GulpDev.git"
+		"url": "git://github.com/cpetta/sandpaper.git"
 	},
 	"scripts": {
 		"gulp": "gulp",
