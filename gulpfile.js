@@ -100,12 +100,11 @@ const composerUglify = composer(uglify, console);
 const currentTime = Date.now;
 const landingPage = 'index.html';
 const ProjectName = 'gulp-default-project-name';
-const targetBrowsers = 'last 2 versions';
 const ZipName = ProjectName + ' - ' + currentTime;
 
 const pluginsPostCSS = [
 	mqpacker(),
-	presetEnv({stage: 2, /* Stage 0 - 4 */ browsers: targetBrowsers}),
+	presetEnv({stage: 2, /* Stage 0 - 4 */}),
 	unprefix(),
 	autoprefixer(),
 	cssnano()
