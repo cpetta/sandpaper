@@ -174,17 +174,17 @@ describe('Testing with data from test/', () => {
 	});
 
 	after(() => {
-		fs.unlink('dev/testinvaliddata.html', 'test/test-data/testinvaliddata.html', err => {
+		fs.unlink('dev/testinvaliddata.html', err => {
 			if (err) {
 				throw err;
 			}
 		});
-		fs.unlink('dev/testinvaliddata.md', 'test/test-data/testinvaliddata.md', err => {
+		fs.unlink('dev/testinvaliddata.md', err => {
 			if (err) {
 				throw err;
 			}
 		});
-		fs.unlink('dev/testvaliddata.md', 'test/test-data/testvaliddata.md', err => {
+		fs.unlink('dev/testvaliddata.md', err => {
 			if (err) {
 				throw err;
 			}
