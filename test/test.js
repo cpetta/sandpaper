@@ -10,17 +10,17 @@ const {it} = mocha;
 
 describe('Testing with data from test/', () => {
 	before(() => {
-		fs.copyFile('test/test-data/testvaliddata.md', 'dev/testvaliddata.md', err => {
+		fs.copyFile('test/test-data/testvaliddata.md', 'src/testvaliddata.md', err => {
 			if (err) {
 				throw err;
 			}
 		});
-		fs.copyFile('test/test-data/testinvaliddata.html', 'dev/testinvaliddata.html', err => {
+		fs.copyFile('test/test-data/testinvaliddata.html', 'src/testinvaliddata.html', err => {
 			if (err) {
 				throw err;
 			}
 		});
-		fs.copyFile('test/test-data/testinvaliddata.md', 'dev/testinvaliddata.md', err => {
+		fs.copyFile('test/test-data/testinvaliddata.md', 'src/testinvaliddata.md', err => {
 			if (err) {
 				throw err;
 			}
@@ -123,9 +123,9 @@ describe('Testing with data from test/', () => {
 		});
 	});
 
-	describe('#zipDev', () => {
+	describe('#zipSrc', () => {
 		it('should exit without error', () => {
-			return gulpfile.zipDev();
+			return gulpfile.zipSrc();
 		});
 	});
 
@@ -167,24 +167,24 @@ describe('Testing with data from test/', () => {
 
 	describe('#htmlReporter', () => {
 		it('Should exit without error', () => {
-			return require('gulp').src('dev/testinvaliddata.html')
+			return require('gulp').src('src/testinvaliddata.html')
 				.pipe(require('gulp-htmlhint')())
 				.pipe(require('gulp-htmlhint').reporter(gulpfile.htmlReporter));
 		});
 	});
 
 	after(() => {
-		fs.unlink('dev/testinvaliddata.html', err => {
+		fs.unlink('src/testinvaliddata.html', err => {
 			if (err) {
 				throw err;
 			}
 		});
-		fs.unlink('dev/testinvaliddata.md', err => {
+		fs.unlink('src/testinvaliddata.md', err => {
 			if (err) {
 				throw err;
 			}
 		});
-		fs.unlink('dev/testvaliddata.md', err => {
+		fs.unlink('src/testvaliddata.md', err => {
 			if (err) {
 				throw err;
 			}

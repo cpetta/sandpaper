@@ -9,6 +9,12 @@
 		"type": "git",
 		"url": "git://github.com/cpetta/sandpaper.git"
 	},
+	"bin": {
+		"sandpaper": "./cli.js"
+	},
+	"engines": {
+		"node": ">=8"
+	},
 	"scripts": {
 		"gulp": "gulp",
 		"test": "nyc --reporter=html --reporter=text mocha --check-leaks --exit",
@@ -51,6 +57,7 @@
 		"jpegtran-bin": "^4.0.0",
 		"jshint-more-stylish": "^1.0.1",
 		"markdownlint": "^0.16.0",
+		"meow": "^5.0.0",
 		"postcss": "^7.0.18",
 		"postcss-preset-env": "^6.7.0",
 		"postcss-reporter": "^6.0.1",

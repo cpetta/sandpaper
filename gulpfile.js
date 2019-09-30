@@ -104,7 +104,7 @@ const ZipName = ProjectName + ' - ' + currentTime;
 
 const pluginsPostCSS = [
 	mqpacker(),
-	presetEnv({stage: 2, /* Stage 0 - 4 */}),
+	presetEnv({stage: 2 /* Stage 0 - 4 */}),
 	unprefix(),
 	autoprefixer(),
 	cssnano()
@@ -112,47 +112,46 @@ const pluginsPostCSS = [
 
 const uglifyjsOptions = {};
 
-const devFolder = 'dev';
+const workingDirectory = 'src';
 const paths = {	// This will likely need to be updated for your project.
+	src: {
+		all: workingDirectory + '/**/*',
+		html: workingDirectory + '/**/*.htm*',
+		css: workingDirectory + '/**/*.css',
+		js: workingDirectory + '/**/*.js',
+		ts: workingDirectory + '/**/*.ts',
+		php: workingDirectory + '/**/*.php',
+		md: workingDirectory + '/**/*.md',
+		images: workingDirectory + '/**/*.+(png|jpg|gif|svg)',
+		leftovers: '!' + workingDirectory + '/**/*.+(htm*|css|js|ts|png|jpg|gif|svg)' // All files that aren't of the mime type listed above.
+	},
 	dev: {
-		all: devFolder + '/**/*',
-		html: devFolder + '/**/*.htm*',
-		css: devFolder + '/**/*.css',
-		js: devFolder + '/**/*.js',
-		ts: devFolder + '/**/*.ts',
-		php: devFolder + '/**/*.php',
-		md: devFolder + '/**/*.md',
-		images: devFolder + '/**/*.+(png|jpg|gif|svg)',
-		leftovers: '!dev/**/*.+(htm*|css|js|ts|png|jpg|gif|svg)' // All files that aren't of the mime type listed above.
+		all: 'dev',
+		html: 'dev',
+		css: 'dev',
+		js: 'dev',
+		ts: 'dev',
+		php: 'dev',
+		md: 'dev',
+		images: 'dev'
 	},
-	stage: {
-		all: 'stage',
-		html: 'stage',
-		css: 'stage',
-		js: 'stage',
-		ts: 'stage',
-		php: 'stage',
-		md: 'stage',
-		images: 'stage'
-	},
-	rel: {
-		all: 'rel',
-		html: 'rel',
-		css: 'rel',
-		js: 'rel',
-		ts: 'rel',
-		php: 'rel',
-		md: 'rel',
-		images: 'rel'
+	prod: {
+		all: 'dist',
+		html: 'dist',
+		css: 'dist',
+		js: 'dist',
+		ts: 'dist',
+		php: 'dist',
+		md: 'dist',
+		images: 'dist'
 	},
 	report: {
 		css: 'report/css'
 	},
 	index: landingPage, // The .html file to open when running gulp sync.
-	basedir: './stage',	// The folder that gulp sync loads from.
+	basedir: './dev',	// The folder that gulp sync loads from.
 	sourcemaps: './sourcemaps'
 };
-
 function sleep(ms) {
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -174,14 +173,14 @@ function includeSourceMaps() {
 
 async function clean() {
 	cache.clearAll();
-	await del(gulpif(staging, paths.stage.all, paths.rel.all));
+	await del(gulpif(staging, paths.dev.all, paths.prod.all));
 	await sleep(1000); // Wait 1 second to give the disk enough time to delete the old version.
 	return Promise.resolve('Cleaned');
 }
 
 function copyAssets() {
-	return gulp.src([paths.dev.all, paths.dev.leftovers]) // All files that aren't of the mime type listed in paths.rel.leftovers
-		.pipe(gulp.dest(gulpif(staging, paths.stage.all, paths.rel.all)));
+	return gulp.src([paths.src.all, paths.src.leftovers]) // All files that aren't of the mime type listed in paths.rel.leftovers
+		.pipe(gulp.dest(gulpif(staging, paths.dev.all, paths.prod.all)));
 }
 
 // From https://github.com/doshprompt/htmlhint-stylish/issues/1#issuecomment-251012229
@@ -198,16 +197,16 @@ function htmlReporter(file) {
 }
 
 function compileCSS() {
-	return gulp.src(paths.dev.css, {sourcemaps: SourceMaps})
-		.pipe(changed(gulpif(staging, paths.stage.css, paths.rel.css)))
+	return gulp.src(paths.src.css, {sourcemaps: SourceMaps})
+		.pipe(changed(gulpif(staging, paths.dev.css, paths.prod.css)))
 		.pipe(postcss(pluginsPostCSS))
-		.pipe(gulp.dest(gulpif(staging, paths.stage.css, paths.rel.css), {sourcemaps: paths.sourcemaps}))
+		.pipe(gulp.dest(gulpif(staging, paths.dev.css, paths.prod.css), {sourcemaps: paths.sourcemaps}))
 		.pipe(browserSync.stream());
 }
 
 function compileHTML() {
-	return gulp.src(paths.dev.html, {sourcemaps: SourceMaps})
-		.pipe(changed(gulpif(staging, paths.stage.html, paths.rel.html)))
+	return gulp.src(paths.src.html, {sourcemaps: SourceMaps})
+		.pipe(changed(gulpif(staging, paths.dev.html, paths.prod.html)))
 		.pipe(postCSSinHTML(pluginsPostCSS))
 		.pipe(htmlmin({
 			collapseInlineTagWhitespace: true,
@@ -219,12 +218,12 @@ function compileHTML() {
 			html5: true,
 			useShortDoctype: true
 		}))
-		.pipe(gulp.dest(gulpif(staging, paths.stage.html, paths.rel.html), {sourcemaps: paths.sourcemaps}))
+		.pipe(gulp.dest(gulpif(staging, paths.dev.html, paths.prod.html), {sourcemaps: paths.sourcemaps}))
 		.pipe(browserSync.stream());
 }
 
 function compileTS() {
-	return gulp.src(paths.dev.ts, {sourcemaps: SourceMaps})
+	return gulp.src(paths.src.ts, {sourcemaps: SourceMaps})
 		.pipe(typescript(
 			{
 				/* Options that are currently unused
@@ -232,16 +231,16 @@ function compileTS() {
 				target: 'ES6' // 'ES3' (default), 'ES5' or 'ES6'.
 				*/
 			}))
-		.pipe(gulp.dest(gulpif(staging, paths.stage.js, paths.rel.js), {sourcemaps: paths.sourcemaps}))
+		.pipe(gulp.dest(gulpif(staging, paths.dev.js, paths.prod.js), {sourcemaps: paths.sourcemaps}))
 		.pipe(browserSync.stream());
 }
 
 function uglifyjs(cb) {
 	return pump([
-		gulp.src(paths.dev.js, {sourcemaps: SourceMaps}),
-		changed(gulpif(staging, paths.stage.js, paths.rel.js)),
+		gulp.src(paths.src.js, {sourcemaps: SourceMaps}),
+		changed(gulpif(staging, paths.dev.js, paths.prod.js)),
 		composerUglify(uglifyjsOptions),
-		gulp.dest(gulpif(staging, paths.stage.js, paths.rel.js), {sourcemaps: paths.sourcemaps})
+		gulp.dest(gulpif(staging, paths.dev.js, paths.prod.js), {sourcemaps: paths.sourcemaps})
 	],
 	browserSync.stream(),
 	cb
@@ -249,8 +248,8 @@ function uglifyjs(cb) {
 }
 
 function optamizeImages() {
-	return gulp.src(paths.dev.images)
-		.pipe(changed(gulpif(staging, paths.stage.html, paths.rel.html)))
+	return gulp.src(paths.src.images)
+		.pipe(changed(gulpif(staging, paths.dev.html, paths.prod.html)))
 		.pipe(cache(imagemin([
 			imagemin.gifsicle({interlaced: false}, {optimizationLevel: gulpif(staging, 1, 3)}), // Optimization level can be 1 - 3
 			imagemin.jpegtran({progressive: false}),
@@ -295,18 +294,18 @@ function optamizeImages() {
 			})
 			/* Should look into using pngout again at some point. */ // imageminPngout()
 		], {verbose: true})))
-		.pipe(gulp.dest(gulpif(staging, paths.stage.images, paths.rel.images)));
+		.pipe(gulp.dest(gulpif(staging, paths.dev.images, paths.prod.images)));
 }
 
 function linthtml() {
 	if (onlyLintErrors) {
-		return gulp.src(paths.dev.html)
+		return gulp.src(paths.src.html)
 			.pipe(htmlhint())
 			.pipe(htmlhint.reporter(htmlReporter));
 	}
 
 	// Else
-	return gulp.src(paths.dev.html)
+	return gulp.src(paths.src.html)
 		.pipe(htmlhint({
 			'alt-require': true,
 			'attr-lowercase': true,
@@ -348,33 +347,33 @@ function lintcss() {
 		];
 	}
 
-	return gulp.src(paths.dev.css)
+	return gulp.src(paths.src.css)
 		.pipe(postcss(pluginsPostCSSlint));
 }
 
 function lintjs() {
 	if (onlyLintErrors) {
-		return gulp.src(paths.dev.js)
+		return gulp.src(paths.src.js)
 			.pipe(jshint())
 			.pipe(jshint.reporter(stylish));
 	}
 
-	return gulp.src(paths.dev.js)
+	return gulp.src(paths.src.js)
 		.pipe(eslint({configFile: 'node_modules/eslint-config-xo/index.js'})) // If error try npm install eslint-config-xo
 		.pipe(eslint.format('stylish'));
 }
 
 function lintts() {
-	return gulp.src(paths.dev.ts)
+	return gulp.src(paths.src.ts)
 		.pipe(tslint({formatter: 'stylish'}))
 		.pipe(tslint.report({emitError: false}));
 }
 
 function lintmd() {
-	return gulp.src(paths.dev.md, {read: false})
+	return gulp.src(paths.src.md, {read: false})
 		.pipe(through2.obj((file, enc, next) => {
 			markdownlint(
-				{files: [devFolder + '/' + file.relative]},
+				{files: [workingDirectory + '/' + file.relative]},
 				(err, result) => {
 					console.log(result.toString());
 					next(err, file);
@@ -383,7 +382,7 @@ function lintmd() {
 }
 
 function lintmarkdownContent() {
-	return gulp.src(paths.dev.md)
+	return gulp.src(paths.src.md)
 		.pipe(
 			engine({name: 'gulp-unified', processor: require('unified')})()
 				.use(parse)
@@ -409,7 +408,7 @@ function lintmarkdownContent() {
 }
 
 function lintHtmlContent() {
-	return gulp.src(paths.dev.html)
+	return gulp.src(paths.src.html)
 		.pipe(
 			engine({name: 'gulp-unified', processor: require('unified')})()
 				.use(parse)
@@ -433,26 +432,26 @@ function lintHtmlContent() {
 		);
 }
 
-function zipDev() {
-	return gulp.src(paths.dev.all)
+function zipSrc() {
+	return gulp.src(paths.src.all)
 		.pipe(zip(ZipName))
-		.pipe(gulp.dest(paths.rel.all));
+		.pipe(gulp.dest(paths.prod.all));
 }
 
 function watch() {
-	gulp.watch(paths.dev.html, compileHTML);
-	gulp.watch(paths.dev.css, compileCSS);
-	gulp.watch(paths.dev.js, uglifyjs);
-	gulp.watch(paths.dev.ts, compileTS);
-	gulp.watch(paths.dev.images, optamizeImages);
-	gulp.watch(paths.dev.leftovers, copyAssets);
+	gulp.watch(paths.src.html, compileHTML);
+	gulp.watch(paths.src.css, compileCSS);
+	gulp.watch(paths.src.js, uglifyjs);
+	gulp.watch(paths.src.ts, compileTS);
+	gulp.watch(paths.src.images, optamizeImages);
+	gulp.watch(paths.src.leftovers, copyAssets);
 }
 
 function watchlint() {
-	gulp.watch(paths.dev.html, linthtml);
-	gulp.watch(paths.dev.css, lintcss);
-	gulp.watch(paths.dev.js, lintjs);
-	gulp.watch(paths.dev.ts, lintts);
+	gulp.watch(paths.src.html, linthtml);
+	gulp.watch(paths.src.css, lintcss);
+	gulp.watch(paths.src.js, lintjs);
+	gulp.watch(paths.src.ts, lintts);
 }
 
 function syncBrowsers() {
@@ -462,12 +461,12 @@ function syncBrowsers() {
 			index: paths.index
 		}
 	});
-	gulp.watch(paths.dev.html, compileHTML).on('change', browserSync.reload);
-	gulp.watch(paths.dev.css, compileCSS).on('change', browserSync.reload);
-	gulp.watch(paths.dev.js, uglifyjs).on('change', browserSync.reload);
-	gulp.watch(paths.dev.ts, compileTS).on('change', browserSync.reload);
-	gulp.watch(paths.dev.images, optamizeImages).on('change', browserSync.reload);
-	gulp.watch(paths.dev.leftovers, copyAssets).on('change', browserSync.reload);
+	gulp.watch(paths.src.html, compileHTML).on('change', browserSync.reload);
+	gulp.watch(paths.src.css, compileCSS).on('change', browserSync.reload);
+	gulp.watch(paths.src.js, uglifyjs).on('change', browserSync.reload);
+	gulp.watch(paths.src.ts, compileTS).on('change', browserSync.reload);
+	gulp.watch(paths.src.images, optamizeImages).on('change', browserSync.reload);
+	gulp.watch(paths.src.leftovers, copyAssets).on('change', browserSync.reload);
 }
 
 exports.clean = clean;
@@ -491,7 +490,9 @@ exports.syncBrowsers = syncBrowsers;
 exports.uglifyjs = uglifyjs;
 exports.watch = watch;
 exports.watchlint = watchlint;
-exports.zipDev = zipDev;
+exports.zipSrc = zipSrc;
+
+// Combined functions / jobs
 
 const lint = gulp.series(
 	linthtml,
@@ -523,16 +524,55 @@ const test = gulp.series(
 	strictLint,
 	lint,
 	lintHtmlContent,
-	zipDev
+	zipSrc
 );
 
-gulp.task('default', gulp.series(includeSourceMaps, batchEverthing));
-gulp.task('rel', gulp.series(releaseMode, batchEverthing));
+const buildDev = gulp.series(
+	includeSourceMaps,
+	batchEverthing
+);
+
+const buildProd = gulp.series(
+	releaseMode,
+	batchEverthing
+);
+
+const lintStrict = gulp.series(
+	strictLint,
+	lint,
+	lintHtmlContent
+);
+
+const sync = gulp.series(
+	includeSourceMaps,
+	batchEverthing,
+	syncBrowsers
+);
+
+const watchLint = gulp.series(
+	lint,
+	watchlint
+);
+
+const watchlintstrict = gulp.series(
+	strictLint,
+	lint,
+	watchlint
+);
+
+exports.buildDev = buildDev;
+exports.buildProd = buildProd;
+exports.lintStrict = lintStrict;
+exports.sync = sync;
+exports.watchLint = watchLint;
+exports.watchlintstrict = watchlintstrict;
+
+gulp.task('default', buildDev);
+gulp.task('prod', buildProd);
 gulp.task('lint', lint);
-gulp.task('lintstrict', gulp.series(strictLint, lint, lintHtmlContent));
-gulp.task('zip', zipDev);
-gulp.task('sync', gulp.series(includeSourceMaps, batchEverthing, syncBrowsers));
-gulp.task('syncrel', gulp.series(releaseMode, batchEverthing, syncBrowsers));
-gulp.task('watchlint', gulp.series(lint, watchlint));
-gulp.task('watchlintstrict', gulp.series(strictLint, lint, watchlint));
+gulp.task('lintstrict', lintStrict);
+gulp.task('zip', zipSrc);
+gulp.task('sync', sync);
+gulp.task('watchlint', watchLint);
+gulp.task('watchlintstrict', watchlintstrict);
 gulp.task('test', test);
