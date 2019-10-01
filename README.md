@@ -1,6 +1,7 @@
 # Cpetta's Sandpaper
 
 [![Dependencies][david-svg]][david-url] [![Build Status][travis-ci-svg]][travis-ci-url] [![Coverage Status][coveralls-svg]][coveralls-url]
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcpetta%2Fsandpaper.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcpetta%2Fsandpaper?ref=badge_shield)
 
 ## Primary Project Goals
 
@@ -146,3 +147,7 @@ Feedback and suggestions for improvments are welcome.
 [travis-ci-url]: https://travis-ci.org/cpetta/sandpaper
 [coveralls-svg]: https://coveralls.io/repos/github/cpetta/sandpaper/badge.svg?branch=master
 [coveralls-url]: https://coveralls.io/github/cpetta/sandpaper?branch=master
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcpetta%2Fsandpaper.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcpetta%2Fsandpaper?ref=badge_large)
