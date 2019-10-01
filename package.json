@@ -37,7 +37,7 @@
 		"css-mqpacker": "^7.0.0",
 		"cssnano": "^4.1.10",
 		"del": "^5.1.0",
-		"eslint": "^6.5.0",
+		"eslint": "^6.5.1",
 		"eslint-config-xo": "^0.27.1",
 		"gulp": "^4.0.2",
 		"gulp-cache": "^1.1.3",
