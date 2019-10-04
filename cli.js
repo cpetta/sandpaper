@@ -74,12 +74,12 @@ const cli = meow(`
 		})(),
 		(async () => {
 			if (cli.flags.build === true && cli.flags.sync === false) {
-				await build();
+				build();
 			}
 		})(),
 		(async () => {
 			if (cli.flags.sync === true) {
-				await sync();
+				sync();
 			}
 		})(),
 		(async () => {
