@@ -5,32 +5,25 @@ const gulpfile = require('./gulpfile.js');
 
 const cli = meow(`
 	Usage
-	  $ sandpaper [lint] [build] [sync]
+	  $ sandpaper
 
 	Options
-		--strict	-s	Lint Codding style in addition to errors.
-		--fixStyle	-f	Attempt to Fix lint errors caused by style problems.
-		--watch		-w	Constantly run, and re-run lint or build whenever a file is changed.
-		--prod		-p	Build for production, Don't include sourcemaps, and minified code.
+		--lint		Check code for errors.
+		--build		Optimize code and save to /dev or /dist (if --production is specified.)
+		--sync		Start browser syncronized server, compiles code on change.
+		--strict	Lint codding style in addition to errors.
+		--fixStyle	Attempt to fix lint errors caused by style problems.
+		--watch		Constantly run, and re-run lint or build whenever a file is changed.
+		--prod		Build for production, Don't include sourcemaps, and minified code.
 
 	Examples
-	  $ sandpaper lint
-	  $ sandpaper build
-	  $ sandpaper sync
-	  $ sandpaper lint -s -w
-	  $ sandpaper lint -s -f
-	  $ sandpaper build -w
-	  $ sandpaper build -w -p
-	  $ sandpaper lint build -w -p
-	  $ sandpaper lint build sync
-
 	  $ sandpaper --lint
 	  $ sandpaper --build
 	  $ sandpaper --sync
-	  $ sandpaper --lint -strict -watch
-	  $ sandpaper --lint -strict -fixstyle
-	  $ sandpaper --build -watch
-	  $ sandpaper --build -watch -production
+	  $ sandpaper --lint --strict --watch
+	  $ sandpaper --lint --strict --fixstyle
+	  $ sandpaper --build --watch
+	  $ sandpaper --build --watch --production
 	  $ sandpaper --lint --build --watch --production
 	  $ sandpaper --lint --build --sync
 
