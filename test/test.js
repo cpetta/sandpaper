@@ -33,6 +33,24 @@ describe('Testing with data from test/', () => {
 		});
 	});
 
+	describe('#syncBrowsers Development', () => {
+		it('Should start without error', () => {
+			return gulpfile.syncBrowsers();
+		});
+	});
+
+	describe('#logWriter', () => {
+		it('Should experience a write error.', () => {
+			return gulpfile.logWriter('error message', './nonexistantfolder/');
+		});
+	});
+
+	describe('#logWriter', () => {
+		it('Should write a log file.', () => {
+			return gulpfile.logWriter('error message', './logs');
+		});
+	});
+
 	describe('#ReleaseMode', () => {
 		it('should exit without error', () => {
 			return gulpfile.releaseMode();
@@ -57,9 +75,15 @@ describe('Testing with data from test/', () => {
 		});
 	});
 
-	describe('#compileHTML', () => {
+	describe('#compileHTML - Without Errors', () => {
 		it('should exit without error', () => {
 			return gulpfile.compileHTML();
+		});
+	});
+
+	describe('#compileHTML - With Doctype and DOM Errors', () => {
+		it('should exit without error', () => {
+			return gulpfile.compileHTML('test/test-data/invaliddata2.html');
 		});
 	});
 
@@ -141,9 +165,9 @@ describe('Testing with data from test/', () => {
 		});
 	});
 
-	describe('#syncBrowsers', () => {
+	describe('#syncBrowsers Production', () => {
 		it('Should start without error', () => {
-			return gulpfile.syncBrowsers();
+			return gulpfile.releaseMode().then(gulpfile.syncBrowsers());
 		});
 	});
 

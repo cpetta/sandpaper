@@ -218,10 +218,11 @@ function compileCSS() {
 		.pipe(browserSync.stream());
 }
 
-function compileHTML() {
+function compileHTML(source = paths.src.html) {
+	console.log(source);
 	return (async () => {
 		pump([
-			gulp.src(paths.src.html, {sourcemaps: SourceMaps}),
+			gulp.src(source, {sourcemaps: SourceMaps}),
 			changed(gulpif(staging, paths.dev.html, paths.prod.html)),
 			postCSSinHTML(pluginsPostCSS),
 			htmlmin({
@@ -237,11 +238,13 @@ function compileHTML() {
 			gulp.dest(gulpif(staging, paths.dev.html, paths.prod.html), {sourcemaps: paths.sourcemaps})
 		],
 		onError => {
-			logWriter(onError.message, './logs/sandpaper_error_log');
-			console.log(
-				'CompileHTML experienced an error. \n',
-				'The most common cause is a Parse error, fixing linting errors usually fixes parse errors.'
-			);
+			if(onError != undefined) {
+				logWriter(onError.message, './logs/sandpaper_error_log');
+				console.log(
+					'CompileHTML experienced an error. \n',
+					'The most common cause is a Parse error, fixing linting errors usually fixes parse errors.'
+				);
+			}
 		}
 		);
 		browserSync.stream();
@@ -485,7 +488,7 @@ function watchlint() {
 }
 
 function syncBrowsers() {
-	if (staging) {
+	if (staging === true) {
 		baseDir = ('./' + paths.dev.all);
 	} else {
 		baseDir = ('./' + paths.prod.all);
@@ -512,6 +515,7 @@ exports.compileTS = compileTS;
 exports.copyAssets = copyAssets;
 exports.htmlReporter = htmlReporter;
 exports.includeSourceMaps = includeSourceMaps;
+exports.logWriter = logWriter;
 exports.lintcss = lintcss;
 exports.linthtml = linthtml;
 exports.lintjs = lintjs;
