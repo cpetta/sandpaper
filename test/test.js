@@ -1,4 +1,5 @@
 const fs = require('fs');
+const rimraf = require("rimraf");
 const mocha = require('mocha');
 const gulpfile = require('../gulpfile.js');
 
@@ -47,6 +48,9 @@ describe('Testing with data from test/', () => {
 
 	describe('#logWriter', () => {
 		it('Should write a log file.', () => {
+			if (fs.existsSync('./logs/')){
+    			rimraf('./logs/', (cb) => {cb});
+			}
 			return gulpfile.logWriter('error message', './logs/');
 		});
 	});

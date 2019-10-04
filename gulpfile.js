@@ -185,6 +185,9 @@ function logWriter(error, logfilelocation) {
 	logfilelocation = logfilelocation + Date.now() + '.txt';
 	fs.writeFile(logfilelocation, error, err => {
 		if (err) {
+			if (!fs.existsSync('./logs/')){
+    			fs.mkdirSync('./logs/');
+			}
 			return console.log('Error writting log file: ' + err + '\n\n\n  Error passed to logWriter: ' + error);
 		}
 
