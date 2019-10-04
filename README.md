@@ -1,12 +1,6 @@
 # Cpetta's Sandpaper
 
-[![Dependencies][david-svg]][david-url] [![Build Status][travis-ci-svg]][travis-ci-url] [![Coverage Status][coveralls-svg]][coveralls-url]
-<<<<<<< HEAD
-[![Dependabot Status][Dependabot-svg]]
-=======
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcpetta%2Fsandpaper.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcpetta%2Fsandpaper?ref=badge_shield)
-
->>>>>>> c7bb38ebabaac75d42397142d17b3e05a363d6bf
+[![Dependencies][david-svg]][david-url] [![Dependabot Status][Dependabot-svg] [![Build Status][travis-ci-svg]][travis-ci-url] [![Coverage Status][coveralls-svg]][coveralls-url] [![FOSSA Status]
 ## Primary Project Goals
 
 * Provide tools to help developers avoid common errors in HTML, CSS, and JavaScript.
@@ -156,3 +150,4 @@ Feedback and suggestions for improvments are welcome.
 [coveralls-url]: https://coveralls.io/github/cpetta/sandpaper?branch=master
 [Dependabot-svg]: https://api.dependabot.com/badges/status?host=github&repo=cpetta/sandpaper
 [Dependabot-url]: https://dependabot.com
+[FOSSA-url]: https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcpetta%2Fsandpaper.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcpetta%2Fsandpaper?ref=badge_shield
