@@ -47,7 +47,7 @@ describe('Testing with data from test/', () => {
 
 	describe('#logWriter', () => {
 		it('Should write a log file.', () => {
-			return gulpfile.logWriter('error message', './logs');
+			return gulpfile.logWriter('error message', './logs/');
 		});
 	});
 
