@@ -8711,10 +8711,10 @@ retext-english@^3.0.3:
     parse-english "^4.0.0"
     unherit "^1.0.4"
 
-retext-equality@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/retext-equality/-/retext-equality-4.1.0.tgz#6e629d4581bba43c17b022620c29b1eb1107fff0"
-  integrity sha512-VnZUUqlU9QS0kdRaxVpSO5SyfN/712h8rf+3UlrZPl4rmb88e4DI+MoC1yW4cEiiWxIb3ntMaJEaoWdD7Cifrg==
+retext-equality@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/retext-equality/-/retext-equality-4.2.0.tgz#89ad472444f74e54656eada33ab7748fcbe7a2ef"
+  integrity sha512-7ie79FKs/unD01g3yciMqmKBInECngoCi1keH3HHhylepZ6IqQddzPPxSSHAnhGTCp4VD1WvlzNtet7Gsjl/Ow==
   dependencies:
     lodash.difference "^4.5.0"
     lodash.intersection "^4.4.0"
