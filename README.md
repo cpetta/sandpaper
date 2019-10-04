@@ -1,7 +1,7 @@
 # Cpetta's Sandpaper
 
 [![Dependencies][david-svg]][david-url] [![Build Status][travis-ci-svg]][travis-ci-url] [![Coverage Status][coveralls-svg]][coveralls-url]
-
+[![Dependabot Status]](https://dependabot.com)
 ## Primary Project Goals
 
 * Provide tools to help developers avoid common errors in HTML, CSS, and JavaScript.
@@ -146,3 +146,4 @@ Feedback and suggestions for improvments are welcome.
 [travis-ci-url]: https://travis-ci.org/cpetta/sandpaper
 [coveralls-svg]: https://coveralls.io/repos/github/cpetta/sandpaper/badge.svg?branch=master
 [coveralls-url]: https://coveralls.io/github/cpetta/sandpaper?branch=master
+[Dependabot-svg]: https://api.dependabot.com/badges/status?host=github&repo=cpetta/sandpaper
