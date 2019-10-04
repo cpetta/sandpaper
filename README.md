@@ -1,7 +1,12 @@
 # Cpetta's Sandpaper
 
 [![Dependencies][david-svg]][david-url] [![Build Status][travis-ci-svg]][travis-ci-url] [![Coverage Status][coveralls-svg]][coveralls-url]
+<<<<<<< HEAD
 [![Dependabot Status][Dependabot-svg]]
+=======
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcpetta%2Fsandpaper.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcpetta%2Fsandpaper?ref=badge_shield)
+
+>>>>>>> c7bb38ebabaac75d42397142d17b3e05a363d6bf
 ## Primary Project Goals
 
 * Provide tools to help developers avoid common errors in HTML, CSS, and JavaScript.
@@ -138,6 +143,9 @@ Want to help with the development of Sandpaper or, like living on the edge, usin
 5. run the following command `Set-ExecutionPolicy Bypass -Scope Process -Force; .\setup.ps1`
 
 Feedback and suggestions for improvments are welcome.
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcpetta%2Fsandpaper.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcpetta%2Fsandpaper?ref=badge_large)
 
 [releases]: https://github.com/cpetta/sandpaper/releases
 [david-svg]: https://david-dm.org/cpetta/sandpaper.svg

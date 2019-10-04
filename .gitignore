@@ -8,3 +8,4 @@ src/
 dist/
 .nyc_output/
 coverage/
+logs/
