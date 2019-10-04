@@ -161,7 +161,13 @@ function sleep(ms) {
 
 function releaseMode() {
 	staging = false;
+	SourceMaps = false;
 	return Promise.resolve('staging');
+}
+
+function errorLint() {
+	onlyLintErrors = true;
+	return Promise.resolve('fullLint');
 }
 
 function strictLint() {
@@ -170,6 +176,7 @@ function strictLint() {
 }
 
 function includeSourceMaps() {
+	staging = true;
 	SourceMaps = true;
 	return Promise.resolve('SourceMaps');
 }
@@ -185,9 +192,10 @@ function logWriter(error, logfilelocation) {
 	logfilelocation = logfilelocation + Date.now() + '.txt';
 	fs.writeFile(logfilelocation, error, err => {
 		if (err) {
-			if (!fs.existsSync('./logs/')){
-    			fs.mkdirSync('./logs/');
+			if (!fs.existsSync('./logs/')) {
+				fs.mkdirSync('./logs/');
 			}
+
 			return console.log('Error writting log file: ' + err + '\n\n\n  Error passed to logWriter: ' + error);
 		}
 
@@ -221,11 +229,10 @@ function compileCSS() {
 		.pipe(browserSync.stream());
 }
 
-function compileHTML(source = paths.src.html) {
-	console.log(source);
+function compileHTML() {
 	return (async () => {
 		pump([
-			gulp.src(source, {sourcemaps: SourceMaps}),
+			gulp.src(paths.src.html, {sourcemaps: SourceMaps}),
 			changed(gulpif(staging, paths.dev.html, paths.prod.html)),
 			postCSSinHTML(pluginsPostCSS),
 			htmlmin({
@@ -241,7 +248,7 @@ function compileHTML(source = paths.src.html) {
 			gulp.dest(gulpif(staging, paths.dev.html, paths.prod.html), {sourcemaps: paths.sourcemaps})
 		],
 		onError => {
-			if(onError != undefined) {
+			if (onError !== undefined) {
 				logWriter(onError.message, './logs/sandpaper_error_log');
 				console.log(
 					'CompileHTML experienced an error. \n',
@@ -595,6 +602,12 @@ const lintStrict = gulp.series(
 	lintHtmlContent
 );
 
+const lintErrors = gulp.series(
+	errorLint,
+	lint,
+	lintHtmlContent
+);
+
 const syncDev = gulp.series(
 	includeSourceMaps,
 	batchEverthing,
@@ -608,6 +621,7 @@ const syncProd = gulp.series(
 );
 
 const watchLint = gulp.series(
+	errorLint,
 	lint,
 	watchlint
 );
@@ -623,6 +637,7 @@ exports.buildProd = buildProd;
 exports.watchDev = watchDev;
 exports.watchProd = watchProd;
 exports.lint = lint;
+exports.lintErrors = lintErrors;
 exports.lintStrict = lintStrict;
 exports.syncDev = syncDev;
 exports.syncProd = syncProd;
@@ -631,7 +646,7 @@ exports.watchLintStrict = watchLintStrict;
 
 gulp.task('default', buildDev);
 gulp.task('prod', buildProd);
-gulp.task('lint', lint);
+gulp.task('lint', lintErrors);
 gulp.task('lintstrict', lintStrict);
 gulp.task('zip', zipSrc);
 gulp.task('syncDev', syncDev);
