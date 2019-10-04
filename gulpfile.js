@@ -41,6 +41,8 @@ Post CSS information
 	https://github.com/postcss/autoprefixer
 */
 
+const fs = require('fs');
+const path = require('path');
 const autoprefixer = require('autoprefixer');
 const browserSync = require('browser-sync').create();
 const cache = require('gulp-cache');
@@ -92,6 +94,7 @@ const repeated = require('retext-repeated-words');
 const spacing = require('retext-sentence-spacing');
 const redundantAcronyms = require('retext-redundant-acronyms');
 
+let baseDir;
 let SourceMaps = false;
 let onlyLintErrors = true;
 let staging = true;
@@ -99,7 +102,7 @@ let staging = true;
 const composerUglify = composer(uglify, console);
 const currentTime = Date.now;
 const landingPage = 'index.html';
-const ProjectName = 'gulp-default-project-name';
+const ProjectName = 'Sandpaper-Project';
 const ZipName = ProjectName + ' - ' + currentTime;
 
 const pluginsPostCSS = [
@@ -149,9 +152,9 @@ const paths = {	// This will likely need to be updated for your project.
 		css: 'report/css'
 	},
 	index: landingPage, // The .html file to open when running gulp sync.
-	basedir: './dev',	// The folder that gulp sync loads from.
 	sourcemaps: './sourcemaps'
 };
+
 function sleep(ms) {
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -178,6 +181,17 @@ async function clean() {
 	return Promise.resolve('Cleaned');
 }
 
+function logWriter(error, logfilelocation) {
+	logfilelocation = logfilelocation + Date.now() + '.txt';
+	fs.writeFile(logfilelocation, error, err => {
+		if (err) {
+			return console.log('Error writting log file: ' + err + '\n\n\n  Error passed to logWriter: ' + error);
+		}
+
+		return console.log('Details written to logfile: ' + path.resolve(logfilelocation));
+	});
+}
+
 function copyAssets() {
 	return gulp.src([paths.src.all, paths.src.leftovers]) // All files that aren't of the mime type listed in paths.rel.leftovers
 		.pipe(gulp.dest(gulpif(staging, paths.dev.all, paths.prod.all)));
@@ -186,7 +200,7 @@ function copyAssets() {
 // From https://github.com/doshprompt/htmlhint-stylish/issues/1#issuecomment-251012229
 function htmlReporter(file) {
 	return stylish.reporter(file.htmlhint.messages.map(errMsg => ({
-		file: require('path').relative(file.cwd, errMsg.file),
+		file: path.relative(file.cwd, errMsg.file),
 		error: {
 			character: errMsg.error.col,
 			code: errMsg.error.rule.id,
@@ -205,21 +219,33 @@ function compileCSS() {
 }
 
 function compileHTML() {
-	return gulp.src(paths.src.html, {sourcemaps: SourceMaps})
-		.pipe(changed(gulpif(staging, paths.dev.html, paths.prod.html)))
-		.pipe(postCSSinHTML(pluginsPostCSS))
-		.pipe(htmlmin({
-			collapseInlineTagWhitespace: true,
-			collapseWhitespace: true,
-			minifyCSS: true,
-			minifyJS: true,
-			minifyURLs: true,
-			removeComments: true,
-			html5: true,
-			useShortDoctype: true
-		}))
-		.pipe(gulp.dest(gulpif(staging, paths.dev.html, paths.prod.html), {sourcemaps: paths.sourcemaps}))
-		.pipe(browserSync.stream());
+	return (async () => {
+		pump([
+			gulp.src(paths.src.html, {sourcemaps: SourceMaps}),
+			changed(gulpif(staging, paths.dev.html, paths.prod.html)),
+			postCSSinHTML(pluginsPostCSS),
+			htmlmin({
+				collapseInlineTagWhitespace: true,
+				collapseWhitespace: true,
+				minifyCSS: true,
+				minifyJS: true,
+				minifyURLs: true,
+				removeComments: true,
+				html5: true,
+				useShortDoctype: true
+			}),
+			gulp.dest(gulpif(staging, paths.dev.html, paths.prod.html), {sourcemaps: paths.sourcemaps})
+		],
+		onError => {
+			logWriter(onError.message, './logs/sandpaper_error_log');
+			console.log(
+				'CompileHTML experienced an error. \n',
+				'The most common cause is a Parse error, fixing linting errors usually fixes parse errors.'
+			);
+		}
+		);
+		browserSync.stream();
+	})();
 }
 
 function compileTS() {
@@ -445,6 +471,8 @@ function watch() {
 	gulp.watch(paths.src.ts, compileTS);
 	gulp.watch(paths.src.images, optamizeImages);
 	gulp.watch(paths.src.leftovers, copyAssets);
+	console.log('Build Watch running, Waiting for file changes...');
+	console.log('Press Ctrl + C to end a file watch.');
 }
 
 function watchlint() {
@@ -452,12 +480,20 @@ function watchlint() {
 	gulp.watch(paths.src.css, lintcss);
 	gulp.watch(paths.src.js, lintjs);
 	gulp.watch(paths.src.ts, lintts);
+	console.log('Lint Watch running, Waiting for file changes...');
+	console.log('Press Ctrl + C to end a file watch.');
 }
 
 function syncBrowsers() {
+	if (staging) {
+		baseDir = ('./' + paths.dev.all);
+	} else {
+		baseDir = ('./' + paths.prod.all);
+	}
+
 	browserSync.init({
 		server: {
-			baseDir: paths.basedir,
+			baseDir,
 			index: paths.index
 		}
 	});
@@ -503,16 +539,13 @@ const lint = gulp.series(
 	lintmarkdownContent
 );
 
-const batchEverthing = gulp.series(
-	gulp.parallel(
-		compileCSS,
-		compileHTML,
-		uglifyjs,
-		compileTS,
-		optamizeImages,
-		copyAssets
-	),
-	lint
+const batchEverthing = gulp.parallel(
+	compileCSS,
+	compileHTML,
+	uglifyjs,
+	compileTS,
+	optamizeImages,
+	copyAssets
 );
 
 const test = gulp.series(
@@ -537,14 +570,32 @@ const buildProd = gulp.series(
 	batchEverthing
 );
 
+const watchDev = gulp.series(
+	includeSourceMaps,
+	batchEverthing,
+	watch
+);
+
+const watchProd = gulp.series(
+	releaseMode,
+	batchEverthing,
+	watch
+);
+
 const lintStrict = gulp.series(
 	strictLint,
 	lint,
 	lintHtmlContent
 );
 
-const sync = gulp.series(
+const syncDev = gulp.series(
 	includeSourceMaps,
+	batchEverthing,
+	syncBrowsers
+);
+
+const syncProd = gulp.series(
+	releaseMode,
 	batchEverthing,
 	syncBrowsers
 );
@@ -554,7 +605,7 @@ const watchLint = gulp.series(
 	watchlint
 );
 
-const watchlintstrict = gulp.series(
+const watchLintStrict = gulp.series(
 	strictLint,
 	lint,
 	watchlint
@@ -562,17 +613,23 @@ const watchlintstrict = gulp.series(
 
 exports.buildDev = buildDev;
 exports.buildProd = buildProd;
+exports.watchDev = watchDev;
+exports.watchProd = watchProd;
+exports.lint = lint;
 exports.lintStrict = lintStrict;
-exports.sync = sync;
+exports.syncDev = syncDev;
+exports.syncProd = syncProd;
 exports.watchLint = watchLint;
-exports.watchlintstrict = watchlintstrict;
+exports.watchLintStrict = watchLintStrict;
 
 gulp.task('default', buildDev);
 gulp.task('prod', buildProd);
 gulp.task('lint', lint);
 gulp.task('lintstrict', lintStrict);
 gulp.task('zip', zipSrc);
-gulp.task('sync', sync);
+gulp.task('syncDev', syncDev);
+gulp.task('syncProd', syncProd);
 gulp.task('watchlint', watchLint);
-gulp.task('watchlintstrict', watchlintstrict);
+gulp.task('watchlintstrict', watchLintStrict);
 gulp.task('test', test);
+
