@@ -56,7 +56,7 @@
 		"gulp-zip": "^5.0.1",
 		"jpegtran-bin": "^4.0.0",
 		"jshint-more-stylish": "^1.0.1",
-		"markdownlint": "^0.16.0",
+		"markdownlint": "^0.17.0",
 		"meow": "^5.0.0",
 		"postcss": "^7.0.18",
 		"postcss-preset-env": "^6.7.0",
