@@ -188,7 +188,7 @@ async function clean(cb) {
 	}
 
 	cache.clearAll();
-	return fs.rmdir(path, {recursive: true}, cb);
+	return fs.rmdir(path, {recursive: true}, cb => {cb});
 }
 
 function logWriter(error, logfilelocation) {
