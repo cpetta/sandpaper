@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 'use strict';
 const meow = require('meow');
+const updateNotifier = require('update-notifier');
 const gulpfile = require('./gulpfile.js');
+const pkg = require('./package.json');
 
 const cli = meow(`
 	Usage
@@ -59,6 +61,8 @@ const cli = meow(`
 		}
 	}
 });
+
+updateNotifier({pkg}).notify();
 
 // CLI logic (input handler)
 
