@@ -911,7 +911,6 @@ browser-sync@^2.26.7:
   dependencies:
     browser-sync-client "^2.26.6"
     browser-sync-ui "^2.26.4"
-    bs-recipes "1.3.4"
     bs-snippet-injector "^2.0.1"
     chokidar "^2.0.4"
     connect "3.6.6"
@@ -948,11 +947,6 @@ browserslist@^4.0.0, browserslist@^4.6.4, browserslist@^4.7.0:
     caniuse-lite "^1.0.30000989"
     electron-to-chromium "^1.3.247"
     node-releases "^1.1.29"
-
-bs-recipes@1.3.4:
-  version "1.3.4"
-  resolved "https://registry.yarnpkg.com/bs-recipes/-/bs-recipes-1.3.4.tgz#0d2d4d48a718c8c044769fdc4f89592dc8b69585"
-  integrity sha1-DS1NSKcYyMBEdp/cT4lZLci2lYU=
 
 bs-snippet-injector@^2.0.1:
   version "2.0.1"
