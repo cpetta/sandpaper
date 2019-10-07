@@ -64,24 +64,9 @@ const cli = meow(`
 
 (async () => {
 	await Promise.all([
-		(async () => {
-			console.log(cli.flags);
-		})(),
-		(async () => {
-			if (cli.flags.lint === true) {
-				lint();
-			}
-		})(),
-		(async () => {
-			if (cli.flags.build === true && cli.flags.sync === false) {
-				build();
-			}
-		})(),
-		(async () => {
-			if (cli.flags.sync === true) {
-				sync();
-			}
-		})(),
+		lint(),
+		build(),
+		sync(),
 		(async () => {
 			if (cli.input.length > 0) {
 				console.log('Unrecognized input: ' + cli.input + ' use Sandpaper --help for a list of valid inputs.');
@@ -93,49 +78,55 @@ const cli = meow(`
 // Functions for interfacing between CLI logic and program logic.
 
 async function lint() {
-	if (cli.flags.strict === true) {
-		if (cli.flags.watch === true) {
-			// Lint Strict True, Watch True
-			gulpfile.watchLintStrict();
+	if (cli.flags.lint === true) {
+		if (cli.flags.strict === true) {
+			if (cli.flags.watch === true) {
+				// Lint Strict True, Watch True
+				gulpfile.watchLintStrict();
+			} else {
+				// Lint Strict True, Watch False
+				gulpfile.lintStrict();
+			}
+		} else if (cli.flags.watch === true) {
+			// Lint Strict False, Watch True
+			gulpfile.watchLint();
 		} else {
-			// Lint Strict True, Watch False
-			gulpfile.lintStrict();
+			// Lint Strict False, Watch False
+			gulpfile.lint();
 		}
-	} else if (cli.flags.watch === true) {
-		// Lint Strict False, Watch True
-		gulpfile.watchLint();
-	} else {
-		// Lint Strict False, Watch False
-		gulpfile.lint();
-	}
 
-	if (cli.flags.fixStyle === true) {
-		// Not implemented yet.
+		if (cli.flags.fixStyle === true) {
+			// Not implemented yet.
+		}
 	}
 }
 
 async function build() {
-	if (cli.flags.prod === true) {
-		if (cli.flags.watch === true) {
-			// Build Production True, Watch True
-			gulpfile.watchProd();
+	if (cli.flags.build === true && cli.flags.sync === false) {
+		if (cli.flags.prod === true) {
+			if (cli.flags.watch === true) {
+				// Build Production True, Watch True
+				gulpfile.watchProd();
+			} else {
+				// Build Production True, Watch False
+				gulpfile.buildProd();
+			}
+		} else if (cli.flags.watch === true) {
+			// Build Production False, Watch True
+			gulpfile.watchDev();
 		} else {
-			// Build Production True, Watch False
-			gulpfile.buildProd();
+			// Build Production False, Watch False
+			gulpfile.buildDev();
 		}
-	} else if (cli.flags.watch === true) {
-		// Build Production False, Watch True
-		gulpfile.watchDev();
-	} else {
-		// Build Production False, Watch False
-		gulpfile.buildDev();
 	}
 }
 
 async function sync() {
-	if (cli.flags.prod === true) {
-		gulpfile.syncProd();
-	} else {
-		gulpfile.syncDev();
+	if (cli.flags.sync === true) {
+		if (cli.flags.prod === true) {
+			gulpfile.syncProd();
+		} else {
+			gulpfile.syncDev();
+		}
 	}
 }
