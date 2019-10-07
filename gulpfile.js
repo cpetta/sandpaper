@@ -49,7 +49,6 @@ const cache = require('gulp-cache');
 const changed = require('gulp-changed');
 const composer = require('gulp-uglify/composer');
 const cssnano = require('cssnano');
-const del = require('del');
 const eslint = require('gulp-eslint');
 const gulp = require('gulp');
 const gulpif = require('gulp-if');
@@ -155,10 +154,6 @@ const paths = {	// This will likely need to be updated for your project.
 	sourcemaps: './sourcemaps'
 };
 
-function sleep(ms) {
-	return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 function releaseMode() {
 	staging = false;
 	SourceMaps = false;
@@ -167,10 +162,10 @@ function releaseMode() {
 
 function errorLint() {
 	onlyLintErrors = true;
-	return Promise.resolve('fullLint');
+	return Promise.resolve('errorlint');
 }
 
-function strictLint() {
+async function strictLint() {
 	onlyLintErrors = false;
 	return Promise.resolve('fullLint');
 }
@@ -181,11 +176,19 @@ function includeSourceMaps() {
 	return Promise.resolve('SourceMaps');
 }
 
-async function clean() {
-	cache.clearAll();
-	await del(gulpif(staging, paths.dev.all, paths.prod.all));
-	await sleep(1000); // Wait 1 second to give the disk enough time to delete the old version.
-	return Promise.resolve('Cleaned');
+async function clean(cb) {
+	let path;
+	/* No need to test both paths */
+	/* istanbul ignore if */
+	/* istanbul ignore else */
+	if(staging) {
+		path = paths.dev.all;
+	}
+	else {
+		path = paths.prod.all;
+	}
+		cache.clearAll();
+		return fs.rmdir(path, {recursive: true}, (cb) => {cb});
 }
 
 function logWriter(error, logfilelocation) {
@@ -248,6 +251,8 @@ function compileHTML() {
 			gulp.dest(gulpif(staging, paths.dev.html, paths.prod.html), {sourcemaps: paths.sourcemaps})
 		],
 		onError => {
+			/* There is no else statement, therefor it will be ignored. */
+			/* istanbul ignore else */
 			if (onError !== undefined) {
 				logWriter(onError.message, './logs/sandpaper_error_log');
 				console.log(
@@ -498,6 +503,9 @@ function watchlint() {
 }
 
 function syncBrowsers() {
+	/* syncBrowser doesn't need to be checked at both locations, since that is happening with the build function */
+	/* istanbul ignore if */
+	/* istanbul ignore else */
 	if (staging === true) {
 		baseDir = ('./' + paths.dev.all);
 	} else {
@@ -518,6 +526,10 @@ function syncBrowsers() {
 	gulp.watch(paths.src.leftovers, copyAssets).on('change', browserSync.reload);
 }
 
+function syncStop() {
+	browserSync.exit();
+}
+
 exports.clean = clean;
 exports.compileCSS = compileCSS;
 exports.compileHTML = compileHTML;
@@ -536,6 +548,7 @@ exports.lintHtmlContent = lintHtmlContent;
 exports.optamizeImages = optamizeImages;
 exports.releaseMode = releaseMode;
 exports.strictLint = strictLint;
+exports.errorLint = errorLint;
 exports.syncBrowsers = syncBrowsers;
 exports.uglifyjs = uglifyjs;
 exports.watch = watch;
@@ -641,6 +654,7 @@ exports.lintErrors = lintErrors;
 exports.lintStrict = lintStrict;
 exports.syncDev = syncDev;
 exports.syncProd = syncProd;
+exports.syncStop = syncStop;
 exports.watchLint = watchLint;
 exports.watchLintStrict = watchLintStrict;
 
