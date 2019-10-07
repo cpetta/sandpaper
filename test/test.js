@@ -10,34 +10,6 @@ const {describe} = mocha;
 const {it} = mocha;
 
 describe('Testing HTML functions with data from test/', () => {
-	before(() => {
-		fs.copyFile('test/test-data/testinvaliddata.html', 'src/testinvaliddata.html', err => {
-			if (err) {
-				throw err;
-			}
-		});
-	});
-
-	describe('#compileHTML - With Doctype and DOM Errors', () => {
-		before(() => {
-			fs.copyFile('test/test-data/invaliddata2.html', 'src/invaliddata2.html', err => {
-				if (err) {
-					throw err;
-				}
-			});
-		});
-		it('should exit without error', () => {
-			return gulpfile.compileHTML();
-		});
-		after(() => {
-			fs.unlink('src/invaliddata2.html', err => {
-				if (err) {
-					throw err;
-				}
-			});
-		});
-	});
-
 	describe('#compileHTML - Without Errors', () => {
 		it('should exit without error', () => {
 			return gulpfile.compileHTML();
@@ -64,54 +36,26 @@ describe('Testing HTML functions with data from test/', () => {
 
 	describe('#htmlReporter', () => {
 		it('Should exit without error', () => {
-			return require('gulp').src('src/testinvaliddata.html')
+			return require('gulp').src('src/test-data/testinvaliddata.html')
 				.pipe(require('gulp-htmlhint')())
 				.pipe(require('gulp-htmlhint').reporter(gulpfile.htmlReporter));
-		});
-	});
-
-	after(() => {
-		fs.unlink('src/testinvaliddata.html', err => {
-			if (err) {
-				throw err;
-			}
 		});
 	});
 });
 
 describe('Testing with data from test/', () => {
-	before(() => {
-		fs.copyFile('test/test-data/testvaliddata.md', 'src/testvaliddata.md', err => {
-			if (err) {
-				throw err;
-			}
-		});
-		fs.copyFile('test/test-data/testinvaliddata.md', 'src/testinvaliddata.md', err => {
-			if (err) {
-				throw err;
-			}
-		});
-		fs.copyFile('test/test-data/valid.css', 'src/valid.css', err => {
-			if (err) {
-				throw err;
-			}
-		});
-		fs.copyFile('test/test-data/valid.js', 'src/valid.js', err => {
-			if (err) {
-				throw err;
-			}
-		});
-	});
-
 	describe('#clean', () => {
 		it('should exit without error', () => {
 			return gulpfile.clean();
 		});
 	});
 
-	describe('#syncBrowsers Development', () => {
+	describe('#syncBrowsers', () => {
 		it('Should start without error', () => {
 			return gulpfile.syncBrowsers();
+		});
+		after(() => {
+			gulpfile.syncStop();
 		});
 	});
 
@@ -179,9 +123,9 @@ describe('Testing with data from test/', () => {
 		});
 	});
 
-	describe('#lintcss', () => {
+	describe('#lintcss - Errors Only', () => {
 		it('should exit without error', () => {
-			return gulpfile.lintcss();
+			return gulpfile.errorLint().then(gulpfile.lintcss());
 		});
 	});
 
@@ -233,12 +177,6 @@ describe('Testing with data from test/', () => {
 		});
 	});
 
-	describe('#syncBrowsers Production', () => {
-		it('Should start without error', () => {
-			return gulpfile.syncProd();
-		});
-	});
-
 	describe('#lintmd', () => {
 		it('Should exit without error', () => {
 			return gulpfile.lintmd();
@@ -248,29 +186,6 @@ describe('Testing with data from test/', () => {
 	describe('#lintmarkdownContent', () => {
 		it('Should exit without error', () => {
 			return gulpfile.lintmarkdownContent();
-		});
-	});
-
-	after(() => {
-		fs.unlink('src/testinvaliddata.md', err => {
-			if (err) {
-				throw err;
-			}
-		});
-		fs.unlink('src/testvaliddata.md', err => {
-			if (err) {
-				throw err;
-			}
-		});
-		fs.unlink('src/valid.css', err => {
-			if (err) {
-				throw err;
-			}
-		});
-		fs.unlink('src/valid.js', err => {
-			if (err) {
-				throw err;
-			}
 		});
 	});
 });
