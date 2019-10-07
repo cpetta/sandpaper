@@ -181,14 +181,14 @@ async function clean(cb) {
 	/* No need to test both paths */
 	/* istanbul ignore if */
 	/* istanbul ignore else */
-	if(staging) {
+	if (staging) {
 		path = paths.dev.all;
-	}
-	else {
+	} else {
 		path = paths.prod.all;
 	}
-		cache.clearAll();
-		return fs.rmdir(path, {recursive: true}, (cb) => {cb});
+
+	cache.clearAll();
+	return fs.rmdir(path, {recursive: true}, cb);
 }
 
 function logWriter(error, logfilelocation) {
@@ -503,7 +503,7 @@ function watchlint() {
 }
 
 function syncBrowsers() {
-	/* syncBrowser doesn't need to be checked at both locations, since that is happening with the build function */
+	/* SyncBrowser doesn't need to be checked at both locations, since that is happening with the build function */
 	/* istanbul ignore if */
 	/* istanbul ignore else */
 	if (staging === true) {
