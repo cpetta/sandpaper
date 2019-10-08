@@ -112,6 +112,16 @@ const pluginsPostCSS = [
 	cssnano()
 ];
 
+const unifiedPlugins = [
+		english,
+		contractions,
+		indefinite,
+		passive,
+		redundantAcronyms,
+		repeated,
+		spacing
+	];
+
 const uglifyjsOptions = {};
 
 const workingDirectory = 'src';
@@ -433,18 +443,7 @@ function lintmarkdownContent() {
 				.use(
 					remark2retext,
 					unified()
-						.use([
-							english,
-							contractions,
-							//dontAssume,
-							//equality,
-							indefinite,
-							passive,
-							//profanities,
-							redundantAcronyms,
-							repeated,
-							spacing
-						])
+						.use([unifiedPlugins])
 						.use(quotes, {preferred: 'straight'})
 				)
 				.use(stringify)
@@ -459,17 +458,7 @@ function lintHtmlContent() {
 				.use(
 					rehype2retext,
 					unified()
-						.use([
-							english,
-							contractions,
-							dontAssume,
-							equality,
-							indefinite,
-							passive,
-							redundantAcronyms,
-							repeated,
-							spacing
-						])
+						.use([unifiedPlugins])
 						.use(quotes, {preferred: 'straight'})
 				)
 				.use(stringify)
