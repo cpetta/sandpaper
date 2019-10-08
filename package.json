@@ -2,8 +2,8 @@
 	"name": "sandpaper",
 	"author": "Christopher Petta",
 	"license": "MIT",
-	"version": "1.1.0",
-	"description": "Provide tools to help developers avoid common errors in HTML, CSS, and JavaScript.",
+	"version": "2.0.0",
+	"description": "Sandpaper is a commandline tool that's used to smooth out the rough edges when coding websites using HTML, CSS, and Javascript.",
 	"main": "gulpfile.js",
 	"repository": {
 		"type": "git",
