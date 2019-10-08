@@ -84,7 +84,7 @@
 		"through2": "^3.0.1",
 		"tslint": "^5.20.0",
 		"typescript": "^3.6.2",
-		"uglify-js": "^3.6.0",
+		"uglify-js": "^3.6.1",
 		"unified": "^8.4.1",
 		"unified-engine-gulp": "^7.0.0",
 		"update-notifier": "^3.0.1"
