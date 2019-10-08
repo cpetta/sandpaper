@@ -2,144 +2,122 @@
 
 [![Dependencies][david-svg]][david-url] [![Dependabot Status][Dependabot-svg]][Dependabot-url] [![Build Status][travis-ci-svg]][travis-ci-url] [![Coverage Status][coveralls-svg]][coveralls-url] [![FOSSA Status][FOSSA-svg]][FOSSA-url] [![XO code style][xo-svg]][xo-url]
 
+## What is Sandpaper
+
+* Sandpaper is a commandline tool that's used to smooth out the rough edges when coding websites using HTML, CSS, and Javascript.
+* Heavily inspired by XO, Sandpaper is a build system wrapper. It originally started as a gulpfile, and has been updated to use the commandline
+
 ## Primary Project Goals
 
 * Provide tools to help developers avoid common errors in HTML, CSS, and JavaScript.
 * Improve maintainability of code produced by developers.
 * Improve performance of webpages.
-* Automate the development enviroment setup process.
 * Automate common development tasks.
 
-## Secondary Project Purposes
+### How Sandpaper helps achive these goals
 
-* Enable the use of additional languages such as typescript, scss, sass, etc.
-
-For your safety and security, please **review scripts before running them**.
-setup.ps1 starts by installing chocolaty.
-After Chocolaty is installed, it is used to install the following software by default:
-
-* Git
-* NodeJS
-* Yarn
-
-The Chocolaty function in setup.ps1 can be configured to install the following packages if they are uncommented:
-
-* NotepadPlusPlus
-* bitnami-xampp
-* Firefox
-* Google Chrome
-* FileZilla
+* `sandpaper --lint` can be used to check for syntax errors, style erorrs, and other common problems in html, css, and javascript. Add the `--watch` flag to perform linting on every file save.
+* `sandpaper --lint --strict` is used to check for code style problems, keeping code consistantly readable accross different developers
+* `sandpeper --build` uses minification to reduce the size of html, css, javascript, and imagemin to optimize images.
+* `sandpaper -- sync` watches files for changes, and automatically builds and reloads a webserver with your site.
 
 ## Installation
 
-Head on over to [releases] and follow the installation instructions there.
+`npm install sandpaper -g`
 
-## Basic Workflow
+## Workflow
 
-1. Develop a website.
-2. Copy the website and all files/folders into the dev folder
-3. Open command prompt in this location using the steps outlined above.
-4. Run one of the tasks outlined below by typing "gulp [taskname]" replacing [taskname] with the task you want to run.
+1. Create and edit all your .html, .css, and .js files inside a folder named `src`.
+2. Open command prompt above the `src` forlder, for instance, if you have `C:\\SomeProject\src` open command prompt in the `C:\\SomeProject` folder.
+3. Run the `sandpaper` command with your desired flags. all available flags are listed under [flags]
 
-## Workflow for Development
+## Flags
 
-1. Create and edit all your .html, .css, and .js files in the dev folder.
-	* Files can be in any number of sub-folders and can be organized in any way.
-2. When you begin editing code, run "gulp sync"
-3. On each save [gulp] should run and update your page in the browser.
+`--lint`
+Check code for errors.
 
-## Workflow for Release
+`--build`
+Optimize code and save to /dev or /dist (if --production is specified.)
 
-1. Create and edit all your .html, .css, and .js files in the dev folder
-	* Files can be in any number of sub-folders and can be organized in any way.
-2. When your done editing code, run "gulp rel"
-3. Upload the files from the rel folder to your webserver.
+`--sync`
+Start browser syncronized server, compiles code on change.
 
-## This gulpfile has the following tasks available
+`--strict`
+Lint codding style in addition to errors.
 
-1. default
-2. rel
-3. lint
-4. clean
-5. watch
-6. watchlint
-7. sync
+`--fixStyle`
+(Planned feature, not currently available)
+fixes coding style issues, such as tabs/spaces, indentation, and css property order.
 
-### 1. gulp (default)
+`--watch`
+Remain running, re-lint or re-build whenever a file is changed.
 
-This task
+`--prod`
+Build for production, Don't include sourcemaps and minify code.
 
-* Sets the sourcemap flag
-* Processes CSS
-* Processes HTML
-* Processes JavaScript
-* Processes Typescript
-* Optimizes Images (.svg, .png, .jpg, .gif)
-* Copies any remaining files to the "stage" folder
-* Lints HTML
-* Lints CSS
-* Lints JavaScript
-* Lints Typescript
+## Sandpaper wouldn't be possible without these great open-source libraries
 
-### 2. gulp rel
+* [gulp][gulp-url]
+* [meow][meow-url]
+* [browserSync][browserSync-url]
 
-This task
+### Libraries used for linting
 
-* Deletes the rel folder
-* Sets the release flag
-* Processes CSS
-* Processes HTML
-* Processes JavaScript
-* Processes Typescript
-* Optimizes Images (.svg, .png, .jpg, .gif)
-* Copies any remaining files to the "rel" folder
-* Lints HTML
-* Lints CSS
-* Lints JavaScript
-* Lints Typescript
+* [htmlhint][htmlhint-url]
+* [htmlhint-stylish][htmlhint-stylish-url]
+* [stylelint][stylelint-url]
+* [postcss][postcss-url]
+* [postcss-reporter][postcss-reporter-url]
+* [markdownlint][markdownlint-url]
+* [unified][unified-url]
+* [remark-retext][remark-retext-url]
 
-### 3. gulp lint
+if `--strict` flag is **not** specified
 
-This task
+* [jshint][jshint-url]
+* [jshint-more-stylish][jshint-more-stylish-url]
 
-* Lints HTML
-* Lints CSS
-* Lints JavaScript
-* Lints Typescript
+if `--strict` flag is specified
 
-### 4. gulp clean
+* [eslint][eslint-url]
+* [XO][xo-url]
+* [unified][unified-url]
+* [rehype-parse][rehype-parse-url]
+* [rehype-stringify][rehype-stringify-url]
+* [rehype-retext][rehype-retext-url]
+* [remark-retext][rehype-retext-url]
+* [unified-engine-gulp][unified-engine-gulp-url]
+* [retext-english][retext-english-url]
+* [retext-contractions][retext-contractions-url]
+* [retext-indefinite-article][retext-indefinite-article-url]
+* [retext-passive][retext-passive-url]
+* [retext-quotes][retext-quotes-url]
+* [retext-repeated-words][retext-repeated-words-url]
+* [retext-sentence-spacing][retext-sentence-spacing-url]
+* [retext-redundant-acronyms][retext-redundant-acronyms-url]
 
-This task deletes the "stage" folder.
+### Libraries used for building
 
-### 5. gulp watch
-
-This task will run indefinitely until the command prompt is ether closed or the user presses ctrl + c.
-When a file is changed between the "dev" folder and the "stage" folder, it will process it.
-for instance if I make a change to a css file, and hit save, that change will be carried over to the "stage" folder.
-
-### 6. gulp watchlint
-
-This task will watch for files changing similar to "gulp watch", but instead of processing them, it will output a lint report.
-
-### 7. gulp sync
-
-This task is the same as gulp watch, but in addition, it runs a webserver on port 3000.
-dev/index.html will open in the browser, and if any file in the "dev" folder changes, it will be processed. After which, the browser will automatically reload to reflect the change.
-Additionally, when multiple browsers or devices connect to the web server, then scrolling, clicking, and typing are all duplicated across instances.
-
-## Development Enviroment Setup
-
-Want to help with the development of Sandpaper or, like living on the edge, using the latest dependency versions?
-
-1. Download setup.ps1
-2. Review the code in setup.ps1
-3. Place setup.ps1 in the directory that you would like to install Sandpaper
-4. Launch Powershell as an administrator in the same folder as setup.ps1
-5. run the following command `Set-ExecutionPolicy Bypass -Scope Process -Force; .\setup.ps1`
-
-Feedback and suggestions for improvments are welcome.
+* [autoprefixer][autoprefixer-url]
+* [cache][cache-url]
+* [changed][changed-url]
+* [cssnano][cssnano-url]
+* [gulpif][gulpif-url]
+* [htmlmin][htmlmin-url]
+* [imagemin][imagemin-url]
+* [mqpacker][mqpacker-url]
+* [postcss][postcss-url]
+* [postCSSinHTML][postCSSinHTML-url]
+* [postcssReporter][postcssReporter-url]
+* [presetEnv][presetEnv-url]
+* [pump][pump-url]
+* [through2][through2-url]
+* [uglify][uglify-url]
+* [unprefix][unprefix-url]
+* [zip][zip-url]
 
 ## License
+
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcpetta%2Fsandpaper.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcpetta%2Fsandpaper?ref=badge_large)
 
 [releases]: https://github.com/cpetta/sandpaper/releases
@@ -155,3 +133,49 @@ Feedback and suggestions for improvments are welcome.
 [FOSSA-url]: https://app.fossa.io/projects/git%2Bgithub.com%2Fcpetta%2Fsandpaper?ref=badge_shield
 [xo-svg]: https://img.shields.io/badge/code_style-XO-5ed9c7.svg
 [xo-url]: https://github.com/xojs/xo
+[gulp-url]: https://gulpjs.com/
+[meow-url]: https://github.com/sindresorhus/meow
+
+[eslint-url]: https://github.com/eslint/eslint
+[htmlhint-url]: https://github.com/htmlhint/HTMLHint
+[htmlhint-stylish-url]: https://github.com/doshprompt/htmlhint-stylish
+[stylelint-url]: https://github.com/stylelint/stylelint
+[postcss-url]: https://github.com/postcss/postcss
+[postcss-reporter-url]: https://github.com/postcss/postcss-reporter
+[jshint-url]: https://github.com/jshint/jshint
+[jshint-more-stylish-url]: https://github.com/catdad/jshint-more-stylish
+[markdownlint-url]: https://github.com/DavidAnson/markdownlint
+[unified-url]: https://github.com/unifiedjs/unified
+[remark-retext-url]: https://github.com/remarkjs/remark-retext
+[unified-url]: https://github.com/unifiedjs/unified
+[rehype-parse-url]: https://github.com/rehypejs/rehype/tree/master/packages/rehype-parse
+[rehype-stringify-url]: https://github.com/rehypejs/rehype/tree/master/packages/rehype-stringify
+[rehype-retext-url]: https://github.com/rehypejs/rehype-retext
+[remark-retext-url]: https://github.com/remarkjs/remark-retext
+[unified-engine-gulp-url]: https://github.com/unifiedjs/unified-engine-gulp
+[retext-english-url]: https://github.com/retextjs/retext/tree/master/packages/retext-english
+[retext-contractions-url]: https://github.com/retextjs/retext-contractions
+[retext-indefinite-article-url]: https://github.com/retextjs/retext-indefinite-article
+[retext-passive-url]: https://github.com/retextjs/retext-passive
+[retext-quotes-url]: https://github.com/retextjs/retext-quotes
+[retext-repeated-words-url]: https://github.com/retextjs/retext-repeated-words
+[retext-sentence-spacing-url]: https://github.com/retextjs/retext-sentence-spacing
+[retext-redundant-acronyms-url]: https://github.com/retextjs/retext-redundant-acronyms
+
+[autoprefixer-url]: https://github.com/postcss/autoprefixer
+[browserSync-url]: https://github.com/Browsersync/browser-sync
+[cache-url]: https://www.npmjs.com/package/gulp-cache
+[changed-url]: https://github.com/sindresorhus/gulp-changed
+[cssnano-url]: https://github.com/cssnano/cssnano
+[gulpif-url]: https://github.com/robrich/gulp-if
+[htmlmin-url]: https://github.com/jonschlinkert/gulp-htmlmin
+[imagemin-url]: https://github.com/sindresorhus/gulp-imagemin
+[mqpacker-url]: https://github.com/hail2u/node-css-mqpacker
+[postCSSinHTML-url]: https://github.com/StartPolymer/gulp-html-postcss
+[postcssReporter-url]: https://github.com/postcss/postcss-reporter
+[presetEnv-url]: https://github.com/csstools/postcss-preset-env
+[pump-url]: https://github.com/mafintosh/pump
+[through2-url]: https://github.com/rvagg/through2
+[uglify-url]: https://github.com/terinjokes/gulp-uglify
+[unprefix-url]: https://www.npmjs.com/package/postcss-unprefix
+[zip-url]: https://github.com/sindresorhus/gulp-zip
