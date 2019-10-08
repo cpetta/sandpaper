@@ -14,8 +14,8 @@ const cli = meow(`
 		--build		Optimize code and save to /dev or /dist (if --production is specified.)
 		--sync		Start browser syncronized server, compiles code on change.
 		--strict	Lint codding style in addition to errors.
-		--fixStyle	Attempt to fix lint errors caused by style problems.
-		--watch		Constantly run, and re-run lint or build whenever a file is changed.
+		--fixStyle	fixes coding style issues, such as tabs/spaces, indentation, and css property order.
+		--watch		Remain running, re-lint or re-build whenever a file is changed.
 		--prod		Build for production, Don't include sourcemaps, and minified code.
 
 	Examples
