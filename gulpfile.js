@@ -83,10 +83,12 @@ const engine = require('unified-engine-gulp');
 // Retext Modules
 const english = require('retext-english');
 const contractions = require('retext-contractions');
+// These cause lots of false positives
 // const dontAssume = require('retext-assuming');
 // const equality = require('retext-equality');
 const indefinite = require('retext-indefinite-article');
 const passive = require('retext-passive');
+// These cause lots of false positives
 // const profanities = require('retext-profanities');
 const quotes = require('retext-quotes');
 const repeated = require('retext-repeated-words');
@@ -113,14 +115,14 @@ const pluginsPostCSS = [
 ];
 
 const unifiedPlugins = [
-		english,
-		contractions,
-		indefinite,
-		passive,
-		redundantAcronyms,
-		repeated,
-		spacing
-	];
+	english,
+	contractions,
+	indefinite,
+	passive,
+	redundantAcronyms,
+	repeated,
+	spacing
+];
 
 const uglifyjsOptions = {};
 
@@ -198,7 +200,10 @@ async function clean(cb) {
 	}
 
 	cache.clearAll();
-	return fs.rmdir(path, {recursive: true}, cb => {cb});
+	cb = fs.rmdir(path, {recursive: true}, cb => {
+		cb;
+	});
+	return cb
 }
 
 function logWriter(error, logfilelocation) {
