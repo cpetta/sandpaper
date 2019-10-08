@@ -83,11 +83,11 @@ const engine = require('unified-engine-gulp');
 // Retext Modules
 const english = require('retext-english');
 const contractions = require('retext-contractions');
-const dontAssume = require('retext-assuming');
-const equality = require('retext-equality');
+// const dontAssume = require('retext-assuming');
+// const equality = require('retext-equality');
 const indefinite = require('retext-indefinite-article');
 const passive = require('retext-passive');
-const profanities = require('retext-profanities');
+// const profanities = require('retext-profanities');
 const quotes = require('retext-quotes');
 const repeated = require('retext-repeated-words');
 const spacing = require('retext-sentence-spacing');
@@ -436,11 +436,11 @@ function lintmarkdownContent() {
 						.use([
 							english,
 							contractions,
-							dontAssume,
-							equality,
+							//dontAssume,
+							//equality,
 							indefinite,
 							passive,
-							profanities,
+							//profanities,
 							redundantAcronyms,
 							repeated,
 							spacing
