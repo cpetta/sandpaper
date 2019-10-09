@@ -457,7 +457,7 @@ function lintmarkdownContent() {
 				.use(stringify)
 		);
 }
-/*
+
 function lintHtmlContent() {
 	return gulp.src(paths.src.html)
 		.pipe(
@@ -471,35 +471,6 @@ function lintHtmlContent() {
 				)
 				.use(stringify)
 		);
-}
-*/
-function lintHtmlContent(cb) {
-	return pump([
-		gulp.src(paths.src.html),
-		(
-			engine({name: 'gulp-unified', processor: require('unified')})()
-			.use(parse)
-			.use(
-				rehype2retext,
-				unified()
-					.use([unifiedPlugins])
-					.use(quotes, {preferred: 'straight'})
-			)
-			.use(stringify)
-		)
-	],
-	onError => {
-			/* There is no else statement, therefor it will be ignored. */
-			/* istanbul ignore else */
-			if (onError !== undefined) {
-				logWriter(onError.message, './logs/sandpaper_error_log');
-				console.log(
-					'lintHtmlContent experienced an error. \n',
-					'The most common cause is a Parse error, fixing linting errors usually fixes parse errors.'
-				);
-			}
-		}
-	);
 }
 
 function zipSrc() {
