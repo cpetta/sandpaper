@@ -1,9 +1,9 @@
 'use strict';
 
-module.exports = {
-	extends: 'stylelint-config-standard',
+const config = {
+	extends: __dirname + '/node_modules/stylelint-config-standard/',
 	plugins: [
-		'stylelint-order'
+		__dirname + '/node_modules/stylelint-order/'
 	],
 	rules: {
 		'order/order': [
@@ -14,3 +14,5 @@ module.exports = {
 		indentation: 'tab'
 	}
 };
+
+exports.config = config;

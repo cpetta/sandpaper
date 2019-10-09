@@ -1,5 +1,7 @@
 'use strict';
 
-module.exports = {
-	extends: 'stylelint-config-recommended'
+const config = {
+	extends: __dirname + '/node_modules/stylelint-config-recommended/'
 };
+
+exports.config = config;

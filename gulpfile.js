@@ -95,6 +95,9 @@ const repeated = require('retext-repeated-words');
 const spacing = require('retext-sentence-spacing');
 const redundantAcronyms = require('retext-redundant-acronyms');
 
+const errorsOnlyStylelint = require('./errors-only.stylelintrc.js').config;
+const codingstyleStylelint = require('./codingstyle.stylelintrc.js').config;
+
 let baseDir;
 let SourceMaps = false;
 let onlyLintErrors = true;
@@ -396,12 +399,12 @@ function lintcss() {
 	let pluginsPostCSSlint;
 	if (onlyLintErrors) {
 		pluginsPostCSSlint = [
-			stylelint({configFile: 'errors-only.stylelintrc.js'}),
+			stylelint({config: errorsOnlyStylelint}),
 			postcssReporter({clearReportedMessages: true})
 		];
 	} else {
 		pluginsPostCSSlint = [
-			stylelint({configFile: 'codingstyle.stylelintrc.js'}),
+			stylelint({config: codingstyleStylelint}),
 			postcssReporter({clearReportedMessages: true})
 		];
 	}
@@ -418,7 +421,7 @@ function lintjs() {
 	}
 
 	return gulp.src(paths.src.js)
-		.pipe(eslint({configFile: 'node_modules/eslint-config-xo/index.js'})) // If error try npm install eslint-config-xo
+		.pipe(eslint({configFile: __dirname + '/node_modules/eslint-config-xo/index.js'})) // If error try npm install eslint-config-xo
 		.pipe(eslint.format('stylish'));
 }
 
@@ -454,7 +457,7 @@ function lintmarkdownContent() {
 				.use(stringify)
 		);
 }
-
+/*
 function lintHtmlContent() {
 	return gulp.src(paths.src.html)
 		.pipe(
@@ -468,6 +471,35 @@ function lintHtmlContent() {
 				)
 				.use(stringify)
 		);
+}
+*/
+function lintHtmlContent(cb) {
+	return pump([
+		gulp.src(paths.src.html),
+		(
+			engine({name: 'gulp-unified', processor: require('unified')})()
+			.use(parse)
+			.use(
+				rehype2retext,
+				unified()
+					.use([unifiedPlugins])
+					.use(quotes, {preferred: 'straight'})
+			)
+			.use(stringify)
+		)
+	],
+	onError => {
+			/* There is no else statement, therefor it will be ignored. */
+			/* istanbul ignore else */
+			if (onError !== undefined) {
+				logWriter(onError.message, './logs/sandpaper_error_log');
+				console.log(
+					'lintHtmlContent experienced an error. \n',
+					'The most common cause is a Parse error, fixing linting errors usually fixes parse errors.'
+				);
+			}
+		}
+	);
 }
 
 function zipSrc() {
