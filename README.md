@@ -99,22 +99,22 @@ if `--strict` flag is specified
 ### Libraries used for building
 
 * [autoprefixer][autoprefixer-url]
-* [cache][cache-url]
-* [changed][changed-url]
 * [cssnano][cssnano-url]
-* [gulpif][gulpif-url]
-* [htmlmin][htmlmin-url]
-* [imagemin][imagemin-url]
-* [mqpacker][mqpacker-url]
+* [gulp-cache][gulp-cache-url]
+* [gulp-changed][gulp-changed-url]
+* [gulp-htmlmin][gulp-htmlmin-url]
+* [gulp-html-postcss][gulp-html-postcss-url]
+* [gulp-if][gulp-if-url]
+* [gulp-imagemin][gulp-imagemin-url]
+* [gulp-uglify][gulp-uglify-url]
+* [gulp-zip][gulp-zip-url]
+* [node-css-mqpacker][node-css-mqpacker-url]
 * [postcss][postcss-url]
-* [postCSSinHTML][postCSSinHTML-url]
-* [postcssReporter][postcssReporter-url]
-* [presetEnv][presetEnv-url]
+* [postcss-unprefix][postcss-unprefix-url]
+* [postcss-reporter][postcss-reporter-url]
+* [postcss-preset-env][postcss-preset-env-url]
 * [pump][pump-url]
 * [through2][through2-url]
-* [uglify][uglify-url]
-* [unprefix][unprefix-url]
-* [zip][zip-url]
 
 ## License
 
@@ -164,18 +164,18 @@ if `--strict` flag is specified
 
 [autoprefixer-url]: https://github.com/postcss/autoprefixer
 [browserSync-url]: https://github.com/Browsersync/browser-sync
-[cache-url]: https://www.npmjs.com/package/gulp-cache
-[changed-url]: https://github.com/sindresorhus/gulp-changed
 [cssnano-url]: https://github.com/cssnano/cssnano
-[gulpif-url]: https://github.com/robrich/gulp-if
-[htmlmin-url]: https://github.com/jonschlinkert/gulp-htmlmin
-[imagemin-url]: https://github.com/sindresorhus/gulp-imagemin
-[mqpacker-url]: https://github.com/hail2u/node-css-mqpacker
-[postCSSinHTML-url]: https://github.com/StartPolymer/gulp-html-postcss
-[postcssReporter-url]: https://github.com/postcss/postcss-reporter
-[presetEnv-url]: https://github.com/csstools/postcss-preset-env
+[gulp-cache-url]: https://www.npmjs.com/package/gulp-cache
+[gulp-changed-url]: https://github.com/sindresorhus/gulp-changed
+[gulp-htmlmin-url]: https://github.com/jonschlinkert/gulp-htmlmin
+[gulp-html-postcss-url]: https://github.com/StartPolymer/gulp-html-postcss
+[gulp-if-url]: https://github.com/robrich/gulp-if
+[gulp-imagemin-url]: https://github.com/sindresorhus/gulp-imagemin
+[gulp-uglify-url]: https://github.com/terinjokes/gulp-uglify
+[gulp-zip-url]: https://github.com/sindresorhus/gulp-zip
+[node-css-mqpacker-url]: https://github.com/hail2u/node-css-mqpacker
+[postcss-unprefix-url]: https://www.npmjs.com/package/postcss-unprefix
+[postcss-reporter-url]: https://github.com/postcss/postcss-reporter
+[postcss-preset-env-url]: https://github.com/csstools/postcss-preset-env
 [pump-url]: https://github.com/mafintosh/pump
 [through2-url]: https://github.com/rvagg/through2
-[uglify-url]: https://github.com/terinjokes/gulp-uglify
-[unprefix-url]: https://www.npmjs.com/package/postcss-unprefix
-[zip-url]: https://github.com/sindresorhus/gulp-zip
