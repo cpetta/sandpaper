@@ -69,8 +69,6 @@ Build for production, Don't include sourcemaps and minify code.
 * [postcss][postcss-url]
 * [postcss-reporter][postcss-reporter-url]
 * [markdownlint][markdownlint-url]
-* [unified][unified-url]
-* [remark-retext][remark-retext-url]
 
 if `--strict` flag is **not** specified
 
