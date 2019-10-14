@@ -19,6 +19,14 @@ jobs:
     - fossa analyze
   - stage: release
     node_js: lts/*
+    before_install: 
+    - openssl aes-256-cbc -K $encrypted_e91c4d5a1a47_key -iv $encrypted_e91c4d5a1a47_iv -in git_gpg_keys.asc.enc -out tmp/git_gpg_keys.asc -d
+    - chmod 600 /tmp/git_gpg_keys.asc
+    - gpg --batch --yes --import /tmp/git_gpg_keys.asc
+    - echo '/usr/bin/gpg2 --passphrase ${GPG_PASSPHRASE} --batch --no-tty "$@"' > /tmp/gpg-with-passphrase && chmod +x /tmp/gpg-with-passphrase
+    - git config gpg.program "/tmp/gpg-with-passphrase"
+    - git config commit.gpgsign true
+    - git config --global user.signingkey ${GPG_KEY_ID}
     deploy:
       provider: script
       edge: true
@@ -26,6 +34,6 @@ jobs:
         secure: c8iIzVsSUmAh7qGgMmEVWYH1ldAlDZFq0xhz5WFlAL9DUwj/n7X0kq5p9yDn+/z7DV+Ys1+mZolyPEOFXqB2dmaFEAYTiLHi+YZ7s6OCOhxC7MKDn7aPU4WM8fSxw48vssGStipWQX7VJqnwZG+TZ+q1ntRSPWLaVFZkwDecQ9iy1bVfh2G17JQYAmqNd8CgSlaBKUUQ3nSntRWfTil/NunEUs8luCmsUh6THyMsIWOhTx7aMaUX56l9NtVMFWA3EQSKD5gaXvbr9FX9oPPvKHBO6X5+Bwtto20q7ctCcTuTVD3JNHAvyxarjPEZOyO3a9WnMeOcjdeyYvYGxo4dxoxBRtChLtZQ4tfjj//WNafGhfhQtAtYsvnCsQZwdZcFDYV1wbKYmUKSO7bgsh+ttVB1h4C4ZJAL1dvN8ofhA/aHPoNWI0rTSeM7jbM4ILbt4833DIkTnN5c+AUr47WnGzsXXTjQcqZLCE+8OdwPpyNeX/4AJkK8ErD1Os11GtdR4TiB88CfoSHxOPE6Q41Nz4Y6cN96gwetQvSUhlUpylQ6MMUIy1k23kUk+VBgCSBLEIwKmy+HrRw8lPZhBApmTCAOrAzvFcUQZcSs0GPn2Fn2V6NDsw3sdB8W4aJL1HqM2+z62r+L2TPnqJ3+iA0xE7QMQhet70LbYWVOWv4VGdE=
       dry_run: true
       on:
-        branch: master
+        branch: test
       script:
       - npx semantic-release
