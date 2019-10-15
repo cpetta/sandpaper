@@ -31,7 +31,6 @@ jobs:
     deploy:
       provider: script
       edge: true
-      dry_run: true
       on:
         branch: test
       script:
