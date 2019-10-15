@@ -203,9 +203,9 @@ async function clean(cb) {
 	}
 
 	cache.clearAll();
-	cb = fs.rmdir(path, {recursive: true}, () => {
-		return Promise.resolve('Clean');
-	});
+	cb = () => (fs.rmdir(path, {recursive: true}, cb => {
+		return cb;
+	}))();
 	return cb;
 }
 
