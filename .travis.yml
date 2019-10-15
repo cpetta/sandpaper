@@ -19,9 +19,10 @@ jobs:
     node_js: lts/*
     before_install:
     - mkdir tmp/
-    - openssl aes-256-cbc -K $encrypted_e91c4d5a1a47_key -iv $encrypted_e91c4d5a1a47_iv -in git_gpg_keys.asc.enc -out tmp/git_gpg_keys.asc -d
-    - chmod 600 /tmp/git_gpg_keys.asc
-    - gpg --batch --yes --import /tmp/git_gpg_keys.asc
+    - openssl aes-256-cbc -K $encrypted_e91c4d5a1a47_key -iv $encrypted_e91c4d5a1a47_iv -in travis_gpg_key.asc.enc -out travis_gpg_key.asc -d
+    - openssl aes-256-cbc -K $encrypted_e91c4d5a1a47_key -iv $encrypted_e91c4d5a1a47_iv -in travis_gpg_key.asc.enc -out tmp/travis_gpg_key.asc -d
+    - chmod 600 /tmp/travis_gpg_key.asc
+    - gpg --batch --yes --import /tmp/travis_gpg_key.asc
     - echo '/usr/bin/gpg2 --passphrase ${GPG_PASSPHRASE} --batch --no-tty "$@"' > /tmp/gpg-with-passphrase && chmod +x /tmp/gpg-with-passphrase
     - git config gpg.program "/tmp/gpg-with-passphrase"
     - git config commit.gpgsign true

@@ -9,3 +9,4 @@ dist/
 .nyc_output/
 coverage/
 logs/
+.travis_gpg_key.asc.enc
