@@ -32,6 +32,6 @@ jobs:
       provider: script
       edge: true
       on:
-        branch: test
+        branch: master
       script:
       - npx semantic-release
