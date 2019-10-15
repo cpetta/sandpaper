@@ -3,6 +3,7 @@ language:
 
 node_js:
 - node
+- lts/*
 
 jobs:
   include:
@@ -17,6 +18,7 @@ jobs:
     - fossa analyze
   - stage: release
     node_js: lts/*
+    script: skip
     before_install:
     - mkdir tmp/
     - openssl aes-256-cbc -K $encrypted_907309497874_key -iv $encrypted_907309497874_iv -in .travis_gpg_key.asc.enc -out /tmp/travis_gpg_key.asc -d
