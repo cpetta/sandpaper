@@ -1,6 +1,6 @@
 # Cpetta's Sandpaper
 
-[![Dependencies][david-svg]][david-url] [![Dependabot Status][Dependabot-svg]][Dependabot-url] [![Build Status][travis-ci-svg]][travis-ci-url] [![Coverage Status][coveralls-svg]][coveralls-url] [![FOSSA Status][FOSSA-svg]][FOSSA-url] [![XO code style][xo-svg]][xo-url]
+[![Dependencies][david-svg]][david-url] [![Dependabot Status][Dependabot-svg]][Dependabot-url] [![Build Status][travis-ci-svg]][travis-ci-url] [![Coverage Status][coveralls-svg]][coveralls-url] [![FOSSA Status][FOSSA-svg]][FOSSA-url] [![XO code style][xo-svg]][xo-url][![semantic-release][semantic-release-svg]][semantic-release-url]
 
 ## What is Sandpaper
 
@@ -131,6 +131,8 @@ if `--strict` flag is specified
 [FOSSA-url]: https://app.fossa.io/projects/git%2Bgithub.com%2Fcpetta%2Fsandpaper?ref=badge_shield
 [xo-svg]: https://img.shields.io/badge/code_style-XO-5ed9c7.svg
 [xo-url]: https://github.com/xojs/xo
+[semantic-release-svg]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
+[semantic-release-url]: https://github.com/semantic-release/semantic-release
 [gulp-url]: https://gulpjs.com/
 [meow-url]: https://github.com/sindresorhus/meow
 
