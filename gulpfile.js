@@ -49,6 +49,7 @@ const cache = require('gulp-cache');
 const changed = require('gulp-changed');
 const composer = require('gulp-uglify/composer');
 const cssnano = require('cssnano');
+const doiuse = require('doiuse');
 const eslint = require('gulp-eslint');
 const gulp = require('gulp');
 const gulpif = require('gulp-if');
@@ -407,6 +408,7 @@ function lintcss() {
 	} else {
 		pluginsPostCSSlint = [
 			stylelint({config: codingstyleStylelint}),
+			doiuse({/* Options */}),
 			postcssColorGuard({threshold: 3}),
 			postcssReporter({clearReportedMessages: true})
 		];
@@ -575,11 +577,6 @@ const batchEverthing = gulp.parallel(
 	copyAssets
 );
 
-// Function for debugging new functions
-const test = gulp.series(
-
-);
-
 const buildDev = gulp.series(
 	includeSourceMaps,
 	batchEverthing
@@ -660,4 +657,3 @@ gulp.task('syncDev', syncDev);
 gulp.task('syncProd', syncProd);
 gulp.task('watchlint', watchLint);
 gulp.task('watchlintstrict', watchLintStrict);
-gulp.task('test', test);
