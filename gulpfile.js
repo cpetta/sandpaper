@@ -58,6 +58,7 @@ const imagemin = require('gulp-imagemin');
 const jshint = require('gulp-jshint');
 const mqpacker = require('css-mqpacker');
 const postcss = require('gulp-postcss');
+const postcssColorGuard = require('colorguard');
 const postCSSinHTML = require('gulp-html-postcss');
 const postcssReporter = require('postcss-reporter');
 const presetEnv = require('postcss-preset-env');
@@ -406,6 +407,7 @@ function lintcss() {
 	} else {
 		pluginsPostCSSlint = [
 			stylelint({config: codingstyleStylelint}),
+			postcssColorGuard({threshold: 3}),
 			postcssReporter({clearReportedMessages: true})
 		];
 	}
