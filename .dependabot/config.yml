@@ -14,3 +14,7 @@ update_configs:
         dependency_type: "all"
         update_type: "all"
   version_requirement_updates: "auto"
+  commit_message:
+    prefix: "chore"
+    prefix_development: "no-release"
+    include_scope: true
