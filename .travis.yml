@@ -20,7 +20,7 @@ jobs:
     node_js: lts/*
     script: skip
     before_install:
-    - mkdir tmp/
+    - mkdir /tmp/
     - openssl aes-256-cbc -K $encrypted_907309497874_key -iv $encrypted_907309497874_iv -in .travis_gpg_key.asc.enc -out /tmp/travis_gpg_key.asc -d
     - chmod 600 /tmp/travis_gpg_key.asc
     - gpg --batch --yes --import /tmp/travis_gpg_key.asc
