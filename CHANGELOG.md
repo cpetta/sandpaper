@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/cpetta/sandpaper/compare/v1.0.1...v1.1.0) (2019-10-16)
+
+
+### Features
+
+* **strict lint:** added doiuse checking ([1bf0ea1](https://github.com/cpetta/sandpaper/commit/1bf0ea17296ce8e40450407e1110a2c3627cb7c3))
+* **Strict lint:** Add indecernable color check to strict linting ([6994f8f](https://github.com/cpetta/sandpaper/commit/6994f8f5e4fdf17fa4f8de7a82138b3178906ea5))
+
 ## [1.0.1](https://github.com/cpetta/sandpaper/compare/v1.0.0...v1.0.1) (2019-10-16)
 
 
