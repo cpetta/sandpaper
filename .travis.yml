@@ -24,7 +24,7 @@ jobs:
     - openssl aes-256-cbc -K $encrypted_907309497874_key -iv $encrypted_907309497874_iv -in .travis_gpg_key.asc.enc -out /tmp/travis_gpg_key.asc -d
     - chmod 600 /tmp/travis_gpg_key.asc
     - gpg --batch --yes --import /tmp/travis_gpg_key.asc
-    - echo '/usr/bin/gpg2 --passphrase ${GPG_PASSPHRASE} --batch --no-tty "$@"' > /tmp/gpg-with-passphrase && chmod +x /tmp/gpg-with-passphrase
+    - echo '/usr/bin/gpg --passphrase ${GPG_PASSPHRASE} --batch --no-tty "$@"' > /tmp/gpg-with-passphrase && chmod +x /tmp/gpg-with-passphrase
     - git config gpg.program "/tmp/gpg-with-passphrase"
     - git config commit.gpgsign true
     - git config --global user.signingkey ${GPG_KEY_ID}
