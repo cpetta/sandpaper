@@ -575,16 +575,9 @@ const batchEverthing = gulp.parallel(
 	copyAssets
 );
 
+// Function for debugging new functions
 const test = gulp.series(
-	includeSourceMaps,
-	batchEverthing,
-	releaseMode,
-	batchEverthing,
-	lint,
-	strictLint,
-	lint,
-	lintHtmlContent,
-	zipSrc
+
 );
 
 const buildDev = gulp.series(
@@ -668,4 +661,3 @@ gulp.task('syncProd', syncProd);
 gulp.task('watchlint', watchLint);
 gulp.task('watchlintstrict', watchLintStrict);
 gulp.task('test', test);
-
