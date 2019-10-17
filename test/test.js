@@ -36,7 +36,8 @@ describe('Testing HTML functions with data from test/', () => {
 
 	describe('#htmlReporter', () => {
 		it('Should exit without error', () => {
-			return require('gulp').src('src/test-data/testinvaliddata.html')
+			return require('gulp')
+				.src('src/test-data/testinvaliddata.html')
 				.pipe(require('gulp-htmlhint')())
 				.pipe(require('gulp-htmlhint').reporter(gulpfile.htmlReporter));
 		});
@@ -68,8 +69,7 @@ describe('Testing with data from test/', () => {
 	describe('#logWriter', () => {
 		it('Should write a log file. - And create the log/ directory', () => {
 			if (fs.existsSync('./logs/')) {
-				rimraf('./logs/', () => {
-				});
+				rimraf('./logs/', () => {});
 			}
 
 			return gulpfile.logWriter('error message', './logs/');
@@ -79,8 +79,7 @@ describe('Testing with data from test/', () => {
 	describe('#logWriter', () => {
 		it('Should write a log file. - With an existing log/ directory', () => {
 			if (fs.existsSync('./logs/')) {
-				rimraf('./logs/', () => {
-				});
+				rimraf('./logs/', () => {});
 			}
 
 			return gulpfile.logWriter('error message', './logs/');
