@@ -32,10 +32,10 @@
 		"last 2 versions"
 	],
 	"husky": {
-    	"hooks": {
+		"hooks": {
 			"pre-commit": "yarn test && yarn xo",
-      		"commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    	}
+			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+		}
 	},
 	"dependencies": {
 		"autoprefixer": "^9.6.4",
