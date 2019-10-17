@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/cpetta/sandpaper/compare/v1.1.0...v1.1.1) (2019-10-17)
+
+
+### Bug Fixes
+
+* **updateNotifier:** update notification should show now ([3eae183](https://github.com/cpetta/sandpaper/commit/3eae18356dac5fe6414178becdc166b02153d3ef))
+
 # [1.1.0](https://github.com/cpetta/sandpaper/compare/v1.0.1...v1.1.0) (2019-10-16)
 
 
