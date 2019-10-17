@@ -2483,9 +2483,9 @@ currently-unhandled@^0.4.1:
     array-find-index "^1.0.1"
 
 cuss@^1.15.0:
-  version "1.16.0"
-  resolved "https://registry.yarnpkg.com/cuss/-/cuss-1.16.0.tgz#7da59e7c130efe545be212ac23f743a95bc03f13"
-  integrity sha512-VtYrZxNqRWLd/z3a57ezUv9WLR0l0n0qmYA5O9QBepliUWlEvRgBUnfZO6bZK29KocssaZ6ks7EistDLYPFWhA==
+  version "1.17.0"
+  resolved "https://registry.yarnpkg.com/cuss/-/cuss-1.17.0.tgz#880f52ee8c48a5df6ad2a59c796bd692e173c7df"
+  integrity sha512-3ZCx/QsMbJczIwh7A0mFzg4fmugBVf+LS3G310RD5fX6Td2imd9WV+zO1shsN9OkMOjeS3Mk5V28mUrsR6Y6Qg==
 
 cyclist@^1.0.1:
   version "1.0.1"
