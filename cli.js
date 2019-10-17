@@ -62,7 +62,12 @@ const cli = meow(`
 	}
 });
 
-updateNotifier({pkg}).notify();
+updateNotifier({
+	pkg: {
+		name: 'sandpaper',
+		version: pkg.version
+	}
+}).notify();
 
 // CLI logic (input handler)
 
