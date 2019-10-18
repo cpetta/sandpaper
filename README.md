@@ -1,6 +1,6 @@
 # Cpetta's Sandpaper
 
-[![Dependencies][david-svg]][david-url] [![Dependabot Status][Dependabot-svg]][Dependabot-url] [![Build Status][travis-ci-svg]][travis-ci-url] [![Coverage Status][coveralls-svg]][coveralls-url] [![FOSSA Status][FOSSA-svg]][FOSSA-url] [![XO code style][xo-svg]][xo-url][![semantic-release][semantic-release-svg]][semantic-release-url]
+[![Dependencies][david-svg]][david-url] [![Dependabot Status][Dependabot-svg]][Dependabot-url] [![Build Status][travis-ci-svg]][travis-ci-url] [![Coverage Status][coveralls-svg]][coveralls-url] [![FOSSA Status][FOSSA-svg]][FOSSA-url] [![XO code style][xo-svg]][xo-url] [![semantic-release][semantic-release-svg]][semantic-release-url] [![Total alerts][LGTM-svg]][LGTM-url]
 
 ## What is Sandpaper
 
@@ -133,6 +133,8 @@ if `--strict` flag is specified
 [xo-url]: https://github.com/xojs/xo
 [semantic-release-svg]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
 [semantic-release-url]: https://github.com/semantic-release/semantic-release
+[LGTM-svg]: https://img.shields.io/lgtm/alerts/g/cpetta/sandpaper.svg?logo=lgtm&logoWidth=18
+[LGTM-url]: https://lgtm.com/projects/g/cpetta/sandpaper/alerts/
 [gulp-url]: https://gulpjs.com/
 [meow-url]: https://github.com/sindresorhus/meow
 
