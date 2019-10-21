@@ -49,7 +49,7 @@ const postcss = require('gulp-postcss');
 const postcssColorGuard = require('colorguard');
 const postCSSinHTML = require('gulp-html-postcss');
 const postcssReporter = require('postcss-reporter');
-const postcssNormalize = require('postcss-normalize')
+const postcssNormalize = require('postcss-normalize');
 const presetEnv = require('postcss-preset-env');
 const pump = require('pump');
 const purgecss = require('gulp-purgecss');
@@ -99,7 +99,7 @@ const pluginsPostCSS = [
 	presetEnv({stage: 2 /* Stage 0 - 4 */}),
 	unprefix(),
 	autoprefixer(),
-	postcssNormalize()
+	postcssNormalize({forceImport: 'normalize.css'})
 ];
 
 const unifiedPlugins = [
