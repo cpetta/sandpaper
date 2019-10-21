@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/cpetta/sandpaper/compare/v1.2.0...v1.3.0) (2019-10-21)
+
+
+### Bug Fixes
+
+* **normalize:** force import of normalize.css ([6b5a05f](https://github.com/cpetta/sandpaper/commit/6b5a05f0682c6a79ca9bfbad7104c36677f14adc))
+
+
+### Features
+
+* **css compiler:** add normalization support ([c8c999a](https://github.com/cpetta/sandpaper/commit/c8c999a06ffabe4e0bec5cddb5f85bb8755ae8bd))
+
 # [1.2.0](https://github.com/cpetta/sandpaper/compare/v1.1.1...v1.2.0) (2019-10-21)
 
 
