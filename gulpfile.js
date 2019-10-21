@@ -203,10 +203,10 @@ async function clean(cb) {
 	}
 
 	cache.clearAll();
-	cb = () => (fs.rmdir(path, {recursive: true}, cb => {
+	fs.rmdir(path, {recursive: true}, cb => {
 		/* istanbul ignore next */
 		return cb;
-	}))();
+	});
 	return cb;
 }
 
