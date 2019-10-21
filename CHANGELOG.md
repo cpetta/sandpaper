@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/cpetta/sandpaper/compare/v1.1.1...v1.2.0) (2019-10-21)
+
+
+### Bug Fixes
+
+* **clean:** function wasn't actually cleaning ([0b7348a](https://github.com/cpetta/sandpaper/commit/0b7348ae8d9c1895bcee331e9289e7a4e7ac0b6c))
+* **css compiler:** replace mqpacker & cssnano w/ clean-css ([cec4425](https://github.com/cpetta/sandpaper/commit/cec4425721e5d5fbaa3001c1e7f00ece349eb934))
+* **markdown linter:** improved output readability ([c391e58](https://github.com/cpetta/sandpaper/commit/c391e586c7e2572500608aad3794aef4d69a0718))
+
+
+### Features
+
+* **cli:** added default task when there are no flags ([4099fe8](https://github.com/cpetta/sandpaper/commit/4099fe8369dc07814c024cd47d4581cec8cc43de))
+* **css compiler:** add purgecss support ([39027e9](https://github.com/cpetta/sandpaper/commit/39027e91d5db2758f26e2dc7feeb093a4f42a4a4))
+* **css compiler:** add purgecss support ([412abd7](https://github.com/cpetta/sandpaper/commit/412abd78d4bc49573e552e64cb0962577dc2702f))
+
 ## [1.1.1](https://github.com/cpetta/sandpaper/compare/v1.1.0...v1.1.1) (2019-10-17)
 
 
