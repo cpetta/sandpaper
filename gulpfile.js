@@ -115,8 +115,7 @@ const pluginsPostCSS = [
 	mqpacker(),
 	presetEnv({stage: 2 /* Stage 0 - 4 */}),
 	unprefix(),
-	autoprefixer(),
-	cssnano()
+	autoprefixer()
 ];
 
 const unifiedPlugins = [
