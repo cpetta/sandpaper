@@ -56,6 +56,7 @@
 		"gulp-imagemin": "^6.1.1",
 		"gulp-jshint": "^2.1.0",
 		"gulp-postcss": "^8.0.0",
+		"gulp-purgecss": "^1.2.0",
 		"gulp-tslint": "^8.1.4",
 		"gulp-typescript": "^5.0.1",
 		"gulp-uglify": "^3.0.2",
