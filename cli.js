@@ -80,7 +80,8 @@ updateNotifier({
 			if (cli.input.length > 0) {
 				console.log('Unrecognized input: ' + cli.input + ' use Sandpaper --help for a list of valid inputs.');
 			}
-		})()
+		})(),
+		noArgs()
 	]);
 })();
 
@@ -137,5 +138,25 @@ async function sync() {
 		} else {
 			gulpfile.syncDev();
 		}
+	}
+}
+
+async function noArgs() {
+	let anyFlag = false;
+
+	// If any cli.flags are set
+	for (const arg in cli.flags) {
+		if (cli.flags[arg] === true) {
+			anyFlag = true;
+		}
+	}
+
+	if (!anyFlag) {
+		(async () => {
+			await Promise.all([
+				gulpfile.watchLintStrict(),
+				gulpfile.syncDev()
+			]);
+		})();
 	}
 }
