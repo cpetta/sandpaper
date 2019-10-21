@@ -66,6 +66,7 @@
 		"markdownlint": "^0.17.0",
 		"meow": "^5.0.0",
 		"postcss": "^7.0.18",
+		"postcss-normalize": "^8.0.1",
 		"postcss-preset-env": "^6.7.0",
 		"postcss-reporter": "^6.0.1",
 		"postcss-unprefix": "^2.1.4",
