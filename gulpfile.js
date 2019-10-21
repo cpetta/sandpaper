@@ -48,16 +48,15 @@ const browserSync = require('browser-sync').create();
 const cache = require('gulp-cache');
 const changed = require('gulp-changed');
 const composer = require('gulp-uglify/composer');
-const cssnano = require('cssnano');
 const doiuse = require('doiuse');
 const eslint = require('gulp-eslint');
 const gulp = require('gulp');
 const gulpif = require('gulp-if');
+const cleanCss = require('gulp-clean-css');
 const htmlhint = require('gulp-htmlhint');
 const htmlmin = require('gulp-htmlmin');
 const imagemin = require('gulp-imagemin');
 const jshint = require('gulp-jshint');
-const mqpacker = require('css-mqpacker');
 const postcss = require('gulp-postcss');
 const postcssColorGuard = require('colorguard');
 const postCSSinHTML = require('gulp-html-postcss');
@@ -112,7 +111,6 @@ const ProjectName = 'Sandpaper-Project';
 const ZipName = ProjectName + ' - ' + currentTime;
 
 const pluginsPostCSS = [
-	mqpacker(),
 	presetEnv({stage: 2 /* Stage 0 - 4 */}),
 	unprefix(),
 	autoprefixer()
@@ -248,6 +246,7 @@ function compileCSS() {
 	return gulp.src(paths.src.css, {sourcemaps: SourceMaps})
 		.pipe(changed(gulpif(staging, paths.dev.css, paths.prod.css)))
 		.pipe(postcss(pluginsPostCSS))
+		.pipe(cleanCss({level: 2}))
 		.pipe(gulp.dest(gulpif(staging, paths.dev.css, paths.prod.css), {sourcemaps: paths.sourcemaps}))
 		.pipe(browserSync.stream());
 }
