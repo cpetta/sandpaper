@@ -440,7 +440,7 @@ function lintmd() {
 			markdownlint(
 				{files: [workingDirectory + '/' + file.relative]},
 				(err, result) => {
-					console.log(result.toString());
+					console.dir(result, {colors: true, depth: null});
 					next(err, file);
 				});
 		}));
