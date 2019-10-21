@@ -16,18 +16,6 @@ Useful information
 	https://github.com/stylelint/stylelint-config-standard
 	https://github.com/hudochenkov/stylelint-order
 
-Things to check out
-	scss
-	ruby on rails
-	babel
-	gulp-concat
-	gulp-alex / Alex
-	webpack
-	imagemin-pngout
-	https://github.com/postcss/postcss
-	https://www.npmjs.com/package/gulp-bump
-	https://www.npmjs.com/package/csso
-
 Post CSS information
 	https://github.com/postcss/gulp-postcss
 	https://www.postcss.parts/
@@ -85,13 +73,8 @@ const engine = require('unified-engine-gulp');
 // Retext Modules
 const english = require('retext-english');
 const contractions = require('retext-contractions');
-// These cause lots of false positives
-// const dontAssume = require('retext-assuming');
-// const equality = require('retext-equality');
 const indefinite = require('retext-indefinite-article');
 const passive = require('retext-passive');
-// These cause lots of false positives
-// const profanities = require('retext-profanities');
 const quotes = require('retext-quotes');
 const repeated = require('retext-repeated-words');
 const spacing = require('retext-sentence-spacing');
