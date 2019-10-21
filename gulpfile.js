@@ -63,7 +63,6 @@ const postCSSinHTML = require('gulp-html-postcss');
 const postcssReporter = require('postcss-reporter');
 const presetEnv = require('postcss-preset-env');
 const pump = require('pump');
-const purgecss = require('gulp-purgecss');
 const stylelint = require('stylelint');
 const stylish = require('jshint-more-stylish');
 const through2 = require('through2');
@@ -247,7 +246,6 @@ function compileCSS() {
 	return gulp.src(paths.src.css, {sourcemaps: SourceMaps})
 		.pipe(changed(gulpif(staging, paths.dev.css, paths.prod.css)))
 		.pipe(postcss(pluginsPostCSS))
-		.pipe(purgecss({content:[paths.src.html]}))
 		.pipe(cleanCss({level: 2}))
 		.pipe(gulp.dest(gulpif(staging, paths.dev.css, paths.prod.css), {sourcemaps: paths.sourcemaps}))
 		.pipe(browserSync.stream());
