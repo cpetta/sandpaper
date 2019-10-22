@@ -411,7 +411,7 @@ function lintjs() {
 	}
 
 	return gulp.src(paths.src.js)
-		.pipe(eslint({configFile: `${__dirname}/node_modules/eslint-config-xo/index.js`})) // If error try npm install eslint-config-xo
+		.pipe(eslint({configFile: `${__dirname}/eslint.config.js`})) // If error try npm install eslint-config-xo
 		.pipe(eslint.format('stylish'));
 }
 
