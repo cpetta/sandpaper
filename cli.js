@@ -143,6 +143,7 @@ async function sync() {
 
 async function noArgs() {
 	let anyFlag = false;
+	let anyArg = false;
 
 	// If any cli.flags are set
 	for (const arg in cli.flags) {
@@ -151,7 +152,12 @@ async function noArgs() {
 		}
 	}
 
-	if (!anyFlag) {
+	// If any cli argumantes are set
+	if (cli.input.length > 0) {
+		anyArg = true;
+	}
+
+	if (!anyFlag && !anyArg) {
 		(async () => {
 			await Promise.all([
 				gulpfile.watchLintStrict(),
