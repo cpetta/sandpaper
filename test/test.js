@@ -205,3 +205,21 @@ describe('#lintmarkdownContent', () => {
 		return gulpfile.lintmarkdownContent();
 	});
 });
+
+describe('#fixjs', () => {
+	it('Should exit without error', () => {
+		return gulpfile.fixjs();
+	});
+});
+
+describe('#fixcss', () => {
+	it('Should exit without error', () => {
+		return gulpfile.fixcss();
+	});
+});
+
+describe('#watchfix', () => {
+	it('Should exit without error', () => {
+		return gulpfile.watchfix();
+	});
+});
