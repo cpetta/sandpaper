@@ -47,7 +47,7 @@ const cli = meow(`
 			type: 'boolean',
 			default: false
 		},
-		fixStyle: {
+		fix: {
 			type: 'boolean',
 			default: false
 		},
@@ -105,8 +105,13 @@ async function lint() {
 			gulpfile.lint();
 		}
 
-		if (cli.flags.fixStyle === true) {
-			// Not implemented yet.
+		if (cli.flags.fix) {
+			if(cli.flags.watch) {
+				gulpfile.autoFixSrc();
+			}
+			else {
+				gulpfile.FixSrc();
+			}
 		}
 	}
 }
@@ -161,6 +166,7 @@ async function noArgs() {
 		(async () => {
 			await Promise.all([
 				gulpfile.watchLintStrict(),
+				gulpfile.autoFixSrc(),
 				gulpfile.syncDev()
 			]);
 		})();

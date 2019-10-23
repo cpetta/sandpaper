@@ -35,6 +35,7 @@ const autoprefixer = require('autoprefixer');
 const browserSync = require('browser-sync').create();
 const cache = require('gulp-cache');
 const changed = require('gulp-changed');
+const changedInPlace = require ('gulp-changed-in-place')
 const composer = require('gulp-uglify/composer');
 const doiuse = require('doiuse');
 const eslint = require('gulp-eslint');
@@ -54,6 +55,7 @@ const presetEnv = require('postcss-preset-env');
 const pump = require('pump');
 const purgecss = require('gulp-purgecss');
 const stylelint = require('stylelint');
+const gulpStylelint = require('gulp-stylelint');
 const stylish = require('jshint-more-stylish');
 const through2 = require('through2');
 const tslint = require('gulp-tslint');
@@ -469,6 +471,33 @@ function zipSrc() {
 		.pipe(gulp.dest(paths.prod.all));
 }
 
+function fixjs() {
+	return gulp.src(paths.src.js)
+		.pipe(eslint({configFile: `${__dirname}/eslint.config.js`, fix: true}))
+		.pipe(gulpif(isFixed, gulp.dest(workingDirectory)));
+
+	function isFixed(file) {
+		return file.eslint !== null && file.eslint.fixed;
+	}
+}
+
+function fixcss() {
+	return gulp.src(paths.src.css)
+		.pipe(changedInPlace())
+		.pipe(gulpStylelint({
+			reporters: [{formatter: 'verbose', console: false}],
+			failAfterError: false,
+			config: codingstyleStylelint, 
+			fix: true
+		}))
+		.pipe(gulp.dest(workingDirectory));
+}
+
+function watchfix() {
+	gulp.watch(paths.src.css, fixcss);
+	gulp.watch(paths.src.js, fixjs);
+}
+
 function watch() {
 	gulp.watch(paths.src.html, compileHTML);
 	gulp.watch(paths.src.css, compileCSS);
@@ -481,10 +510,10 @@ function watch() {
 }
 
 function watchlint() {
-	gulp.watch(paths.src.html, linthtml);
-	gulp.watch(paths.src.css, lintcss);
-	gulp.watch(paths.src.js, lintjs);
-	gulp.watch(paths.src.ts, lintts);
+	gulp.watch(paths.src.html, {delay: 500}, linthtml);
+	gulp.watch(paths.src.css, {delay: 500}, lintcss);
+	gulp.watch(paths.src.js, {delay: 500}, lintjs);
+	gulp.watch(paths.src.ts, {delay: 500}, lintts);
 	console.log('Lint Watch running, Waiting for file changes...');
 	console.log('Press Ctrl + C to end a file watch.');
 }
@@ -541,6 +570,9 @@ exports.uglifyjs = uglifyjs;
 exports.watch = watch;
 exports.watchlint = watchlint;
 exports.zipSrc = zipSrc;
+exports.fixjs = fixjs;
+exports.fixcss = fixcss;
+exports.watchfix = watchfix;
 
 // Combined functions / jobs
 
@@ -620,6 +652,19 @@ const watchLintStrict = gulp.series(
 	watchlint
 );
 
+const fixSrc = gulp.series(
+	strictLint,
+	fixjs,
+	fixcss
+)
+
+const autoFixSrc = gulp.series(
+	strictLint,
+	fixjs,
+	fixcss,
+	watchfix
+)
+
 exports.buildDev = buildDev;
 exports.buildProd = buildProd;
 exports.watchDev = watchDev;
@@ -632,6 +677,8 @@ exports.syncProd = syncProd;
 exports.syncStop = syncStop;
 exports.watchLint = watchLint;
 exports.watchLintStrict = watchLintStrict;
+exports.fixSrc = fixSrc;
+exports.autoFixSrc = autoFixSrc;
 
 gulp.task('default', buildDev);
 gulp.task('prod', buildProd);

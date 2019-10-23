@@ -3792,7 +3792,7 @@ extsprintf@^1.2.0:
   resolved "https://registry.yarnpkg.com/extsprintf/-/extsprintf-1.4.0.tgz#e2689f8f356fad62cca65a3a91c5df5f9551692f"
   integrity sha1-4mifjzVvrWLMplo6kcXfX5VRaS8=
 
-fancy-log@1.3.3, fancy-log@^1.3.2:
+fancy-log@1.3.3, fancy-log@^1.3.2, fancy-log@^1.3.3:
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/fancy-log/-/fancy-log-1.3.3.tgz#dbc19154f558690150a23953a0adbd035be45fc7"
   integrity sha512-k9oEhlyc0FrVh25qYuSELjr8oxsCoc4/LEZfg2iJJrfEk/tZL9bCoJE47gqAvI2m/AUjluCS4+3I0eTx8n3AEw==
@@ -4718,6 +4718,13 @@ gulp-cache@^1.1.3:
     through2 "3.0.1"
     vinyl "^2.2.0"
 
+gulp-changed-in-place@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/gulp-changed-in-place/-/gulp-changed-in-place-2.3.0.tgz#de4150c276d8c0052451caf2f0c7d2be17e76888"
+  integrity sha1-3kFQwnbYwAUkUcry8MfSvhfnaIg=
+  dependencies:
+    through2 "^2.0.0"
+
 gulp-changed@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/gulp-changed/-/gulp-changed-4.0.2.tgz#387c6b05a3d18519281516ebf8f49f2d5d56efd3"
@@ -4881,6 +4888,19 @@ gulp-purgecss@^1.2.0:
     plugin-error "^1.0.1"
     purgecss "^1.3.0"
     through2 "^2.0.3"
+
+gulp-stylelint@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/gulp-stylelint/-/gulp-stylelint-10.0.0.tgz#4e2bfa13765274cded63597b337184cd6d3f95d5"
+  integrity sha512-k4NZwtqRIiFnk0g1yb4UZ/+axnTVPMMDqzz1XPMLI0PPBgx91TDBzbVZexuMLUeVNoEYW8iMRUKrk3NDS+WNJw==
+  dependencies:
+    chalk "^2.4.2"
+    fancy-log "^1.3.3"
+    mkdirp "^0.5.1"
+    plugin-error "^1.0.1"
+    source-map "^0.7.3"
+    strip-ansi "^5.2.0"
+    through2 "^3.0.1"
 
 gulp-tslint@^8.1.4:
   version "8.1.4"

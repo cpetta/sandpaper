@@ -1,12 +1,14 @@
 body {
 	color: #000;
 }
+
 #nonexistantID {
 	color: red;
 }
+
 img {
-	z-index: 1;
+	background-color: red;
 	height: 20px;
 	width: 20px;
-	background-color: red;
+	z-index: 1;
 }
