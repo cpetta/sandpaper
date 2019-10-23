@@ -35,7 +35,7 @@ const autoprefixer = require('autoprefixer');
 const browserSync = require('browser-sync').create();
 const cache = require('gulp-cache');
 const changed = require('gulp-changed');
-const changedInPlace = require ('gulp-changed-in-place')
+const changedInPlace = require('gulp-changed-in-place');
 const composer = require('gulp-uglify/composer');
 const doiuse = require('doiuse');
 const eslint = require('gulp-eslint');
@@ -487,7 +487,7 @@ function fixcss() {
 		.pipe(gulpStylelint({
 			reporters: [{formatter: 'verbose', console: false}],
 			failAfterError: false,
-			config: codingstyleStylelint, 
+			config: codingstyleStylelint,
 			fix: true
 		}))
 		.pipe(gulp.dest(workingDirectory));
@@ -656,14 +656,14 @@ const fixSrc = gulp.series(
 	strictLint,
 	fixjs,
 	fixcss
-)
+);
 
 const autoFixSrc = gulp.series(
 	strictLint,
 	fixjs,
 	fixcss,
 	watchfix
-)
+);
 
 exports.buildDev = buildDev;
 exports.buildProd = buildProd;

@@ -106,11 +106,10 @@ async function lint() {
 		}
 
 		if (cli.flags.fix) {
-			if(cli.flags.watch) {
+			if (cli.flags.watch) {
 				gulpfile.autoFixSrc();
-			}
-			else {
-				gulpfile.FixSrc();
+			} else {
+				gulpfile.fixSrc();
 			}
 		}
 	}

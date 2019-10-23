@@ -9,203 +9,199 @@ const {after} = mocha;
 const {describe} = mocha;
 const {it} = mocha;
 
-describe('Testing HTML functions with data from test/', () => {
-	describe('#compileHTML - Without Errors', () => {
-		it('should exit without error', () => {
-			return gulpfile.compileHTML();
-		});
-	});
-
-	describe('#linthtml', () => {
-		it('should exit without error', () => {
-			return gulpfile.lintErrors();
-		});
-	});
-
-	describe('#linthtml-strict', () => {
-		it('should exit without error', () => {
-			return gulpfile.lintStrict();
-		});
-	});
-
-	describe('#lintHtmlContent', () => {
-		it('Should exit without error', () => {
-			return gulpfile.lintHtmlContent();
-		});
-	});
-
-	describe('#htmlReporter', () => {
-		it('Should exit without error', () => {
-			return require('gulp')
-				.src('src/test-data/testinvaliddata.html')
-				.pipe(require('gulp-htmlhint')())
-				.pipe(require('gulp-htmlhint').reporter(gulpfile.htmlReporter));
-		});
+describe('#compileHTML - Without Errors', () => {
+	it('should exit without error', () => {
+		return gulpfile.compileHTML();
 	});
 });
 
-describe('Testing with data from test/', () => {
-	describe('#clean', () => {
-		it('should exit without error', () => {
-			return gulpfile.clean();
-		});
+describe('#linthtml', () => {
+	it('should exit without error', () => {
+		return gulpfile.lintErrors();
 	});
+});
 
-	describe('#syncBrowsers', () => {
-		it('Should start without error', () => {
-			return gulpfile.syncBrowsers();
-		});
-		after(() => {
-			gulpfile.syncStop();
-		});
+describe('#linthtml-strict', () => {
+	it('should exit without error', () => {
+		return gulpfile.lintStrict();
 	});
+});
 
-	describe('#logWriter', () => {
-		it('Should experience a write error.', () => {
-			return gulpfile.logWriter('error message', './nonexistantfolder/');
-		});
+describe('#lintHtmlContent', () => {
+	it('Should exit without error', () => {
+		return gulpfile.lintHtmlContent();
 	});
+});
 
-	describe('#logWriter', () => {
-		it('Should write a log file. - And create the log/ directory', () => {
-			if (fs.existsSync('./logs/')) {
-				rimraf('./logs/', () => {});
+describe('#htmlReporter', () => {
+	it('Should exit without error', () => {
+		return require('gulp')
+			.src('src/test-data/testinvaliddata.html')
+			.pipe(require('gulp-htmlhint')())
+			.pipe(require('gulp-htmlhint').reporter(gulpfile.htmlReporter));
+	});
+});
+
+describe('#clean', () => {
+	it('should exit without error', () => {
+		return gulpfile.clean();
+	});
+});
+
+describe('#syncBrowsers', () => {
+	it('Should start without error', () => {
+		return gulpfile.syncBrowsers();
+	});
+	after(() => {
+		gulpfile.syncStop();
+	});
+});
+
+describe('#logWriter', () => {
+	it('Should experience a write error.', () => {
+		return gulpfile.logWriter('error message', './nonexistantfolder/');
+	});
+});
+
+describe('#logWriter', () => {
+	it('Should write a log file. - And create the log/ directory', () => {
+		if (fs.existsSync('./logs/')) {
+			rimraf('./logs/', () => {});
+		}
+
+		return gulpfile.logWriter('error message', './logs/');
+	});
+});
+
+describe('#logWriter', () => {
+	it('Should write a log file. - With an existing log/ directory', () => {
+		if (fs.existsSync('./logs/')) {
+			rimraf('./logs/', () => {});
+		}
+
+		return gulpfile.logWriter('error message', './logs/');
+	});
+});
+
+describe('#ReleaseMode', () => {
+	it('should exit without error', () => {
+		return gulpfile.releaseMode();
+	});
+});
+
+describe('#includeSourceMaps', () => {
+	it('should exit without error', () => {
+		return gulpfile.includeSourceMaps();
+	});
+});
+
+describe('#copyAssets', () => {
+	it('should exit without error', () => {
+		return gulpfile.copyAssets();
+	});
+});
+
+describe('#compileCSS', () => {
+	it('should exit without error', () => {
+		return gulpfile.compileCSS();
+	});
+});
+
+describe('#compileTS', () => {
+	it('should exit without error', () => {
+		return gulpfile.compileTS();
+	});
+});
+
+describe('#uglifyjs', () => {
+	it('should exit without error', () => {
+		return gulpfile.uglifyjs();
+	});
+});
+
+describe('#lintcss - Errors Only', () => {
+	it('should exit without error', () => {
+		(async () => {
+			try {
+				const mode = await gulpfile.errorLint();
+				return gulpfile.lintcss(mode);
+			} catch (error) {
+				return error;
 			}
-
-			return gulpfile.logWriter('error message', './logs/');
-		});
+		})();
 	});
+});
 
-	describe('#logWriter', () => {
-		it('Should write a log file. - With an existing log/ directory', () => {
-			if (fs.existsSync('./logs/')) {
-				rimraf('./logs/', () => {});
+describe('#lintjs', () => {
+	it('should exit without error', () => {
+		return gulpfile.lintjs();
+	});
+});
+
+describe('#lintts', () => {
+	it('should exit without error', () => {
+		return gulpfile.lintts();
+	});
+});
+
+describe('#lintjs-strict', () => {
+	it('should exit without error', () => {
+		(async () => {
+			try {
+				const mode = await gulpfile.strictLint();
+				return gulpfile.lintjs(mode);
+			} catch (error) {
+				return error;
 			}
-
-			return gulpfile.logWriter('error message', './logs/');
-		});
+		})();
 	});
+});
 
-	describe('#ReleaseMode', () => {
-		it('should exit without error', () => {
-			return gulpfile.releaseMode();
-		});
+describe('#lintcss-strict', () => {
+	it('should exit without error', () => {
+		(async () => {
+			try {
+				const mode = await gulpfile.strictLint();
+				return gulpfile.lintcss(mode);
+			} catch (error) {
+				return error;
+			}
+		})();
 	});
+});
 
-	describe('#includeSourceMaps', () => {
-		it('should exit without error', () => {
-			return gulpfile.includeSourceMaps();
-		});
+describe('#optamizeImages', () => {
+	it('should exit without error', () => {
+		return gulpfile.optamizeImages();
 	});
+});
 
-	describe('#copyAssets', () => {
-		it('should exit without error', () => {
-			return gulpfile.copyAssets();
-		});
+describe('#zipSrc', () => {
+	it('should exit without error', () => {
+		return gulpfile.zipSrc();
 	});
+});
 
-	describe('#compileCSS', () => {
-		it('should exit without error', () => {
-			return gulpfile.compileCSS();
-		});
+describe('#watch', () => {
+	it('Should start without error', () => {
+		return gulpfile.watch();
 	});
+});
 
-	describe('#compileTS', () => {
-		it('should exit without error', () => {
-			return gulpfile.compileTS();
-		});
+describe('#watchlint', () => {
+	it('Should start without error', () => {
+		return gulpfile.watchlint();
 	});
+});
 
-	describe('#uglifyjs', () => {
-		it('should exit without error', () => {
-			return gulpfile.uglifyjs();
-		});
+describe('#lintmd', () => {
+	it('Should exit without error', () => {
+		return gulpfile.lintmd();
 	});
+});
 
-	describe('#lintcss - Errors Only', () => {
-		it('should exit without error', () => {
-			(async () => {
-				try {
-					const mode = await gulpfile.errorLint();
-					return gulpfile.lintcss(mode);
-				} catch (error) {
-					return error;
-				}
-			})();
-		});
-	});
-
-	describe('#lintjs', () => {
-		it('should exit without error', () => {
-			return gulpfile.lintjs();
-		});
-	});
-
-	describe('#lintts', () => {
-		it('should exit without error', () => {
-			return gulpfile.lintts();
-		});
-	});
-
-	describe('#lintjs-strict', () => {
-		it('should exit without error', () => {
-			(async () => {
-				try {
-					const mode = await gulpfile.strictLint();
-					return gulpfile.lintjs(mode);
-				} catch (error) {
-					return error;
-				}
-			})();
-		});
-	});
-
-	describe('#lintcss-strict', () => {
-		it('should exit without error', () => {
-			(async () => {
-				try {
-					const mode = await gulpfile.strictLint();
-					return gulpfile.lintcss(mode);
-				} catch (error) {
-					return error;
-				}
-			})();
-		});
-	});
-
-	describe('#optamizeImages', () => {
-		it('should exit without error', () => {
-			return gulpfile.optamizeImages();
-		});
-	});
-
-	describe('#zipSrc', () => {
-		it('should exit without error', () => {
-			return gulpfile.zipSrc();
-		});
-	});
-
-	describe('#watch', () => {
-		it('Should start without error', () => {
-			return gulpfile.watch();
-		});
-	});
-
-	describe('#watchlint', () => {
-		it('Should start without error', () => {
-			return gulpfile.watchlint();
-		});
-	});
-
-	describe('#lintmd', () => {
-		it('Should exit without error', () => {
-			return gulpfile.lintmd();
-		});
-	});
-
-	describe('#lintmarkdownContent', () => {
-		it('Should exit without error', () => {
-			return gulpfile.lintmarkdownContent();
-		});
+describe('#lintmarkdownContent', () => {
+	it('Should exit without error', () => {
+		return gulpfile.lintmarkdownContent();
 	});
 });
