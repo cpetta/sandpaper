@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/cpetta/sandpaper/compare/v1.3.0...v1.4.0) (2019-10-24)
+
+
+### Bug Fixes
+
+* **cli:** default task no longer runs when arguments are given ([2afb67a](https://github.com/cpetta/sandpaper/commit/2afb67aa3344063cff6672f6b4585a3c5422a6c6))
+
+
+### Features
+
+* **autofix:** add autofix for style issues ([cea36e6](https://github.com/cpetta/sandpaper/commit/cea36e6a1e96b53d79119d2037acd2efab09963e))
+* **xo:** add additonal linting rule files ([bddb5b4](https://github.com/cpetta/sandpaper/commit/bddb5b4b30e7ebe5b27020950076edbf9b5cc0b3))
+
 # [1.3.0](https://github.com/cpetta/sandpaper/compare/v1.2.0...v1.3.0) (2019-10-21)
 
 
