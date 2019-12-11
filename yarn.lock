@@ -1248,13 +1248,13 @@ bin-check@^4.1.0:
     executable "^4.1.0"
 
 bin-links@^1.1.2, bin-links@^1.1.5:
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/bin-links/-/bin-links-1.1.5.tgz#bbbcd1d7a8101105b927d54aa895a4cc75138169"
-  integrity sha512-GQuxeiclIjomNfQ7LSaERfIz2RSZrF44c0cDEV+Iu4uVhyYndSSwl1RjjunxHU1dYqh+QCP4S/1/DUsjquNRhQ==
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/bin-links/-/bin-links-1.1.6.tgz#30d33e810829305e5e61b90cfcb9a3a4f65eb516"
+  integrity sha512-b5rV3uVyrlrJWLI3mawUUf5t2f9mCEQm/TqT5zNj6DPYhYDZaNp0AYaYd/CVASkSEklayNDLliZHVdo2J3niPw==
   dependencies:
     bluebird "^3.5.3"
     cmd-shim "^3.0.0"
-    gentle-fs "^2.0.1"
+    gentle-fs "^2.3.0"
     graceful-fs "^4.1.15"
     npm-normalize-package-bin "^1.0.0"
     write-file-atomic "^2.3.0"
@@ -4419,7 +4419,7 @@ genfun@^5.0.0:
   resolved "https://registry.yarnpkg.com/genfun/-/genfun-5.0.0.tgz#9dd9710a06900a5c4a5bf57aca5da4e52fe76537"
   integrity sha512-KGDOARWVga7+rnB3z9Sd2Letx515owfk0hSxHGuqjANb1M+x2bGZGqHLiozPsYMdM2OubeMni/Hpwmjq6qIUhA==
 
-gentle-fs@^2.0.1, gentle-fs@^2.2.1:
+gentle-fs@^2.2.1, gentle-fs@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/gentle-fs/-/gentle-fs-2.3.0.tgz#13538db5029400f98684be4894e8a7d8f0d1ea7f"
   integrity sha512-3k2CgAmPxuz7S6nKK+AqFE2AdM1QuwqKLPKzIET3VRwK++3q96MsNFobScDjlCrq97ZJ8y5R725MOlm6ffUCjg==
