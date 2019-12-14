@@ -67,7 +67,7 @@
 		"gulp-zip": "^5.0.1",
 		"jpegtran-bin": "^4.0.0",
 		"jshint-more-stylish": "^1.0.1",
-		"markdownlint": "^0.17.0",
+		"markdownlint": "^0.18.0",
 		"meow": "^6.0.0",
 		"postcss": "^7.0.18",
 		"postcss-normalize": "^8.0.1",
