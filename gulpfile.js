@@ -267,6 +267,7 @@ function compileHTML() {
 					'CompileHTML experienced an error. \n',
 					'The most common cause is a Parse error, fixing linting errors usually fixes parse errors.'
 				);
+				linthtml();
 			}
 		}
 		);
