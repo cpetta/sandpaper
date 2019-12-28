@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.1](https://github.com/cpetta/sandpaper/compare/v1.4.0...v1.4.1) (2019-12-28)
+
+
+### Bug Fixes
+
+* **compilehtml:** display lint results on error ([3327068](https://github.com/cpetta/sandpaper/commit/3327068c417f2943ce3dc5444e953707494948f1))
+
 # [1.4.0](https://github.com/cpetta/sandpaper/compare/v1.3.0...v1.4.0) (2019-10-24)
 
 
