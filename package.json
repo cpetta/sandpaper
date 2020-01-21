@@ -56,7 +56,7 @@
 		"gulp-htmlhint": "^3.0.0",
 		"gulp-htmlmin": "^5.0.1",
 		"gulp-if": "^3.0.0",
-		"gulp-imagemin": "^6.1.1",
+		"gulp-imagemin": "^7.1.0",
 		"gulp-jshint": "^2.1.0",
 		"gulp-postcss": "^8.0.0",
 		"gulp-purgecss": "^2.0.3",
