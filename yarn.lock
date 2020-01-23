@@ -9255,9 +9255,9 @@ parse-json@^5.0.0:
     lines-and-columns "^1.1.6"
 
 parse-latin@^4.0.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/parse-latin/-/parse-latin-4.2.0.tgz#b0b107a26ecbe8670f9ed0d20eb491c7780f99d1"
-  integrity sha512-b8PvsA1Ohh7hIQwDDy6kSjx3EbcuR3oKYm5lC1/l/zIB6mVVV5ESEoS1+Qr5+QgEGmp+aEZzc+D145FIPJUszw==
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/parse-latin/-/parse-latin-4.2.1.tgz#b78c57c026cdf8e4e9924b296a2d0aa69877fab8"
+  integrity sha512-7T9g6mIsFFpLlo0Zzb2jLWdCt+H9Qtf/hRmMYFi/Mq6Ovi+YKo+AyDFX3OhFfu0vXX5Nid9FKJGKSSzNcTkWiA==
   dependencies:
     nlcst-to-string "^2.0.0"
     unist-util-modify-children "^1.0.0"
