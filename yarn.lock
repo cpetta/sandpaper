@@ -5207,13 +5207,13 @@ gulp-postcss@^8.0.0:
     vinyl-sourcemaps-apply "^0.2.1"
 
 gulp-purgecss@^2.0.3:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/gulp-purgecss/-/gulp-purgecss-2.0.5.tgz#c2f58c1775b1a88f5aa45ee8a5d6db51021f0d24"
-  integrity sha512-uTSka26yR522qEe6pBLONvELd3tXYkhDjXNFFrbmQnqPTFLorrkfVCMzA0JCBSaH3vcwRSydSfNRUvb6UfFVjA==
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/gulp-purgecss/-/gulp-purgecss-2.0.6.tgz#126aef291dcfd8b451d6f361cc3c2100f72435cf"
+  integrity sha512-pGNq3PWbDVu5v29WW3FzW33y6caRg041W4cfWkZYGC/mNQc0VtPuI4bUJJbKsYqxQgCZ9EcqAlNMfwPo9sIvhg==
   dependencies:
     glob "^7.1.6"
     plugin-error "^1.0.1"
-    purgecss "^2.0.5"
+    purgecss "^2.0.6"
     through2 "^3.0.1"
 
 gulp-stylelint@^13.0.0:
@@ -10261,10 +10261,10 @@ punycode@^2.1.0:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
 
-purgecss@^2.0.5:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/purgecss/-/purgecss-2.0.5.tgz#b7aa3e3634704aa041d03f007504c303e8c6586e"
-  integrity sha512-VwQoDXImH0pabZ6ivLPCsWuRGd979NEzACaT/P3pWzDVCwHXSgXUM4QDbnMklMawU0r4MrCvdaORM84KJvsCIA==
+purgecss@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/purgecss/-/purgecss-2.0.6.tgz#fc0a03f9533448635309af5979b094aab57ff361"
+  integrity sha512-Xab72ykpWtg+j/dTphz9HCrychRNbMebNBrI+pOU0mC7mG5OlwRksEEpNAdOLb1jg9oRHDDu6Exe+nlM9ZLp5Q==
   dependencies:
     commander "^4.0.0"
     glob "^7.0.0"
