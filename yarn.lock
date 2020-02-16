@@ -3619,9 +3619,9 @@ eslint-module-utils@^2.4.1:
     pkg-dir "^2.0.0"
 
 eslint-plugin-ava@^10.0.1:
-  version "10.1.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-ava/-/eslint-plugin-ava-10.1.0.tgz#dabd075186ad0bfa6e46608c41cb0d1f85b23ca0"
-  integrity sha512-kYFSWOKoFvwCD77cIzAkh+9DMWOONxHYwcuCkBjQre2vZ13MtBQ6Z2XmWA3tUSzK29q1RFR4L4TMAK3gSotYqA==
+  version "10.2.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-ava/-/eslint-plugin-ava-10.2.0.tgz#02c5d91458ddca3b8a116826a803b09fada462f6"
+  integrity sha512-1EP9Mn/pau+ZxwRPDspiioRD6GHCSz7RywTmqW01JTxXvX0vKEV0odfWe+QL+jXfmqd83SHHvDJfOvYcyzoxYA==
   dependencies:
     deep-strict-equal "^0.2.0"
     enhance-visitors "^1.0.0"
