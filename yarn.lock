@@ -8380,9 +8380,9 @@ npm-prefix@^1.2.0:
     untildify "^2.1.0"
 
 npm-profile@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/npm-profile/-/npm-profile-4.0.2.tgz#8272a71c19634d0dce9c35a5daf8ee589cbb0f52"
-  integrity sha512-VRsC04pvRH+9cF+PoVh2nTmJjiG21yu59IHpsBpkxk+jaGAV8lxx96G4SDc0jOHAkfWLXbc6kIph3dGAuRnotQ==
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/npm-profile/-/npm-profile-4.0.3.tgz#791ef03af801e47eb767b1ca10c5a0f545da6632"
+  integrity sha512-NHASi4pvCzHMq3Wy4kYFTvCwGPrTbuuuF8M4TwSFFLzbebDa9dfjh26HMGDzRz+MmDvNDBWBZufx19qYi5HQOw==
   dependencies:
     aproba "^1.1.2 || 2"
     figgy-pudding "^3.4.1"
