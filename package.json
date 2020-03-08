@@ -84,7 +84,7 @@
 		"retext-indefinite-article": "^2.0.0",
 		"retext-passive": "^3.0.0",
 		"retext-quotes": "^4.0.0",
-		"retext-redundant-acronyms": "^2.0.0",
+		"retext-redundant-acronyms": "^3.0.0",
 		"retext-repeated-words": "^2.0.0",
 		"retext-sentence-spacing": "^3.0.0",
 		"stylelint": "^13.0.0",
