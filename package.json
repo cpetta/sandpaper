@@ -82,7 +82,7 @@
 		"retext-contractions": "^4.0.0",
 		"retext-english": "^3.0.3",
 		"retext-indefinite-article": "^2.0.0",
-		"retext-passive": "^2.0.0",
+		"retext-passive": "^3.0.0",
 		"retext-quotes": "^3.0.0",
 		"retext-redundant-acronyms": "^2.0.0",
 		"retext-repeated-words": "^2.0.0",
