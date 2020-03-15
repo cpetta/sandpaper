@@ -10980,9 +10980,9 @@ rehype-parse@^6.0.1:
     xtend "^4.0.0"
 
 rehype-retext@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/rehype-retext/-/rehype-retext-2.0.3.tgz#58040647d8727b3411cdd75e78fd7639477cc33a"
-  integrity sha512-cY9oa4ULg3FpgwavymJwbHqcI+JJNO3iKKu3LSqR1L+uzOR+of8kXym1N31cmXMydZF5/tpWw22fZoBGJDWJng==
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/rehype-retext/-/rehype-retext-2.0.4.tgz#63badf6ce7bf1f39d50c4d895569965c497ffe09"
+  integrity sha512-OnGX5RE8WyEs/Snz+Bs8DM9uGdrNUXMhCC7CW3S1cIZVOC90VdewdE+71kpG6LOzS0xwgZyItwrhjGv+oQgwkQ==
   dependencies:
     hast-util-to-nlcst "^1.0.0"
 
