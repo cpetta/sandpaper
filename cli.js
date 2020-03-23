@@ -16,7 +16,7 @@ const cli = meow(`
 		--strict	Lint codding style in addition to errors.
 		--fixStyle	fixes coding style issues, such as tabs/spaces, indentation, and css property order.
 		--watch		Remain running, re-lint or re-build whenever a file is changed.
-		--prod		Build for production, Don't include sourcemaps, and minified code.
+		--prod		Build for production, Don’t include sourcemaps, and minified code.
 
 	Examples
 	  $ sandpaper --lint

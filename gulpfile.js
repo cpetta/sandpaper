@@ -47,6 +47,7 @@ const htmlmin = require('gulp-htmlmin');
 const imagemin = require('gulp-imagemin');
 const jshint = require('gulp-jshint');
 const postcss = require('gulp-postcss');
+const postcsssafeparser = require('postcss-safe-parser');
 const postcssColorGuard = require('colorguard');
 const postCSSinHTML = require('gulp-html-postcss');
 const postcssReporter = require('postcss-reporter');
@@ -219,13 +220,13 @@ function copyAssets() {
 
 // From https://github.com/doshprompt/htmlhint-stylish/issues/1#issuecomment-251012229
 function htmlReporter(file) {
-	return stylish.reporter(file.htmlhint.messages.map(errMsg => ({
-		file: path.relative(file.cwd, errMsg.file),
+	return stylish.reporter(file.htmlhint.messages.map(errMessage => ({
+		file: path.relative(file.cwd, errMessage.file),
 		error: {
-			character: errMsg.error.col,
-			code: errMsg.error.rule.id,
-			line: errMsg.error.line,
-			reason: errMsg.error.message
+			character: errMessage.error.col,
+			code: errMessage.error.rule.id,
+			line: errMessage.error.line,
+			reason: errMessage.error.message
 		}
 	})));
 }
@@ -305,7 +306,7 @@ function optamizeImages() {
 		.pipe(changed(gulpif(staging, paths.dev.html, paths.prod.html)))
 		.pipe(cache(imagemin([
 			imagemin.gifsicle({interlaced: false}, {optimizationLevel: gulpif(staging, 1, 3)}), // Optimization level can be 1 - 3
-			imagemin.jpegtran({progressive: false}),
+			imagemin.mozjpeg({progressive: false}),
 			imagemin.optipng({optimizationLevel: gulpif(staging, 1, 7)}), // OptimizationLevel: 0 - 7 (5 is a good tradeoff if 7 takes too long.)
 			imagemin.svgo({
 				plugins: [
@@ -403,7 +404,7 @@ function lintcss() {
 	}
 
 	return gulp.src(paths.src.css)
-		.pipe(postcss(pluginsPostCSSlint));
+		.pipe(postcss(pluginsPostCSSlint, {parser: postcsssafeparser}));
 }
 
 function lintjs() {
@@ -506,7 +507,7 @@ function watch() {
 	gulp.watch(paths.src.ts, compileTS);
 	gulp.watch(paths.src.images, optamizeImages);
 	gulp.watch(paths.src.leftovers, copyAssets);
-	console.log('Build Watch running, Waiting for file changes...');
+	console.log('Build Watch running, Waiting for file changes.');
 	console.log('Press Ctrl + C to end a file watch.');
 }
 
@@ -515,7 +516,7 @@ function watchlint() {
 	gulp.watch(paths.src.css, {delay: 500}, lintcss);
 	gulp.watch(paths.src.js, {delay: 500}, lintjs);
 	gulp.watch(paths.src.ts, {delay: 500}, lintts);
-	console.log('Lint Watch running, Waiting for file changes...');
+	console.log('Lint Watch running, Waiting for file changes.');
 	console.log('Press Ctrl + C to end a file watch.');
 }
 
