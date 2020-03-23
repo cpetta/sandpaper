@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.3](https://github.com/cpetta/sandpaper/compare/v1.4.2...v1.4.3) (2020-03-23)
+
+
+### Bug Fixes
+
+* **csslint:** switch to safe parser ([a02543f](https://github.com/cpetta/sandpaper/commit/a02543fc27fff8333514be261ce0d78aec8b386d))
+* **imagemin:** fix breaking change in imagemin ([e71e25d](https://github.com/cpetta/sandpaper/commit/e71e25db72560af16c1d1e7a55e4dd516af18315))
+
 ## [1.4.2](https://github.com/cpetta/sandpaper/compare/v1.4.1...v1.4.2) (2020-03-23)
 
 
