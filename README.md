@@ -5,7 +5,7 @@
 ## What is Sandpaper
 
 * Sandpaper is a commandline tool that's used to smooth out the rough edges when coding websites using HTML, CSS, and Javascript.
-* Heavily inspired by XO, Sandpaper is a build system wrapper. It originally started as a gulpfile, and has been updated to use the commandline
+* Heavily inspired by XO, Sandpaper is a build system wrapper. It originally started as a gulpfile, and has been updated to use the commandline.
 
 ## Primary Project Goals
 
@@ -17,7 +17,7 @@
 ### How Sandpaper helps achive these goals
 
 * `sandpaper --lint` can be used to check for syntax errors, style erorrs, and other common problems in html, css, and javascript. Add the `--watch` flag to perform linting on every file save.
-* `sandpaper --lint --strict` is used to check for code style problems, keeping code consistantly readable accross different developers
+* `sandpaper --lint --strict` is used to check for code style problems, keeping code consistantly readable accross different developers.
 * `sandpeper --build` uses minification to reduce the size of html, css, javascript, and imagemin to optimize images.
 * `sandpaper --sync` watches files for changes, and automatically builds and reloads a webserver with your site.
 
