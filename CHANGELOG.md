@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.2](https://github.com/cpetta/sandpaper/compare/v1.4.1...v1.4.2) (2020-03-23)
+
+
+### Bug Fixes
+
+* **readme:** missing periods ([02c718f](https://github.com/cpetta/sandpaper/commit/02c718f3b6aedccdf66f168f5cfe0979bbc2433b))
+
 ## [1.4.1](https://github.com/cpetta/sandpaper/compare/v1.4.0...v1.4.1) (2019-12-28)
 
 
