@@ -45,8 +45,7 @@ Start browser syncronized server, compiles code on change.
 `--strict`
 Lint codding style in addition to errors.
 
-`--fixStyle`
-(Planned feature, not currently available)
+`--fix`
 fixes coding style issues, such as tabs/spaces, indentation, and css property order.
 
 `--watch`
