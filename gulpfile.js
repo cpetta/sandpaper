@@ -306,7 +306,7 @@ function optamizeImages() {
 		.pipe(changed(gulpif(staging, paths.dev.html, paths.prod.html)))
 		.pipe(cache(imagemin([
 			imagemin.gifsicle({interlaced: false}, {optimizationLevel: gulpif(staging, 1, 3)}), // Optimization level can be 1 - 3
-			imagemin.jpegtran({progressive: false}),
+			imagemin.mozjpeg({progressive: false}),
 			imagemin.optipng({optimizationLevel: gulpif(staging, 1, 7)}), // OptimizationLevel: 0 - 7 (5 is a good tradeoff if 7 takes too long.)
 			imagemin.svgo({
 				plugins: [
