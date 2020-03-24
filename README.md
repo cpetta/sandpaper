@@ -1,4 +1,4 @@
-# Cpetta's Sandpaper
+# Sandpaper
 
 [![Dependencies][david-svg]][david-url] [![Dependabot Status][Dependabot-svg]][Dependabot-url] [![Build Status][travis-ci-svg]][travis-ci-url] [![Coverage Status][coveralls-svg]][coveralls-url] [![FOSSA Status][FOSSA-svg]][FOSSA-url] [![XO code style][xo-svg]][xo-url] [![semantic-release][semantic-release-svg]][semantic-release-url] [![Total alerts][LGTM-svg]][LGTM-url]
 
