@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.4](https://github.com/cpetta/sandpaper/compare/v1.4.3...v1.4.4) (2020-03-25)
+
+
+### Bug Fixes
+
+* **jshint:** move xo from devdep to dep ([3a144df](https://github.com/cpetta/sandpaper/commit/3a144df74d21aed78a85ae7b32cf4cb3c6e46f32))
+
 ## [1.4.3](https://github.com/cpetta/sandpaper/compare/v1.4.2...v1.4.3) (2020-03-23)
 
 
