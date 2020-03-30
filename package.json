@@ -77,7 +77,7 @@
 		"pump": "^3.0.0",
 		"rehype-parse": "^6.0.1",
 		"rehype-retext": "^2.0.3",
-		"rehype-stringify": "^6.0.0",
+		"rehype-stringify": "^7.0.0",
 		"remark-retext": "^4.0.0",
 		"retext-contractions": "^4.0.0",
 		"retext-english": "^3.0.3",
