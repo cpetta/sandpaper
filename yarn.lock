@@ -6848,9 +6848,9 @@ is-png@^2.0.0:
   integrity sha512-4KPGizaVGj2LK7xwJIz8o5B2ubu1D/vcQsgOGFEDlpcvgZHto4gBnyd0ig7Ws+67ixmwKoNmu0hYnpo6AaKb5g==
 
 is-promise@^2.1.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/is-promise/-/is-promise-2.2.0.tgz#3ebfc546cee7064c314686279cc9df7bc2724715"
-  integrity sha512-N/4ZxZGjDLAWJQNtcq1/5AOiWTAAhDwnjlaGPaC2+p3pQ+Ka2Dl/EL29DppuoiZ8Xr1/p/9ywBGGzHRPoWKfGA==
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/is-promise/-/is-promise-2.2.1.tgz#0d624554bc3bb09d4896b3802ec9a093731b4442"
+  integrity sha512-KckoDDHnZgTg3vZbOKo5xwWgIQqjSt5jjg5bcvyScaNwCNpqqWE+yg9OOoYHBzjCp9kyqSGrJBvWLEyXk6Z6ew==
 
 is-proto-prop@^2.0.0:
   version "2.0.0"
