@@ -5603,13 +5603,13 @@ gulp-postcss@^8.0.0:
     vinyl-sourcemaps-apply "^0.2.1"
 
 gulp-purgecss@^2.0.3:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/gulp-purgecss/-/gulp-purgecss-2.1.2.tgz#0f101e4b5a0fc446f237c02fb8d54583d4c132e4"
-  integrity sha512-dGg6uCmkcv5MHRduU6jYwM//S1/2cUhS2GDLcEcnRnnUE309gsVyNApAh96C51jQxtJRinl9tgfJEGVRVC6afw==
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/gulp-purgecss/-/gulp-purgecss-2.2.0.tgz#2753a0cdf702f932a57a672e2c9c963948b64eb3"
+  integrity sha512-9SRznMJlhHlI01BqdtIpql6WGk1yh5wm96HlbB57u6SZwbPDxDPGcnd411MEln2lZiDatu0jhy0kbK1FZChzdw==
   dependencies:
     glob "^7.1.6"
     plugin-error "^1.0.1"
-    purgecss "^2.1.2"
+    purgecss "^2.2.0"
     through2 "^3.0.1"
 
 gulp-stylelint@^13.0.0:
@@ -10671,7 +10671,7 @@ pupa@^2.0.1:
   dependencies:
     escape-goat "^2.0.0"
 
-purgecss@^2.1.2:
+purgecss@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/purgecss/-/purgecss-2.2.0.tgz#52cc0f259ada7556e1d83a81bd63ad35d57bdd0f"
   integrity sha512-krblW3ECdPq8GQZQ2mS4FaKtJbV8PX4x65V6wOuTwcfUSIxcTUeBekROCC53IbFKW/t044BuiVUHiSa3MqGJRg==
