@@ -1820,9 +1820,9 @@ buffer@^4.3.0:
     isarray "^1.0.0"
 
 buffer@^5.2.1:
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/buffer/-/buffer-5.5.0.tgz#9c3caa3d623c33dd1c7ef584b89b88bf9c9bc1ce"
-  integrity sha512-9FTEDjLjwoAkEwyMGDjYJQN2gfRgOKBKRfiglhvibGbpeeU/pQn1bJxQqm32OD/AIeEuHxU9roxXxg34Byp/Ww==
+  version "5.6.0"
+  resolved "https://registry.yarnpkg.com/buffer/-/buffer-5.6.0.tgz#a31749dc7d81d84db08abf937b6b8c4033f62786"
+  integrity sha512-/gDYp/UtU0eA1ys8bOs9J6a+E/KWIY+DZ+Q2WESNUA0jFRsJOc0SNUO6xJ5SGA1xueg3NL65W6s+NY5l9cunuw==
   dependencies:
     base64-js "^1.0.2"
     ieee754 "^1.1.4"
@@ -13314,9 +13314,9 @@ umask@^1.1.0, umask@~1.1.0:
   integrity sha1-8pzr8B31F5ErtY/5xOUP3o4zMg0=
 
 unbzip2-stream@^1.0.9:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/unbzip2-stream/-/unbzip2-stream-1.4.1.tgz#151b104af853df3efdaa135d8b1eca850a44b426"
-  integrity sha512-sgDYfSDPMsA4Hr2/w7vOlrJBlwzmyakk1+hW8ObLvxSp0LA36LcL2XItGvOT3OSblohSdevMuT8FQjLsqyy4sA==
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/unbzip2-stream/-/unbzip2-stream-1.4.3.tgz#b0da04c4371311df771cdc215e87f2130991ace7"
+  integrity sha512-mlExGW4w71ebDJviH16lQLtZS32VKqsSfk80GCfUlwT/4/hNRFsoscrF/c++9xinkMzECL1uL9DDwXqFWkruPg==
   dependencies:
     buffer "^5.2.1"
     through "^2.3.8"
