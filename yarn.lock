@@ -2755,7 +2755,7 @@ convert-source-map@^1.5.0, convert-source-map@^1.7.0:
   dependencies:
     safe-buffer "~5.1.1"
 
-convert-vinyl-to-vfile@^2.0.0:
+convert-vinyl-to-vfile@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/convert-vinyl-to-vfile/-/convert-vinyl-to-vfile-2.1.2.tgz#22366b788d549243c536b7bd9dbe7cb5dd2d9915"
   integrity sha512-KJv20TrsFzQNuKfpVJLi4qM9g2BVfPEmY00FLNt+9criihAfd2oEAHOYdlhGxpD0dah6oexZkSDDCR1Ug00c4A==
@@ -9930,7 +9930,7 @@ please-upgrade-node@^3.2.0:
   dependencies:
     semver-compare "^1.0.0"
 
-plugin-error@1.0.1, plugin-error@^1.0.1:
+plugin-error@1.0.1, plugin-error@^1.0.0, plugin-error@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/plugin-error/-/plugin-error-1.0.1.tgz#77016bd8919d0ac377fdcdd0322328953ca5781c"
   integrity sha512-L1zP0dk7vGweZME2i+EeakvUNqSrdiI3F91TwEoYiGrAfUXmVv6fJIq4g82PAXxNsWOp0J7ZqQy/3Szz0ajTxA==
@@ -13353,12 +13353,12 @@ unherit@^1.0.4:
     xtend "^4.0.0"
 
 unified-engine-gulp@^8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/unified-engine-gulp/-/unified-engine-gulp-8.0.0.tgz#d89f79b1dca3a98079d3c3b6d5e1f6cfe7b47c11"
-  integrity sha512-zZ4fTz3CJ7xScLMTFTllgbH8beWG3qQNk/EKCv6IaA5Jn1IHcGhwyayejD52dN1ad+V933X9OdoWJyMEyQSKaw==
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/unified-engine-gulp/-/unified-engine-gulp-8.1.0.tgz#16eb5bbd096034eb19cbd06769b47d2a6a3aa851"
+  integrity sha512-pZ2s3eQ58CTyvdhFS2UoXEhpAGKbf6/+BeyR8Vbn+cbnYQzyLQO+XMWN1821RDxUlYpUfWgKE12hTYqMPTCrhw==
   dependencies:
-    convert-vinyl-to-vfile "^2.0.0"
-    plugin-error "^1.0.1"
+    convert-vinyl-to-vfile "^2.1.2"
+    plugin-error "^1.0.0"
     through2 "^3.0.0"
     unified-engine "^8.0.0"
     vinyl "^2.2.0"
