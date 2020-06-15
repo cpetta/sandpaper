@@ -2756,9 +2756,9 @@ convert-source-map@^1.5.0, convert-source-map@^1.7.0:
     safe-buffer "~5.1.1"
 
 convert-vinyl-to-vfile@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/convert-vinyl-to-vfile/-/convert-vinyl-to-vfile-2.0.0.tgz#7373494bd299a8c882ecea6068f71c4598ebb4ed"
-  integrity sha1-c3NJS9KZqMiC7OpgaPccRZjrtO0=
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/convert-vinyl-to-vfile/-/convert-vinyl-to-vfile-2.1.2.tgz#22366b788d549243c536b7bd9dbe7cb5dd2d9915"
+  integrity sha512-KJv20TrsFzQNuKfpVJLi4qM9g2BVfPEmY00FLNt+9criihAfd2oEAHOYdlhGxpD0dah6oexZkSDDCR1Ug00c4A==
   dependencies:
     vfile "^2.0.0"
     vinyl "^2.0.0"
@@ -11302,10 +11302,15 @@ repeating@^2.0.0:
   dependencies:
     is-finite "^1.0.0"
 
-replace-ext@1.0.0, replace-ext@^1.0.0:
+replace-ext@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/replace-ext/-/replace-ext-1.0.0.tgz#de63128373fcbf7c3ccfa4de5a480c45a67958eb"
   integrity sha1-3mMSg3P8v3w8z6TeWkgMRaZ5WOs=
+
+replace-ext@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/replace-ext/-/replace-ext-1.0.1.tgz#2d6d996d04a15855d967443631dd5f77825b016a"
+  integrity sha512-yD5BHCe7quCgBph4rMQ+0KkIRKwWCrHDOX1p1Gp6HwjPM5kVoCdKGNhN7ydqqsX6lJEnQDKZ/tFMiEdQ1dvPEw==
 
 replace-homedir@^1.0.0:
   version "1.0.0"
