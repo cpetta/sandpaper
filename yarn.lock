@@ -3934,6 +3934,13 @@ eslint-config-xo@^0.30.0:
   dependencies:
     confusing-browser-globals "1.0.9"
 
+eslint-config-xo@^0.31.0:
+  version "0.31.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-xo/-/eslint-config-xo-0.31.0.tgz#83c426af16f47b6e667876152b402d02d4e53211"
+  integrity sha512-bSFmDVrIVZoA0TnNtUEp4KIdPYuEquq3XCWruiU0eflMx2BtxQtASUuMAVqUg3rDZaHguaCY50/WtTH6IZSPdg==
+  dependencies:
+    confusing-browser-globals "1.0.9"
+
 eslint-formatter-pretty@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/eslint-formatter-pretty/-/eslint-formatter-pretty-3.0.1.tgz#97603fcb2ddcc6dd60662d6e9f327a734cc55a54"
