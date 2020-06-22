@@ -2755,12 +2755,12 @@ convert-source-map@^1.5.0, convert-source-map@^1.7.0:
   dependencies:
     safe-buffer "~5.1.1"
 
-convert-vinyl-to-vfile@^2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/convert-vinyl-to-vfile/-/convert-vinyl-to-vfile-2.1.2.tgz#22366b788d549243c536b7bd9dbe7cb5dd2d9915"
-  integrity sha512-KJv20TrsFzQNuKfpVJLi4qM9g2BVfPEmY00FLNt+9criihAfd2oEAHOYdlhGxpD0dah6oexZkSDDCR1Ug00c4A==
+convert-vinyl-to-vfile@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/convert-vinyl-to-vfile/-/convert-vinyl-to-vfile-3.0.0.tgz#152c4b91d6f8adee09816b0cad8dfcd13227ac89"
+  integrity sha512-3ABj7SyTaDTjRizx7EbFOQajiS9KhDheZ4BwfA5UOC6p6epkW/w1Wf2UTIroeDE4aIRYyJ/lpHSJvcGwbqRCdg==
   dependencies:
-    vfile "^2.0.0"
+    vfile "^4.1.1"
     vinyl "^2.0.0"
 
 cookie@0.3.1:
@@ -13347,15 +13347,15 @@ unherit@^1.0.4:
     xtend "^4.0.0"
 
 unified-engine-gulp@^8.0.0:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/unified-engine-gulp/-/unified-engine-gulp-8.1.0.tgz#16eb5bbd096034eb19cbd06769b47d2a6a3aa851"
-  integrity sha512-pZ2s3eQ58CTyvdhFS2UoXEhpAGKbf6/+BeyR8Vbn+cbnYQzyLQO+XMWN1821RDxUlYpUfWgKE12hTYqMPTCrhw==
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/unified-engine-gulp/-/unified-engine-gulp-8.2.0.tgz#388032a7e673558c4ae20776c0ed883d9e09e8cb"
+  integrity sha512-cM3Wzb125KhR2qFIF8iE4v04j7IolH1UJFTB2T8k3xp1AFrvkPFFD+OTXHfmudscMcaGfFdZYCGXqqSXACYjaw==
   dependencies:
-    convert-vinyl-to-vfile "^2.1.2"
+    convert-vinyl-to-vfile "^3.0.0"
     plugin-error "^1.0.0"
     through2 "^3.0.0"
     unified-engine "^8.0.0"
-    vinyl "^2.2.0"
+    vinyl "^2.0.0"
 
 unified-engine@^8.0.0:
   version "8.0.0"
@@ -13861,6 +13861,17 @@ vfile@^4.0.0:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/vfile/-/vfile-4.0.3.tgz#1e50b824fb5e5affd718e225c7bb1af6d97d4408"
   integrity sha512-lREgT5sF05TQk68LO6APy0In+TkFGnFEgKChK2+PHIaTrFQ9oHCKXznZ7VILwgYVBcl0gv4lGATFZBLhi2kVQg==
+  dependencies:
+    "@types/unist" "^2.0.0"
+    is-buffer "^2.0.0"
+    replace-ext "1.0.0"
+    unist-util-stringify-position "^2.0.0"
+    vfile-message "^2.0.0"
+
+vfile@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/vfile/-/vfile-4.1.1.tgz#282d28cebb609183ac51703001bc18b3e3f17de9"
+  integrity sha512-lRjkpyDGjVlBA7cDQhQ+gNcvB1BGaTHYuSOcY3S7OhDmBtnzX95FhtZZDecSTDm6aajFymyve6S5DN4ZHGezdQ==
   dependencies:
     "@types/unist" "^2.0.0"
     is-buffer "^2.0.0"
