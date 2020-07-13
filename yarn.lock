@@ -8194,7 +8194,7 @@ memory-fs@^0.2.0:
   resolved "https://registry.yarnpkg.com/memory-fs/-/memory-fs-0.2.0.tgz#f2bb25368bc121e391c2520de92969caee0a0290"
   integrity sha1-8rslNovBIeORwlIN6Slpyu4KApA=
 
-meow@5.0.0, meow@^5.0.0:
+meow@5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/meow/-/meow-5.0.0.tgz#dfc73d63a9afc714a5e371760eb5c88b91078aa4"
   integrity sha512-CbTqYU17ABaLefO8vCU153ZZlprKYWDljcndKKDCFcYQITzWCXZAVk4QMFZPgvzrnUQ3uItnIE/LoUOwrT15Ig==
@@ -14150,9 +14150,9 @@ xmlhttprequest-ssl@~1.5.4:
   integrity sha1-wodrBhaKrcQOV9l+gRkayPQ5iz4=
 
 xo@^0.32.0:
-  version "0.32.0"
-  resolved "https://registry.yarnpkg.com/xo/-/xo-0.32.0.tgz#f3eeaec5c0a8ac8003d5d872464d9091a6bf7b7a"
-  integrity sha512-PnrLzAb9vMKljc5y0tUM4MEZGtXJd8KkuYoszYQkzUyFk8ykDrrOPEDO7ZmpoGSEohNjRLusvgOUi1LJD/jQjA==
+  version "0.32.1"
+  resolved "https://registry.yarnpkg.com/xo/-/xo-0.32.1.tgz#8fbe08779cf559a0a1e959877644661e40ce175e"
+  integrity sha512-L43ROY2opNW7yp7byEAibBSk0jYvMuC4yUUrphkqegqU76Bxp5Rc+Gcl62lK1f5zuRrlY0IwMypIfY4EPSzMfQ==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^3.1.0"
     "@typescript-eslint/parser" "^3.1.0"
@@ -14184,7 +14184,7 @@ xo@^0.32.0:
     json-stable-stringify-without-jsonify "^1.0.1"
     json5 "^2.1.3"
     lodash "^4.17.15"
-    meow "^5.0.0"
+    meow "^7.0.1"
     micromatch "^4.0.2"
     open-editor "^2.0.1"
     p-reduce "^2.1.0"
