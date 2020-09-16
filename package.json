@@ -72,7 +72,7 @@
 		"postcss-normalize": "^9.0.0",
 		"postcss-preset-env": "^6.7.0",
 		"postcss-reporter": "^6.0.1",
-		"postcss-safe-parser": "^4.0.2",
+		"postcss-safe-parser": "^5.0.0",
 		"postcss-unprefix": "^2.1.4",
 		"pump": "^3.0.0",
 		"rehype-parse": "^7.0.1",
