@@ -68,7 +68,7 @@
 		"jshint-more-stylish": "^1.0.1",
 		"markdownlint": "^0.20.0",
 		"meow": "^7.0.0",
-		"postcss": "^7.0.18",
+		"postcss": "^8.0.3",
 		"postcss-normalize": "^9.0.0",
 		"postcss-preset-env": "^6.7.0",
 		"postcss-reporter": "^6.0.1",
