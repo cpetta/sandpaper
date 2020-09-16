@@ -38,7 +38,7 @@
 		}
 	},
 	"dependencies": {
-		"autoprefixer": "^9.6.4",
+		"autoprefixer": "^10.0.0",
 		"browser-sync": "^2.26.7",
 		"colorguard": "^1.2.1",
 		"doiuse": "^4.2.0",
