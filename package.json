@@ -58,7 +58,7 @@
 		"gulp-if": "^3.0.0",
 		"gulp-imagemin": "^7.1.0",
 		"gulp-jshint": "^2.1.0",
-		"gulp-postcss": "^8.0.0",
+		"gulp-postcss": "^9.0.0",
 		"gulp-purgecss": "^3.0.0",
 		"gulp-stylelint": "^13.0.0",
 		"gulp-tslint": "^8.1.4",
