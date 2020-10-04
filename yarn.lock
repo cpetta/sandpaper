@@ -4251,9 +4251,9 @@ eslint-plugin-unicorn@^22.0.0:
     semver "^7.3.2"
 
 eslint-rule-docs@^1.1.5:
-  version "1.1.209"
-  resolved "https://registry.yarnpkg.com/eslint-rule-docs/-/eslint-rule-docs-1.1.209.tgz#cc027888aad7c7c311447a8e0951eaef56c429ce"
-  integrity sha512-a0mg7IWKvV47HEuMLdk91Qq+cMl7BPUQ1WHtAk6XfSNqdWsm9Zfx4DptHWWZ2XcaGowIflO6tIv9nM8fLFZRcQ==
+  version "1.1.210"
+  resolved "https://registry.yarnpkg.com/eslint-rule-docs/-/eslint-rule-docs-1.1.210.tgz#2619817224052364dc8bd68b0b0c7b8389e85e18"
+  integrity sha512-6OMWgPnH4naGSj3/VVHz1ESuZo8+pgnblFvNN7FwqQrFB1UU3xO2Z4gYj5zT9LbhmJWIG8axAYr/5rzdxsgGMQ==
 
 eslint-scope@^5.0.0, eslint-scope@^5.1.1:
   version "5.1.1"
