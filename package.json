@@ -43,7 +43,7 @@
 		"colorguard": "^1.2.1",
 		"doiuse": "^4.2.0",
 		"eslint": "^7.0.0",
-		"eslint-config-xo": "^0.32.1",
+		"eslint-config-xo": "^0.33.1",
 		"eslint-plugin-import": "^2.18.2",
 		"eslint-plugin-unicorn": "^23.0.0",
 		"gulp": "^4.0.2",
