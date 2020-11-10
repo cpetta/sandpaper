@@ -1892,7 +1892,7 @@ browserify-zlib@^0.2.0:
   dependencies:
     pako "~1.0.5"
 
-browserslist@^4.12.0, browserslist@^4.14.5, browserslist@^4.6.4:
+browserslist@^4.12.0, browserslist@^4.14.5, browserslist@^4.14.7, browserslist@^4.6.4:
   version "4.14.7"
   resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.14.7.tgz#c071c1b3622c1c2e790799a37bb09473a4351cb6"
   integrity sha512-BSVRLCeG3Xt/j/1cCGj1019Wbty0H+Yvu2AOuZSuoaUWn3RatbL33Cxk+Q4jRMRAbOm0p7SLravLjpnT6s0vzQ==
@@ -2189,7 +2189,7 @@ camelcase@^6.0.0:
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-6.1.0.tgz#27dc176173725fb0adf8a48b647f4d7871944d78"
   integrity sha512-WCMml9ivU60+8rEJgELlFp1gxFcEGxwYleE3bziHEDeqsqAWGHdimB7beBFGjLzVNgPGyDsfgXLQEYMpmIFnVQ==
 
-caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001137, caniuse-lite@^1.0.30001154, caniuse-lite@^1.0.30001157:
+caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001137, caniuse-lite@^1.0.30001157:
   version "1.0.30001157"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001157.tgz#2d11aaeb239b340bc1aa730eca18a37fdb07a9ab"
   integrity sha512-gOerH9Wz2IRZ2ZPdMfBvyOi3cjaz4O4dgNwPGzx8EhqAs4+2IL/O+fJsbt+znSigujoZG8bVcIAUM/I/E5K3MA==
@@ -3558,18 +3558,18 @@ doctrine@^3.0.0:
     esutils "^2.0.2"
 
 doiuse@^4.2.0:
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/doiuse/-/doiuse-4.3.1.tgz#216006797c6725c745775dd1a0fc81fe3242fc73"
-  integrity sha512-aeAYA6UnodmjeooblVvkJSTeM3fHPNInuAACpHJEywZNyrXvPEXZWKDotRiWthEpqa0ZYtD+e0ZmW8Zeli7Z2g==
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/doiuse/-/doiuse-4.4.0.tgz#d02541820a05b60ae69facbe2c1abd00513db7c2"
+  integrity sha512-+RbL+7ECpBzbX+GMnX3PXzc/t+ufvZV/q/ysES5U8i0VexgGKLezQPCVehKwzLH2pIFC0pISfPaSm69CxuEw6w==
   dependencies:
-    browserslist "^4.14.5"
-    caniuse-lite "^1.0.30001154"
+    browserslist "^4.14.7"
+    caniuse-lite "^1.0.30001157"
     css-rule-stream "^1.1.0"
     duplexer2 "0.0.2"
     jsonfilter "^1.1.2"
     ldjson-stream "^1.2.1"
     multimatch "^5.0.0"
-    postcss "^8.1.4"
+    postcss "^8.1.6"
     source-map "^0.7.3"
     through2 "^4.0.2"
     yargs "^16.1.0"
@@ -10737,7 +10737,7 @@ postcss@^7, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.17, postcss@^7.0.2, po
     source-map "^0.6.1"
     supports-color "^6.1.0"
 
-postcss@^8.0.3, postcss@^8.1.0, postcss@^8.1.4:
+postcss@^8.0.3, postcss@^8.1.0, postcss@^8.1.6:
   version "8.1.6"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.1.6.tgz#b022ba2cfb8701da234d073ed3128c5a384c35ff"
   integrity sha512-JuifSl4h8dJ70SiMXKjzCxhalE6p2TnMHuq9G8ftyXj2jg6SXzqCsEuxMj9RkmJoO5D+Z9YrWunNkxqpRT02qg==
