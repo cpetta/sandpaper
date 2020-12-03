@@ -525,9 +525,6 @@ function watchlint() {
 }
 
 function syncBrowsers() {
-	/* SyncBrowser doesn't need to be checked at both locations, since that is happening with the build function */
-	/* istanbul ignore if */
-	/* istanbul ignore else */
 	const baseDir = getPath(staging);
 
 	browserSync.init({
