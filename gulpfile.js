@@ -38,7 +38,7 @@ const changed = require('gulp-changed');
 const changedInPlace = require('gulp-changed-in-place');
 const composer = require('gulp-uglify/composer');
 const doiuse = require('doiuse');
-const eslint = require('gulp-eslint');
+const eslint = require('gulp-eslint7');
 const gulp = require('gulp');
 const gulpif = require('gulp-if');
 const cleanCss = require('gulp-clean-css');
@@ -51,7 +51,8 @@ const postcsssafeparser = require('postcss-safe-parser');
 const postcssColorGuard = require('colorguard');
 const postCSSinHTML = require('gulp-html-postcss');
 const postcssReporter = require('postcss-reporter');
-const postcssNormalize = require('postcss-normalize');
+/* Removed until updated to support PostCss^8.0.0
+const postcssNormalize = require('postcss-normalize'); */
 const presetEnv = require('postcss-preset-env');
 const pump = require('pump');
 const purgecss = require('gulp-purgecss');
@@ -87,7 +88,6 @@ const redundantAcronyms = require('retext-redundant-acronyms');
 const errorsOnlyStylelint = require('./errors-only.stylelintrc.js').config;
 const codingstyleStylelint = require('./codingstyle.stylelintrc.js').config;
 
-let baseDir;
 let SourceMaps = false;
 let onlyLintErrors = true;
 let staging = true;
@@ -101,8 +101,10 @@ const ZipName = ProjectName + ' - ' + currentTime;
 const pluginsPostCSS = [
 	presetEnv({stage: 2 /* Stage 0 - 4 */}),
 	unprefix(),
-	autoprefixer(),
-	postcssNormalize({forceImport: 'normalize.css'})
+	autoprefixer()
+	/* Removed until updated to support PostCss^8.0.0
+	postcssNormalize({forceImport: 'normalize.css'}) // Breaks CompileHTML
+	*/
 ];
 
 const unifiedPlugins = [
@@ -179,17 +181,14 @@ function includeSourceMaps() {
 	return Promise.resolve('SourceMaps');
 }
 
-async function clean(cb) {
-	let path;
+function getPath(condition) {
 	/* No need to test both paths */
-	/* istanbul ignore if */
-	/* istanbul ignore else */
-	if (staging) {
-		path = paths.dev.all;
-	} else {
-		path = paths.prod.all;
-	}
+	/* istanbul ignore next */
+	return (condition ? paths.dev.all : paths.prod.all);
+}
 
+async function clean(cb) {
+	const path = getPath(staging);
 	cache.clearAll();
 	fs.rmdir(path, {recursive: true}, cb => {
 		/* istanbul ignore next */
@@ -198,19 +197,26 @@ async function clean(cb) {
 	return cb;
 }
 
-function logWriter(error, logfilelocation) {
-	logfilelocation = logfilelocation + Date.now() + '.txt';
-	fs.writeFile(logfilelocation, error, err => {
-		if (err) {
-			if (!fs.existsSync('./logs/')) {
-				fs.mkdirSync('./logs/');
-			}
+function logWriter(error) {
+	if (error === '' || error === undefined || error === null) {
+		error = 'Empty Error Message';
+	}
 
-			return console.log('Error writting log file: ' + err + '\n\n\n  Error passed to logWriter: ' + error);
+	if (!fs.existsSync('./logs/')) {
+		fs.mkdirSync('./logs/');
+	}
+
+	const logfilelocation = `./logs/errorlog_${Date.now()}.txt`;
+	console.log(logfilelocation);
+	fs.writeFile(logfilelocation, error.toString(), err => {
+		/* istanbul ignore next */
+		if (err) {
+			throw err;
 		}
 
 		return console.log('Details written to logfile: ' + path.resolve(logfilelocation));
 	});
+	return Promise.resolve();
 }
 
 function copyAssets() {
@@ -263,7 +269,7 @@ function compileHTML() {
 			/* There is no else statement, therefor it will be ignored. */
 			/* istanbul ignore else */
 			if (onError !== undefined) {
-				logWriter(onError.message, './logs/sandpaper_error_log');
+				logWriter(onError.message);
 				console.log(
 					'CompileHTML experienced an error. \n',
 					'The most common cause is a Parse error, fixing linting errors usually fixes parse errors.'
@@ -388,20 +394,18 @@ function linthtml() {
 }
 
 function lintcss() {
-	let pluginsPostCSSlint;
-	if (onlyLintErrors) {
-		pluginsPostCSSlint = [
-			stylelint({config: errorsOnlyStylelint}),
-			postcssReporter({clearReportedMessages: true})
-		];
-	} else {
-		pluginsPostCSSlint = [
-			stylelint({config: codingstyleStylelint}),
-			doiuse({/* Options */}),
-			postcssColorGuard({threshold: 3}),
-			postcssReporter({clearReportedMessages: true})
-		];
-	}
+	const pluginsPostCSSlint = () => {
+		return onlyLintErrors ?
+			[
+				stylelint({config: errorsOnlyStylelint}),
+				postcssReporter({clearReportedMessages: true})
+			] : [
+				stylelint({config: codingstyleStylelint}),
+				doiuse({/* Options */}),
+				postcssColorGuard({threshold: 3}),
+				postcssReporter({clearReportedMessages: true})
+			];
+	};
 
 	return gulp.src(paths.src.css)
 		.pipe(postcss(pluginsPostCSSlint, {parser: postcsssafeparser}));
@@ -415,7 +419,7 @@ function lintjs() {
 	}
 
 	return gulp.src(paths.src.js)
-		.pipe(eslint({configFile: `${__dirname}/eslint.config.js`})) // If error try npm install eslint-config-xo
+		.pipe(eslint({configFile: path.resolve('./eslint.config.js').toString()})) // If error try npm install eslint-config-xo
 		.pipe(eslint.format('stylish'));
 }
 
@@ -475,7 +479,7 @@ function zipSrc() {
 
 function fixjs() {
 	return gulp.src(paths.src.js)
-		.pipe(eslint({configFile: `${__dirname}/eslint.config.js`, fix: true}))
+		.pipe(eslint({configFile: path.resolve('./eslint.config.js'), fix: true}))
 		.pipe(gulpif(isFixed, gulp.dest(workingDirectory)));
 
 	function isFixed(file) {
@@ -524,11 +528,7 @@ function syncBrowsers() {
 	/* SyncBrowser doesn't need to be checked at both locations, since that is happening with the build function */
 	/* istanbul ignore if */
 	/* istanbul ignore else */
-	if (staging === true) {
-		baseDir = ('./' + paths.dev.all);
-	} else {
-		baseDir = ('./' + paths.prod.all);
-	}
+	const baseDir = getPath(staging);
 
 	browserSync.init({
 		server: {

@@ -58,28 +58,22 @@ describe('#syncBrowsers', () => {
 });
 
 describe('#logWriter', () => {
-	it('Should experience a write error.', () => {
-		return gulpfile.logWriter('error message', './nonexistantfolder/');
-	});
-});
-
-describe('#logWriter', () => {
-	it('Should write a log file. - And create the log/ directory', () => {
-		if (fs.existsSync('./logs/')) {
-			rimraf('./logs/', () => {});
-		}
-
-		return gulpfile.logWriter('error message', './logs/');
-	});
-});
-
-describe('#logWriter', () => {
 	it('Should write a log file. - With an existing log/ directory', () => {
 		if (fs.existsSync('./logs/')) {
 			rimraf('./logs/', () => {});
 		}
 
-		return gulpfile.logWriter('error message', './logs/');
+		return gulpfile.logWriter('error message');
+	});
+});
+
+describe('#logWriter', () => {
+	it('Should write a log file. - With an empty error', () => {
+		if (fs.existsSync('logs/')) {
+			rimraf('./logs/', () => {});
+		}
+
+		return gulpfile.logWriter('');
 	});
 });
 

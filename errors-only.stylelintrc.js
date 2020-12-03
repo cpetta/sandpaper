@@ -1,7 +1,8 @@
 'use strict';
+const path = require('path');
 
 const config = {
-	extends: `${__dirname}/node_modules/stylelint-config-recommended/`
+	extends: path.resolve('./node_modules/stylelint-config-recommended/')
 };
 
 exports.config = config;
