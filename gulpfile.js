@@ -164,7 +164,7 @@ function getEslintConfigPath() {
 	const fileLoc2 = path.resolve('eslint.config.js');
 	/* No need to test both paths */
 	/* istanbul ignore next */
-	return fs.existsSync(fileLoc1) ? fileLoc1.toString() : fileLoc2.toString();
+	return fs.existsSync(fileLoc2) ? fileLoc2.toString() : fileLoc1.toString();
 }
 
 function releaseMode() {
@@ -426,9 +426,14 @@ function lintjs() {
 			.pipe(jshint.reporter(stylish));
 	}
 
-	return gulp.src(paths.src.js)
-		.pipe(eslint({configFile: getEslintConfigPath()}))
-		.pipe(eslint.format('stylish'));
+	try {
+		return gulp.src(paths.src.js)
+			.pipe(eslint({configFile: getEslintConfigPath()}))
+			.pipe(eslint.format('stylish'));
+	} catch (error) {
+		/* istanbul ignore next */
+		console.log(error);
+	}
 }
 
 function lintts() {
@@ -486,9 +491,14 @@ function zipSrc() {
 }
 
 function fixjs() {
-	return gulp.src(paths.src.js)
-		.pipe(eslint({configFile: getEslintConfigPath(), fix: true}))
-		.pipe(gulpif(isFixed, gulp.dest(workingDirectory)));
+	try {
+		return gulp.src(paths.src.js)
+			.pipe(eslint({configFile: getEslintConfigPath(), fix: true}))
+			.pipe(gulpif(isFixed, gulp.dest(workingDirectory)));
+	} catch (error) {
+		/* istanbul ignore next */
+		console.log(error);
+	}
 
 	function isFixed(file) {
 		return file.eslint !== null && file.eslint.fixed;
