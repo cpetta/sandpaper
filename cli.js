@@ -4,6 +4,8 @@ const meow = require('meow');
 const updateNotifier = require('update-notifier');
 const gulpfile = require('./gulpfile.js');
 const pkg = require('./package.json');
+const fs = require('fs');
+const path = require('path');
 
 const cli = meow(`
 	Usage
@@ -72,17 +74,21 @@ updateNotifier({
 // CLI logic (input handler)
 
 (async () => {
-	await Promise.all([
-		lint(),
-		build(),
-		sync(),
-		(async () => {
-			if (cli.input.length > 0) {
-				console.log('Unrecognized input: ' + cli.input + ' use Sandpaper --help for a list of valid inputs.');
-			}
-		})(),
-		noArgs()
-	]);
+	if (fs.existsSync(path.resolve('./', 'node_modules', 'sandpaper'))) {
+		await Promise.all([
+			lint(),
+			build(),
+			sync(),
+			(async () => {
+				if (cli.input.length > 0) {
+					console.log('Unrecognized input: ' + cli.input + ' use Sandpaper --help for a list of valid inputs.');
+				}
+			})(),
+			noArgs()
+		]);
+	} else {
+		console.log('\r\n Unable to find \'./node_modules/sandpaper\', \r\n It doesn\'t look like sandpaper has been initialized for this project, have you run npm init sandpaper yet? \r\n');
+	}
 })();
 
 // Functions for interfacing between CLI logic and program logic.

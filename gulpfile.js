@@ -159,6 +159,14 @@ const paths = {	// This will likely need to be updated for your project.
 	sourcemaps: './sourcemaps'
 };
 
+function getEslintConfigPath() {
+	const fileLoc1 = path.resolve('./', 'node_modules', 'sandpaper', 'eslint.config.js');
+	const fileLoc2 = path.resolve('eslint.config.js');
+	/* No need to test both paths */
+	/* istanbul ignore next */
+	return fs.existsSync(fileLoc1) ? fileLoc1.toString() : fileLoc2.toString();
+}
+
 function releaseMode() {
 	staging = false;
 	SourceMaps = false;
@@ -419,7 +427,7 @@ function lintjs() {
 	}
 
 	return gulp.src(paths.src.js)
-		.pipe(eslint({configFile: path.resolve('./eslint.config.js').toString()})) // If error try npm install eslint-config-xo
+		.pipe(eslint({configFile: getEslintConfigPath()}))
 		.pipe(eslint.format('stylish'));
 }
 
@@ -479,7 +487,7 @@ function zipSrc() {
 
 function fixjs() {
 	return gulp.src(paths.src.js)
-		.pipe(eslint({configFile: path.resolve('./eslint.config.js'), fix: true}))
+		.pipe(eslint({configFile: getEslintConfigPath(), fix: true}))
 		.pipe(gulpif(isFixed, gulp.dest(workingDirectory)));
 
 	function isFixed(file) {
