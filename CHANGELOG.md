@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.6](https://github.com/cpetta/sandpaper/compare/v1.4.5...v1.4.6) (2020-12-05)
+
+
+### Bug Fixes
+
+* **cli:** create error message when not initialized ([3e96e28](https://github.com/cpetta/sandpaper/commit/3e96e286fbab6c62addcd915c355d79422be8099))
+* **lintjs:** add error handling for missing files ([e7058d8](https://github.com/cpetta/sandpaper/commit/e7058d8b3d919564c7388b188c66ecd46e153326))
+
 ## [1.4.5](https://github.com/cpetta/sandpaper/compare/v1.4.4...v1.4.5) (2020-12-04)
 
 
