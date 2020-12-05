@@ -4,8 +4,8 @@
 
 ## What is Sandpaper
 
-* Sandpaper is a commandline tool that's used to smooth out the rough edges when coding websites using HTML, CSS, and Javascript.
-* Heavily inspired by XO, Sandpaper is a build system wrapper. It originally started as a gulpfile, and has been updated to use the commandline.
+* Sandpaper is a command line tool that's used to smooth out the rough edges when coding websites using HTML, CSS, and JavaScript.
+* Heavily inspired by XO, Sandpaper is a build system wrapper. It originally started as a gulpfile and has since been updated to use the commandline.
 
 ## Primary Project Goals
 
@@ -14,22 +14,28 @@
 * Improve performance of webpages.
 * Automate common development tasks.
 
-### How Sandpaper helps achive these goals
+### How Sandpaper helps achieve these goals
 
-* `sandpaper --lint` can be used to check for syntax errors, style erorrs, and other common problems in html, css, and javascript. Add the `--watch` flag to perform linting on every file save.
-* `sandpaper --lint --strict` is used to check for code style problems, keeping code consistantly readable accross different developers.
-* `sandpeper --build` uses minification to reduce the size of html, css, javascript, and imagemin to optimize images.
+* `sandpaper --lint` can be used to check for syntax errors, style errors, and other common problems in HTML, CSS, and JavaScript. Add the `--watch` flag to perform linting on every file save.
+* `sandpaper --lint --strict` is used to check for code style problems, keeping code consistently readable across different developers.
+* `sandpaper --build` uses minification to reduce the size of HTML, CSS, JavaScript. Additionally, images will be optimized.
 * `sandpaper --sync` watches files for changes, and automatically builds and reloads a webserver with your site.
 
 ## Installation
 
 `npm install sandpaper -g`
 
+from your project folder which contains an /src folder run:
+
+`npm init sandpaper`
+
 ## Workflow
 
 1. Create and edit all your .html, .css, and .js files inside a folder named `src`.
-2. Open command prompt above the `src` forlder, for instance, if you have `C:\\SomeProject\src` open command prompt in the `C:\\SomeProject` folder.
+2. Open command prompt above the `src` folder, for instance, if you have `/SomeProject/src` open command prompt in the `/SomeProject` folder.
 3. Run the `sandpaper` command with your desired flags. all available flags are listed under [flags]
+
+* Note: Running sandpaper with no flags is equivlent to running sandpaper --
 
 ## Flags
 
@@ -40,7 +46,7 @@ Check code for errors.
 Optimize code and save to /dev or /dist (if --production is specified.)
 
 `--sync`
-Start browser syncronized server, compiles code on change.
+Start browser synchronized server, compiles code on change.
 
 `--strict`
 Lint codding style in addition to errors.
@@ -52,9 +58,9 @@ fixes coding style issues, such as tabs/spaces, indentation, and css property or
 Remain running, re-lint or re-build whenever a file is changed.
 
 `--prod`
-Build for production, Don't include sourcemaps and minify code.
+Build for production, do not include source maps and minify code.
 
-## Sandpaper wouldn't be possible without these great open-source libraries
+## Sandpaper would not be possible without these great open-source libraries
 
 * [gulp][gulp-url]
 * [meow][meow-url]
