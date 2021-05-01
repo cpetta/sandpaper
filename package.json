@@ -110,7 +110,7 @@
 		"@semantic-release/npm": "^7.0.9",
 		"@semantic-release/release-notes-generator": "^9.0.1",
 		"coveralls": "^3.1.0",
-		"husky": "^4.3.0",
+		"husky": "^6.0.0",
 		"mocha": "^8.2.1",
 		"nyc": "^15.1.0",
 		"rimraf": "^3.0.2",
