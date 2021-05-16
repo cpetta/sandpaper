@@ -53,7 +53,7 @@
 		"gulp-clean-css": "^4.2.0",
 		"gulp-eslint7": "^0.3.0",
 		"gulp-html-postcss": "^7.1.4",
-		"gulp-htmlhint": "^3.0.0",
+		"gulp-htmlhint": "^4.0.0",
 		"gulp-htmlmin": "^5.0.1",
 		"gulp-if": "^3.0.0",
 		"gulp-imagemin": "^7.1.0",
@@ -67,7 +67,7 @@
 		"gulp-zip": "^5.0.1",
 		"jshint-more-stylish": "^1.0.1",
 		"markdownlint": "^0.22.0",
-		"meow": "^8.0.0",
+		"meow": "^10.0.0",
 		"postcss": "^8.1.10",
 		"postcss-normalize": "^9.0.0",
 		"postcss-preset-env": "^6.7.0",
@@ -98,7 +98,7 @@
 		"unified": "^9.0.0",
 		"unified-engine-gulp": "^8.0.0",
 		"update-notifier": "^5.0.0",
-		"xo": "^0.35.0"
+		"xo": "^0.39.1"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^12.1.1",
