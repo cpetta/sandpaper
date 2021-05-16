@@ -98,10 +98,10 @@
 		"unified": "^9.0.0",
 		"unified-engine-gulp": "^8.0.0",
 		"update-notifier": "^5.0.0",
-		"xo": "^0.35.0"
+		"xo": "^0.39.1"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^11.0.0",
+		"@commitlint/cli": "^12.1.1",
 		"@commitlint/config-conventional": "^11.0.0",
 		"@semantic-release/changelog": "^5.0.0",
 		"@semantic-release/commit-analyzer": "^8.0.0",
@@ -110,7 +110,7 @@
 		"@semantic-release/npm": "^7.0.9",
 		"@semantic-release/release-notes-generator": "^9.0.1",
 		"coveralls": "^3.1.0",
-		"husky": "^4.3.0",
+		"husky": "^6.0.0",
 		"mocha": "^8.2.1",
 		"nyc": "^15.1.0",
 		"rimraf": "^3.0.2",
