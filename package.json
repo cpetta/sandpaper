@@ -67,7 +67,7 @@
 		"gulp-zip": "^5.0.1",
 		"jshint-more-stylish": "^1.0.1",
 		"markdownlint": "^0.22.0",
-		"meow": "^8.0.0",
+		"meow": "^10.0.0",
 		"postcss": "^8.1.10",
 		"postcss-normalize": "^9.0.0",
 		"postcss-preset-env": "^6.7.0",
