@@ -1,6 +1,6 @@
 # Sandpaper
 
-[![Dependencies][david-svg]][david-url] [![Dependabot Status][Dependabot-svg]][Dependabot-url] [![Build Status][travis-ci-svg]][travis-ci-url] [![Coverage Status][coveralls-svg]][coveralls-url] [![FOSSA Status][FOSSA-svg]][FOSSA-url] [![XO code style][xo-svg]][xo-url] [![semantic-release][semantic-release-svg]][semantic-release-url] [![Total alerts][LGTM-svg]][LGTM-url]
+[![Build Status][travis-ci-svg]][travis-ci-url] [![Coverage Status][coveralls-svg]][coveralls-url] [![FOSSA Status][FOSSA-svg]][FOSSA-url] [![XO code style][xo-svg]][xo-url] [![semantic-release][semantic-release-svg]][semantic-release-url] [![Total alerts][LGTM-svg]][LGTM-url]
 
 ## What is Sandpaper
 
@@ -124,14 +124,10 @@ if `--strict` flag is specified
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcpetta%2Fsandpaper.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcpetta%2Fsandpaper?ref=badge_large)
 
 [releases]: https://github.com/cpetta/sandpaper/releases
-[david-svg]: https://david-dm.org/cpetta/sandpaper.svg
-[david-url]: https://david-dm.org/cpetta/sandpaper
 [travis-ci-svg]: https://travis-ci.org/cpetta/sandpaper.svg?branch=master
 [travis-ci-url]: https://travis-ci.org/cpetta/sandpaper
 [coveralls-svg]: https://coveralls.io/repos/github/cpetta/sandpaper/badge.svg?branch=master
 [coveralls-url]: https://coveralls.io/github/cpetta/sandpaper?branch=master
-[Dependabot-svg]: https://api.dependabot.com/badges/status?host=github&repo=cpetta/sandpaper
-[Dependabot-url]: https://dependabot.com
 [FOSSA-svg]: https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcpetta%2Fsandpaper.svg?type=shield
 [FOSSA-url]: https://app.fossa.io/projects/git%2Bgithub.com%2Fcpetta%2Fsandpaper?ref=badge_shield
 [xo-svg]: https://img.shields.io/badge/code_style-XO-5ed9c7.svg
