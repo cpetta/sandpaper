@@ -83,7 +83,7 @@
 		"rehype-retext": "^2.0.3",
 		"rehype-stringify": "^8.0.0",
 		"remark-retext": "^4.0.0",
-		"retext-contractions": "^4.0.0",
+		"retext-contractions": "^5.2.0",
 		"retext-english": "^3.0.3",
 		"retext-indefinite-article": "^2.0.0",
 		"retext-passive": "^3.0.0",
