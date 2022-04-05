@@ -11469,14 +11469,16 @@ retext-redundant-acronyms@^3.0.0:
     unist-util-find-after "^3.0.0"
     unist-util-position "^3.0.0"
 
-retext-repeated-words@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/retext-repeated-words/-/retext-repeated-words-3.0.0.tgz#741fa9ff82a8c900d52e2697649813740aaa11f7"
-  integrity sha512-c9awbCxn3h+SVVYwEeJA+rcWWFiOvxrcD8MVFpyVpWu0q1cXG7NIyWclEzXDV12SkqKgR/vmBJh3tIJCfxmDAA==
+retext-repeated-words@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/retext-repeated-words/-/retext-repeated-words-4.2.0.tgz#1651c7e80356d2d9044f09eb17d6f82a327a018a"
+  integrity sha512-Tle40/5Xy6KxI94s4XRqGXcj6aWUeCoQZUGQto8OjZP98t4tKVDRVG3QGodF633hVOEiN1vYqj0Zegqoe8XOaw==
   dependencies:
-    nlcst-to-string "^2.0.0"
-    unist-util-is "^4.0.0"
-    unist-util-visit "^2.0.0"
+    "@types/nlcst" "^1.0.0"
+    nlcst-to-string "^3.0.0"
+    unified "^10.0.0"
+    unist-util-position "^4.0.0"
+    unist-util-visit "^4.0.0"
 
 retext-sentence-spacing@^4.0.0:
   version "4.0.0"
@@ -13357,6 +13359,13 @@ unist-util-position@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/unist-util-position/-/unist-util-position-3.1.0.tgz#1c42ee6301f8d52f47d14f62bbdb796571fa2d47"
   integrity sha512-w+PkwCbYSFw8vpgWD0v7zRCl1FpY3fjDSQ3/N/wNd9Ffa4gPi8+4keqt99N3XW6F99t/mUzp2xAhNmfKWp95QA==
+
+unist-util-position@^4.0.0:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/unist-util-position/-/unist-util-position-4.0.3.tgz#5290547b014f6222dff95c48d5c3c13a88fadd07"
+  integrity sha512-p/5EMGIa1qwbXjA+QgcBXaPWjSnZfQ2Sc3yBEEfgPwsEmJd8Qh+DSk3LGnmOM4S1bY2C0AjmMnB8RuEYxpPwXQ==
+  dependencies:
+    "@types/unist" "^2.0.0"
 
 unist-util-remove-position@^1.0.0:
   version "1.1.4"
