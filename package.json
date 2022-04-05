@@ -47,7 +47,7 @@
 		"eslint-plugin-eslint-comments": "^3.2.0",
 		"eslint-plugin-import": "^2.23.2",
 		"eslint-plugin-node": "^11.1.0",
-		"eslint-plugin-promise": "^5.1.0",
+		"eslint-plugin-promise": "^6.0.0",
 		"eslint-plugin-unicorn": "^32.0.1",
 		"gulp": "^4.0.2",
 		"gulp-cache": "^1.1.3",
