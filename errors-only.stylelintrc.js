@@ -1,8 +1,6 @@
-'use strict';
-const path = require('path');
+"use strict";
+import path from "node:path";
 
-const config = {
-	extends: path.resolve('./node_modules/stylelint-config-recommended/')
+export const config = {
+  extends: path.resolve("./node_modules/stylelint-config-recommended/"),
 };
-
-exports.config = config;
