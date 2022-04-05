@@ -611,35 +611,7 @@ export function syncBrowsers() {
 function syncStop() {
   browserSync.exit();
 }
-/*
-exports.clean = clean;
-exports.compileCSS = compileCSS;
-exports.compileHTML = compileHTML;
-exports.compileTS = compileTS;
-exports.copyAssets = copyAssets;
-exports.htmlReporter = htmlReporter;
-exports.includeSourceMaps = includeSourceMaps;
-exports.logWriter = logWriter;
-exports.lintcss = lintcss;
-exports.linthtml = linthtml;
-exports.lintjs = lintjs;
-exports.lintts = lintts;
-exports.lintmd = lintmd;
-exports.lintmarkdownContent = lintmarkdownContent;
-exports.lintHtmlContent = lintHtmlContent;
-exports.optamizeImages = optamizeImages;
-exports.releaseMode = releaseMode;
-exports.strictLint = strictLint;
-exports.errorLint = errorLint;
-exports.syncBrowsers = syncBrowsers;
-exports.uglifyjs = uglifyjs;
-exports.watch = watch;
-exports.watchlint = watchlint;
-exports.zipSrc = zipSrc;
-exports.fixjs = fixjs;
-exports.fixcss = fixcss;
-exports.watchfix = watchfix;
-*/
+
 // Combined functions / jobs
 
 const lint = gulp.series(
@@ -687,22 +659,7 @@ export const watchLintStrict = gulp.series(strictLint, lint, watchlint);
 export const fixSrc = gulp.series(strictLint, fixjs, fixcss);
 
 export const autoFixSrc = gulp.series(strictLint, fixjs, fixcss, watchfix);
-/*
-exports.buildDev = buildDev;
-exports.buildProd = buildProd;
-exports.watchDev = watchDev;
-exports.watchProd = watchProd;
-exports.lint = lint;
-exports.lintErrors = lintErrors;
-exports.lintStrict = lintStrict;
-exports.syncDev = syncDev;
-exports.syncProd = syncProd;
-exports.syncStop = syncStop;
-exports.watchLint = watchLint;
-exports.watchLintStrict = watchLintStrict;
-exports.fixSrc = fixSrc;
-exports.autoFixSrc = autoFixSrc;
-*/
+
 gulp.task("default", buildDev);
 gulp.task("prod", buildProd);
 gulp.task("lint", lintErrors);
